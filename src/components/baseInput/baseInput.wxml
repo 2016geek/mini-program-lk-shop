@@ -1,0 +1,5 @@
+<view class="base-input">
+	<input value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="" placeholder-class="input-placeholder" 
+	 maxlength="140" bindinput="onInput" bindfocus="" bindblur="" bindconfirm="">
+	</input>
+</view>

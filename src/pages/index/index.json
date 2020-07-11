@@ -1,6 +1,5 @@
-
 {
   "usingComponents": {
-    "user": "../../components/user/user"
+    "baseInput": "../../components/baseInput/baseInput"
   }
 }
