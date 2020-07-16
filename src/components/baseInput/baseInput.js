@@ -18,13 +18,25 @@ Component({
 			value: '',
 		},
 	},
+	externalClasses: ['my-class'],
 	data: {
 		result: '',
+		extralClass: '',
 	},
 	methods: {
-		onInput(value) {
-			this.setData({ result: value.detail.value })
-			this.triggerEvent('inputChange', value.detail.value)
+		onInput(event) {
+			this.setData({ result: event.detail.value })
+			this.triggerEvent('Input', event.detail.value)
+		},
+		onBlur(event) {
+			this.triggerEvent('Blur')
+		},
+		onFocus(event) {
+			this.setData({ extralClass: 'active' })
+			this.triggerEvent('Focus')
+		},
+		onComfirm(event) {
+			this.triggerEvent('Comfirm')
 		},
 	},
 	created: function () {
