@@ -1,0 +1,140 @@
+<view class="bill-edit">
+  <view class="img-list">
+    <view class="img-wrapper">
+      <image
+        class="img"
+        src="https://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1596344150&t=5a68594b70f0c8a417ced81da6dec40c"
+        mode="aspectFill"
+        lazy-load="false"
+        binderror=""
+        bindload=""
+      ></image>
+      <text class="icon-close"></text>
+    </view>
+    <view class="img-wrapper">
+      <image
+        class="img"
+        src="https://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1596344150&t=5a68594b70f0c8a417ced81da6dec40c"
+        mode="aspectFill"
+        lazy-load="false"
+        binderror=""
+        bindload=""
+      ></image>
+      <text class="icon-close"></text>
+    </view>
+    <view class="add-img">
+      <view class="icon-photo"></view>
+      <text class="desc">拍照</text>
+    </view>
+  </view>
+  <view class="part">
+    <view class="title-wrapper">
+      <view class="title">客户</view>
+      <view class="other">
+        <view class="add">添加</view>
+      </view>
+    </view>
+    <view class="tag-list">
+      <view class="tag-item">张东升</view>
+      <view class="tag-item active">张东升</view>
+      <view class="tag-item">张东升</view>
+      <view class="tag-item">张东升</view>
+    </view>
+  </view>
+  <view class="part">
+    <view class="title-wrapper">
+      <view class="title">账单日期</view>
+      <view class="other">
+        <picker
+          class="bill-date-wrapper"
+          mode="date"
+          value="2020-07-25"
+          bindchange="bindDateChange"
+        >
+          <view class="picker">
+            2020-07-25
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="part">
+    <view class="title-wrapper">
+      <view class="title">项目名称</view>
+      <view class="other">
+        <input
+          placeholder-class="input-placeholder"
+          class="input"
+          placeholder="请输入项目名称(限制20字)"
+          maxlength="20"
+          type="text"
+        />
+      </view>
+    </view>
+  </view>
+  <view class="part">
+    <view class="title-wrapper">
+      <view class="title">备注</view>
+      <view class="other">
+        <input
+          placeholder-class="input-placeholder"
+          class="input"
+          maxlength="20"
+          placeholder="请输入备注信息(限制20字)"
+          type="text"
+        />
+      </view>
+    </view>
+  </view>
+  <view class="part">
+    <view class="title-wrapper">
+      <view class="title">打样</view>
+      <view class="other">
+        <switch class="" checked="false" type="switch" bindchange=""></switch>
+      </view>
+    </view>
+  </view>
+  <view class="price-wrapper">
+    <view class="row">
+      <view class="input-item">
+        <view class="label">数量</view>
+        <input class="input" value="{{0}}" type="number">
+        </input>
+      </view>
+      <view class="input-item">
+        <view class="label">单价</view>
+        <input class="input" value="{{0}}" type="number">
+        </input>
+      </view>
+    </view>
+    <view class="row">
+      <view class="input-item-wrapper">
+        <view class="input-item">
+          <view class="label">附加费</view>
+          <input class="input" value="{{200}}" type="number">
+          </input>
+        </view>
+        <view class="control-icon add"></view>
+      </view>
+      <view class="input-item-wrapper">
+        <view class="input-item">
+          <view class="label">附加费</view>
+          <input class="input" value="{{0}}" type="number">
+          </input>
+        </view>
+        <view class="control-icon reduce"></view>
+      </view>
+    </view>
+    <view class="row-other">
+      <view class="label">总额</view>
+      <view class="total-wrapper">
+        <view class="unit-wrapper">
+          <view class="unit">￥</view>
+          <view class="dot-name">百</view>
+        </view>
+        <input type="number" class="number"></input>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-btn">完成</view>
+</view>
