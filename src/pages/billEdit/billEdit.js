@@ -1,9 +1,13 @@
 // src/pages/billEdit/billEdit.js
+const uploadImage = require('../../utils/oss/uploadAliyun.js')
+
 Page({
 	/**
 	 * 页面的初始数据
 	 */
-	data: {},
+	data: {
+		imgList: [],
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -44,4 +48,25 @@ Page({
 	 * 用户点击右上角分享
 	 */
 	onShareAppMessage: function () {},
+	addImg(e) {
+		let _this = this
+		wx.chooseImage({
+			success(res) {
+				const tempFilePaths = res.tempFilePaths
+
+				uploadImage(
+					tempFilePaths[0],
+					'miniapp/userUpload/',
+					function (res) {
+						_this.setData({ imgList: [..._this.data.imgList, res] })
+						console.log(res)
+					},
+					function (res) {
+						console.log('上传失败')
+						console.log(res)
+					}
+				)
+			},
+		})
+	},
 })
