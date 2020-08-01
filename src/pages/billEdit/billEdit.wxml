@@ -24,10 +24,7 @@
       </view>
     </view>
     <view class="tag-list">
-      <view class="tag-item">张东升</view>
-      <view class="tag-item active">张东升</view>
-      <view class="tag-item">张东升</view>
-      <view class="tag-item">张东升</view>
+      <view bindtap = "choseDebtor" data-value="{{item}}" wx:for="{{debtorNameList}}" wx:key="index" class="{{debtorName==item?'active':''}} tag-item">{{item}}</view>
     </view>
   </view>
   <view class="part">
@@ -37,11 +34,11 @@
         <picker
           class="bill-date-wrapper"
           mode="date"
-          value="2020-07-25"
+          value="{{billTime}}"
           bindchange="bindDateChange"
         >
           <view class="picker">
-            2020-07-25
+            {{billTime}}
           </view>
         </picker>
       </view>
@@ -52,6 +49,8 @@
       <view class="title">项目名称</view>
       <view class="other">
         <input
+          value="{{billName}}"
+          bindinput="onBillNameInput"
           placeholder-class="input-placeholder"
           class="input"
           placeholder="请输入项目名称(限制20字)"
@@ -126,4 +125,5 @@
     </view>
   </view>
   <view class="bottom-btn">完成</view>
+  <dialog title="添加客户" bindclose="closeDialog" bindconfirm="confirmAddUser"></dialog>
 </view>

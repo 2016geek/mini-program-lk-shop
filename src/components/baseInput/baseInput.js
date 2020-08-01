@@ -3,7 +3,7 @@ Component({
 	properties: {
 		max: {
 			type: Number,
-			value: 'baseInput Component',
+			value: -1,
 		},
 		placeholder: {
 			type: String,

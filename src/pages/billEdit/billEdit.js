@@ -1,18 +1,28 @@
 // src/pages/billEdit/billEdit.js
 const uploadImage = require('../../utils/oss/uploadAliyun.js')
-
+const dayjs = require('../../vendor/dayjs')
 Page({
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
 		imgList: [],
+		userDialogVisible: false,
+		addUserValue: '',
+		debtorName: '',
+		debtorNameList: ['张东升'],
+		billTime: '',
+		billName: '',
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {},
+	onLoad: function (options) {
+		if (!options.id) {
+			this.setData({ billTime: dayjs().format('YYYY-MM-DD') })
+		}
+	},
 
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
@@ -23,31 +33,31 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {},
+	onBillNameInput(e) {
+		this.setData({ billName: e.detail.value })
+	},
+	bindDateChange(e) {
+		const {
+			detail: { value },
+		} = e
+		this.setData({ billTime: value })
+	},
+	choseDebtor(e) {
+		const {
+			target: {
+				dataset: { value },
+			},
+		} = e
+		this.setData({ debtorName: value })
+	},
+	closeDialog() {
+		this.setData({ userDialogVisible: false })
+	},
+	confirmAddUser() {
+		if (this.data.addUserValue) {
+			this.setData({ debtorName: this.data.addUserValue })
+		}
+	},
 	addImg(e) {
 		let _this = this
 		wx.chooseImage({
