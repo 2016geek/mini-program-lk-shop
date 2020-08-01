@@ -11,18 +11,7 @@
       ></image>
       <text class="icon-close"></text>
     </view>
-    <!-- <view class="img-wrapper">
-      <image
-        class="img"
-        src="https://t8.baidu.com/it/u=3571592872,3353494284&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1596344150&t=5a68594b70f0c8a417ced81da6dec40c"
-        mode="aspectFill"
-        lazy-load="false"
-        binderror=""
-        bindload=""
-      ></image>
-      <text class="icon-close"></text>
-    </view> -->
-    <view class="add-img" bindtap = "addImg">
+    <view class="add-img" wx:if="{{imgList.length<3}}" bindtap = "addImg">
       <view class="icon-photo"></view>
       <text class="desc">拍照</text>
     </view>

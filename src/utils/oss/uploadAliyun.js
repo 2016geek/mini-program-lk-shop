@@ -20,12 +20,8 @@ const uploadFile = function (filePath, dir, successc, failc) {
 	console.log(filePath)
 	const aliyunFileKey = dir + filePath.replace('http://tmp/', '') // 我直接拿微信本地的名字当做传到服务器上的名字了，dir传的是images/，表示要传到这个目录下
 
-	// const aliyunFileKey = fileW + '' + (new Date().getTime()) + '_' + objectId + '.mp4';
-	// const aliyunFileKey = fileW
 	const aliyunServerURL = env.uploadImageUrl // OSS地址，需要https
 	const accessid = env.OSSAccessKeyId
-	// const policyBase64 = env.Policy;
-	// const signature = env.Signature;
 	const policyBase64 = getPolicyBase64()
 	const signature = getSignature(policyBase64) // 获取签名
 	wx.uploadFile({
@@ -44,8 +40,6 @@ const uploadFile = function (filePath, dir, successc, failc) {
 				failc(new Error('上传错误:' + JSON.stringify(res)))
 				return
 			}
-			console.log('上传图片成功', res)
-			console.log(aliyunFileKey)
 			successc(
 				'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/' + aliyunFileKey
 			)
