@@ -1,0 +1,45 @@
+<view class="bill">
+	<view class="bill-top">
+		<image class="bill-top_bg" src="../../../images/bill/位图@2x.png"></image>
+		<image class="bill-top_setting" src="../../../images/bill/全局设置@2x.png"></image>
+		<view class="bill-top_title">总收入</view>
+		<view class="bill-top_sum number">{{userInfo.sum}}</view>
+		<view class="bill-top_settle-row">
+			<view class="bill-top_settle-row_item">
+				<view class="bill-top_settle-row_item-label">已结算</view>
+				<view class="bill-top_settle-row_item-number number">{{userInfo.settle}}</view>
+			</view>
+			<view class="bill-top_settle-row_item">
+				<view class="bill-top_settle-row_item-label">待结算</view>
+				<view class="bill-top_settle-row_item-number number">{{userInfo.unsettle}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="bill-content">
+		<image wx:if="{{!billList.length}}" class="bill-content_empty" src="../../../images/bill/编组@2x.png"></image>
+		<view wx:else class="bill-list">
+			<view wx:for="{{billList}}" wx:key="index" class="bill-list_item">
+				<view class="bill-list_item-left">
+					<image class="bill-list_item-image"></image>
+					<view class="bill-list_item-image-text">{{item.debtorName[0]}}</view>
+				</view>
+				<view class="bill-list_item-right">
+					<view class="bill-list_item-title-row">
+						<view class="bill-list_item-title">{{item.billName}}</view>
+						<view class="bill-list_item-number number {{item.status == 1 ? 'yellow' : 'green'}}">{{item.billAmount}}</view>
+					</view>
+					<view class="bill-list_item-desc-row">
+						<view class="bill-list_item-desc">共计 {{item.settlementAmount}} 笔明细 | {{item.billTime}}</view>
+						<view class="bill-list_item-number-tip">{{BillStatusMap[item.status].label}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="bill-bottom">
+		<view class="bill-bottom_btn bottom-btn">
+			<image class="edit-icon" src="../../../images/bill/形状@2x.png"></image>
+			记一笔
+		</view>
+	</view>
+</view>

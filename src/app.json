@@ -1,15 +1,17 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/component/component",
-    "pages/guide/welcome/welcome",
-    "pages/guide/information/index"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Wechat",
-    "navigationBarTextStyle": "black"
-  }
+	"pages": [
+		"pages/index/index",
+		"pages/logs/logs",
+		"pages/component/component",
+		"pages/guide/welcome/welcome",
+		"pages/guide/information/index",
+		"pages/bill/list/index"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "Wechat",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom"
+	}
 }
