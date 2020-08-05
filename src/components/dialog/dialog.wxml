@@ -2,8 +2,8 @@
   <view class="dialog-wrapper">
     <view class="header">
       <text class="close"></text>
-      <text class="title"></text>
-      <view class="confirm">确定</view>
+      <text class="title">{{title}}</text>
+      <view class="confirm" bindtap="confirm">确定</view>
     </view>
     <slot></slot>
   </view>

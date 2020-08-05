@@ -22,10 +22,10 @@ Component({
 	},
 	methods: {
 		close() {
-			this.triggerEvent('close')
+			this.triggerEvent('Close')
 		},
 		confirm() {
-			this.triggerEvent('confirm')
+			this.triggerEvent('Confirm')
 		},
 	},
 	created: function () {},

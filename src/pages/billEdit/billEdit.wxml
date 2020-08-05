@@ -1,3 +1,4 @@
+<wxs src="./billEdit.wxs" module="moneyTool" />
 <view class="bill-edit">
   <view class="img-list">
     <view class="img-wrapper" wx:key="index" wx:for="{{imgList}}">
@@ -20,11 +21,11 @@
     <view class="title-wrapper">
       <view class="title">客户</view>
       <view class="other">
-        <view class="add">添加</view>
+        <view bindtap = "setDebtorVisible" class="add">添加</view>
       </view>
     </view>
     <view class="tag-list">
-      <view bindtap = "choseDebtor" data-value="{{item}}" wx:for="{{debtorNameList}}" wx:key="index" class="{{debtorName==item?'active':''}} tag-item">{{item}}</view>
+      <view bindtap = "choseDebtor" data-value="{{item.id}}" wx:for="{{debtorNameList}}" wx:key="index" class="{{debtorId==item.id?'active':''}} tag-item">{{item.debtorName}}</view>
     </view>
   </view>
   <view class="part">
@@ -65,6 +66,8 @@
       <view class="title">备注</view>
       <view class="other">
         <input
+          value="{{billMemo}}"
+          bindinput="onBillMemoInput"
           placeholder-class="input-placeholder"
           class="input"
           maxlength="20"
@@ -78,39 +81,41 @@
     <view class="title-wrapper">
       <view class="title">打样</view>
       <view class="other">
-        <switch class="" checked="false" type="switch" bindchange=""></switch>
+        <switch color="#3432C1" checked="{{proofing}}" type="switch" bindchange="proofingChange"></switch>
       </view>
     </view>
   </view>
-  <view class="price-wrapper">
+  <view class="price-wrapper" wx:if="{{proofing}}">
+    <view class="row">
+      <view class="input-item">
+        <view class="label">金额</view>
+        <input class="input" value="{{settlementAmount}}" type="number">
+        </input>
+      </view>
+    </view>
+  </view>
+  <view class="price-wrapper"  wx:else>
     <view class="row">
       <view class="input-item">
         <view class="label">数量</view>
-        <input class="input" value="{{0}}" type="number">
+        <input class="input" value="{{mount}}" type="number">
         </input>
       </view>
       <view class="input-item">
         <view class="label">单价</view>
-        <input class="input" value="{{0}}" type="number">
+        <input class="input" value="{{singlePrice}}" type="number">
         </input>
       </view>
     </view>
+    
     <view class="row">
-      <view class="input-item-wrapper">
+      <view class="input-item-wrapper" wx:key="index" wx:for="{{extralPrice}}">
         <view class="input-item">
           <view class="label">附加费</view>
-          <input class="input" value="{{200}}" type="number">
+          <input class="input" value="{{item}}" type="number">
           </input>
         </view>
-        <view class="control-icon add"></view>
-      </view>
-      <view class="input-item-wrapper">
-        <view class="input-item">
-          <view class="label">附加费</view>
-          <input class="input" value="{{0}}" type="number">
-          </input>
-        </view>
-        <view class="control-icon reduce"></view>
+        <view class="control-icon {{index!=0?'reduce':'add'}}"></view>
       </view>
     </view>
     <view class="row-other">
@@ -118,12 +123,14 @@
       <view class="total-wrapper">
         <view class="unit-wrapper">
           <view class="unit">￥</view>
-          <view class="dot-name">百</view>
+          <view class="dot-name">{{moneyTool.getBit(settlementAmount)}}</view>
         </view>
-        <input type="number" class="number"></input>
+        <input type="number" class="number" value="{{settlementAmount}}"></input>
       </view>
     </view>
   </view>
   <view class="bottom-btn">完成</view>
-  <dialog title="添加客户" bindclose="closeDialog" bindconfirm="confirmAddUser"></dialog>
+  <dialog title="添加客户" visible="{{userDialogVisible}}"  bindClose="closeDialog" bindConfirm="addDebtor">
+    <baseInput placeholder="请输入客户名称" bindInput="onDebtorInput" value="{{addDebtorName}}" max="8"></baseInput>
+  </dialog>
 </view>

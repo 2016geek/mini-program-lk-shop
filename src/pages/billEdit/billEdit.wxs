@@ -1,0 +1,19 @@
+var getBit = function (value) {
+  var len = value.length
+  switch (len) {
+    case 1:
+      return '个'
+    case 2:
+      return '十'
+    case 3:
+      return '百'
+    case 4:
+      return '千'
+    case 5:
+      return '万'
+  }
+}
+
+module.exports = {
+  getBit: getBit,
+}

@@ -1,4 +1,6 @@
 // src/pages/billEdit/billEdit.js
+import api from '../../api'
+
 const uploadImage = require('../../utils/oss/uploadAliyun.js')
 const dayjs = require('../../vendor/dayjs')
 Page({
@@ -9,10 +11,18 @@ Page({
 		imgList: [],
 		userDialogVisible: false,
 		addUserValue: '',
-		debtorName: '',
-		debtorNameList: ['张东升'],
+		debtorId: '',
+		debtorNameList: [],
 		billTime: '',
 		billName: '',
+		billMemo: '',
+		mount: 0,
+		singlePrice: 0,
+		extralPrice: [0],
+		settlementAmount: 10,
+		proofing: false,
+		dotName: '个',
+		addDebtorName: '',
 	},
 
 	/**
@@ -32,9 +42,46 @@ Page({
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function () {},
+	onShow() {
+		this.getDebtorList()
+	},
+	async getDebtorList() {
+		const { result } = await api.debtor.list()
+		this.setData({ debtorNameList: result })
+	},
+	onDebtorInput(e) {
+		const {
+			detail: { value },
+		} = e
+		this.setData({ addDebtorName: value })
+	},
+	async addDebtor() {
+		if (!this.data.addDebtorName) {
+			wx.showToast({
+				title: '客户名称不能为空',
+				icon: 'none',
+			})
+			return
+		}
+		await api.debtor.add({ debtorName: this.data.addDebtorName })
+		this.getDebtorList()
+		this.setData({ userDialogVisible: false, addDebtorName: '' })
+	},
+	setDebtorVisible() {
+		this.setData({ userDialogVisible: true })
+	},
+	computedMoney(number) {
+		var a = new Intl.NumberFormat('en-US')
+		a.format(number)
+	},
+	proofingChange(e) {
+		this.setData({ proofing: e.detail.value })
+	},
 	onBillNameInput(e) {
 		this.setData({ billName: e.detail.value })
+	},
+	onBillMemoInput(e) {
+		this.setData({ billMemo: e.detail.value })
 	},
 	bindDateChange(e) {
 		const {
@@ -48,15 +95,10 @@ Page({
 				dataset: { value },
 			},
 		} = e
-		this.setData({ debtorName: value })
+		this.setData({ debtorId: value })
 	},
 	closeDialog() {
 		this.setData({ userDialogVisible: false })
-	},
-	confirmAddUser() {
-		if (this.data.addUserValue) {
-			this.setData({ debtorName: this.data.addUserValue })
-		}
 	},
 	addImg(e) {
 		let _this = this
