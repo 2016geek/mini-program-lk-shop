@@ -1,5 +1,6 @@
 <view class="base-input {{extralClass}}">
 	<input class="input" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="" placeholder-class="input-placeholder" 
-	 maxlength="140" bindinput="onInput" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm">
+	 maxlength="140" maxlength="{{max}}" bindinput="onInput" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm">
 	</input>
+	<view wx:if="{{max!=-1}}" class="max-length">{{result.length}}/{{max}}</view>
 </view>

@@ -3,7 +3,7 @@ Component({
 	properties: {
 		max: {
 			type: Number,
-			value: 'baseInput Component',
+			value: -1,
 		},
 		placeholder: {
 			type: String,
@@ -26,7 +26,7 @@ Component({
 	methods: {
 		onInput(event) {
 			this.setData({ result: event.detail.value })
-			this.triggerEvent('Input', event.detail.value)
+			this.triggerEvent('Input', { value: event.detail.value })
 		},
 		onBlur(event) {
 			this.triggerEvent('Blur')

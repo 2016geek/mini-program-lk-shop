@@ -6,9 +6,20 @@
     color #fff
     position fixed
     bottom 0
+    left 0
+    bottom constant(safe-area-inset-bottom) /* 兼容 iOS < 11.2 */
+    bottom env(safe-area-inset-bottom) /* 兼容 iOS >= 11.2 */
     width 100%
     font-weight bolder
+    font-size 36rpx
     transition all 0.2s
     flex 1
+    z-index 10
+    &.negative
+        background-color #efeff6
+        color #232442
     &-hover
         background-color rgba(52, 50, 193, 1) rgba(0, 0, 0, 0.1) !important
+.input-placeholder
+    color #D1D2DC
+    font-weight normal

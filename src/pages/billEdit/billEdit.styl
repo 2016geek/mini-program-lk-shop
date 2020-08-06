@@ -1,0 +1,160 @@
+.bill-edit
+  background-color #EFEFF6
+  padding-bottom 148rpx
+  .img-list
+    padding 48rpx
+    display flex
+    background-color #fff
+    .img-wrapper
+      width 178rpx
+      height 178rpx
+      position relative
+      margin-right 20rpx
+      .icon-close
+        position absolute
+        top -50%
+        left -50%
+        width 32rpx
+        height 32rpx
+        background center / 32rpx 32rpx no-repeat
+      .img
+        width 178rpx
+        height 178rpx
+    .add-img
+      display flex
+      flex-direction column
+      justify-content center
+      align-content center
+      background-color #EFEFF6
+      width 178rpx
+      height 178rpx
+      .icon-photo
+        width 47rpx
+        height 47rpx
+        align-self center
+      .desc
+        font-size 32rpx
+        color #7E80A3
+        margin-top 24rpx
+        text-align center
+  .part
+    padding 48rpx
+    border-top 1rpx dashed #D1D2DC
+    background-color #fff
+    .title-wrapper
+      display flex
+      justify-content space-between
+      align-content center
+      .title
+        display flex
+        align-items center
+        color #232442
+        font-size 36rpx
+        font-weight bolder
+        &::before
+          content ''
+          background-color #3432C1
+          display inline-block
+          width 8rpx
+          height 36rpx
+          margin-right 16rpx
+      .other
+        text-align right
+        .add
+          font-size 36rpx
+          color #A9ABBE
+          padding-left 28rpx
+          background left center / 20rpx 20rpx no-repeat
+          font-weight bolder
+        .bill-date-wrapper
+          width 468rpx
+          height 50rpx
+          .picker
+            font-size 36rpx
+            color #F89D4A
+            font-weight bolder
+        .input
+          color #232442
+          font-size 36rpx
+          font-weight bolder
+          width 468rpx
+    .tag-list
+      max-height 228rpx
+      margin-top 8rpx
+      display flex
+      flex-wrap wrap
+      .tag-item
+        padding 20rpx 42rpx
+        background-color #EFEFF6
+        color #A9ABBE
+        font-size 36rpx
+        font-weight bolder
+        margin-right 24rpx
+        margin-top 24rpx
+        &.active
+          color #ffffff
+          background-color #3432C1
+  .price-wrapper
+    .row
+      display flex
+      flex-wrap wrap
+      padding 44rpx 48rpx
+      border-bottom 1rpx dashed #D1D2DC
+      .input-item-wrapper
+        width 100%
+        display flex
+        align-items center
+        &:last-child
+          .input-item
+            margin-bottom 0
+        .control-icon
+          width 32rpx
+          height 32rpx
+          background center / 32rpx 32rpx no-repeat
+        .input-item
+          margin-bottom 32rpx
+      .input-item
+        flex 1
+        display flex
+        align-items center
+        .label
+          font-size 36rpx
+          font-weight bolder
+          width 108rpx
+          margin-right 32rpx
+        .input
+          flex 1
+          font-size 36rpx
+          color #F89D4A
+          font-weight bolder
+    .row-other
+      padding 48rpx
+      .label
+        font-size 36rpx
+        font-weight bolder
+        color #232442
+      .total-wrapper
+        width 100%
+        flex 1
+        display flex
+        margin-top 24rpx
+        .unit-wrapper
+          width 24rpx
+          display flex
+          flex-direction column
+          justify-content space-between
+          .unit
+            font-size 24rpx
+            color #F89D4A
+            font-weight bolder
+          .dot-name
+            font-size 24rpx
+            font-weight bolder
+            color #7E80A3
+        .number
+          margin-left 10rpx
+          font-size 88rpx
+          min-height 88rpx
+          font-weight bolder
+          color #F89D4A
+          flex 1
