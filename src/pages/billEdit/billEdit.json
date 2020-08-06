@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "dialog": "../../components/dialog/dialog",
-    "baseInput": "../../components/baseInput/baseInput"
+    "baseInput": "../../components/baseInput/baseInput",
+    "confirm": "../../components/confirm/confirm"
   }
 }

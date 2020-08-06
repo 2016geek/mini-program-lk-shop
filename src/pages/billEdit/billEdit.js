@@ -23,6 +23,8 @@ Page({
 		proofing: false,
 		dotName: '个',
 		addDebtorName: '',
+
+		confirmVisible: false,
 	},
 
 	/**
@@ -44,6 +46,15 @@ Page({
 	 */
 	onShow() {
 		this.getDebtorList()
+	},
+	onDel() {
+		this.setData({ confirmVisible: true })
+	},
+	onDelConfirm() {
+		this.setData({ confirmVisible: false })
+	},
+	onDelCancel() {
+		this.setData({ confirmVisible: false })
 	},
 	async getDebtorList() {
 		const { result } = await api.debtor.list()

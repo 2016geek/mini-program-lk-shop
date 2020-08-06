@@ -133,4 +133,9 @@
   <dialog title="添加客户" visible="{{userDialogVisible}}"  bindClose="closeDialog" bindConfirm="addDebtor">
     <baseInput placeholder="请输入客户名称" bindInput="onDebtorInput" value="{{addDebtorName}}" max="8"></baseInput>
   </dialog>
+  <view class="bottom-btn-group">
+    <view class="btn negative">更新</view>
+    <view bindtap = "onDel" class="btn oriange negative">删除</view>
+  </view>
+  <confirm wx:if="{{confirmVisible}}" bindConfirm="onDelConfirm" bindCancel="onDelCancel" title="确定删除吗？" confirmText="删除" cancelText="取消" desc="删除后信息将无法恢复，请谨慎操作"></confirm>
 </view>

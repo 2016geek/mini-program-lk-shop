@@ -1,0 +1,38 @@
+.confirm
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  z-index 100
+  .mask
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background rgba(35, 36, 66, 0.5)
+    z-index 1
+  &-wrapper
+    position absolute
+    bottom 0
+    right 0
+    left 0
+    z-index 10
+    .content
+      padding 48rpx 40rpx
+      padding-bottom 102rpx
+      background-color #fff
+      .title
+        color #232442
+        font-size 36rpx
+        font-weight bolder
+        margin-bottom 48rpx
+        text-align center
+      .desc
+        color #232442
+        font-size 36rpx
+        text-align center
+    .footer
+      width 100%
+      display flex

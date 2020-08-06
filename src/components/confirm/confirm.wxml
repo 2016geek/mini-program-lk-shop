@@ -1,0 +1,15 @@
+<view class="confirm">
+  <view class="confirm-wrapper">
+    <view class="content">
+      <view class="title">{{title}}</view>
+      <view class="desc">{{desc}}</view>
+    </view>
+    <view class="footer">
+      <view bindtap="onConfirm" hover-class="btn-hover" class="btn confirm-btn"
+        >{{confirmText}}</view
+      >
+      <view bindtap="onCancel" class="btn gray cancel-btn">{{cancelText}}</view>
+    </view>
+  </view>
+  <view class="mask"></view>
+</view>
