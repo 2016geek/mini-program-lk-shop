@@ -5,7 +5,8 @@
 		"pages/component/component",
 		"pages/guide/welcome/welcome",
 		"pages/guide/information/index",
-		"pages/bill/list/index"
+		"pages/bill/list/index",
+		"pages/bill/account/list/index"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

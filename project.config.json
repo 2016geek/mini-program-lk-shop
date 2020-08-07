@@ -77,6 +77,13 @@
 					"id": -1,
 					"name": "账单列表",
 					"pathName": "pages/bill/list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "客户-账单列表",
+					"pathName": "pages/bill/account/list/index",
 					"scene": null
 				}
 			]
