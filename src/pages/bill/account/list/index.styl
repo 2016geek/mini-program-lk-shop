@@ -1,0 +1,382 @@
+.account-bill
+	width: 100%
+	min-height: 100vh
+
+	&-top
+		position relative
+		box-sizing: border-box
+		width: 100%
+		height: 456rpx
+		padding-left: 48rpx
+		color: #232442
+		border-bottom: 2rpx dashed #D1D2DC
+		padding-top: 169rpx
+
+		&_title
+			font-size: 36rpx
+			line-height: 50rpx
+
+		&_sum
+			font-size: 88rpx
+			height: 123rpx
+			margin-top: 16rpx
+			display: flex
+			align-items: center
+
+		&_settled-icon
+			width: 182rpx
+			height: 191rpx
+			position: absolute
+			bottom: 108rpx
+			right: 0
+
+		&_settle-row
+			height: 46rpx
+			margin-top: 4rpx
+			display: flex
+			justify-content: space-between
+
+			&_item
+				height: 100%
+				display: flex
+				flex-shrink: 0
+				align-items: flex-end
+				width: 300rpx
+
+				&-label
+					font-size: 28rpx
+					margin-right: 24rpx
+
+				&-number
+					font-size: 48rpx
+					line-height: 1
+
+					&.green
+						color #63C8A4
+
+					&.yellow
+						color: #F89D4A
+
+	&-tab
+		height: 98rpx
+		display: flex
+		justify-content: center
+		padding-top: 24rpx
+
+		&_item
+			position: relative
+			color: #999999
+			line-height: 42rpx
+			font-size: 30rpx
+			height: 42rpx
+
+			&:nth-of-type(1)
+				margin-right: 216rpx
+
+			&.active
+				color: #232442
+				font-weight: bold
+
+				&::after
+					content: ""
+					position: absolute
+					bottom: 0
+					left: 0
+					width: 100%
+					height: 10rpx
+					background-color: #A9ABBE
+					opacity 0.5
+
+	&-list
+		padding: 0 48rpx
+
+	&-bottom-content
+		height 148rpx
+		padding-bottom: 0
+		padding-bottom: constant(safe-area-inset-bottom) /* 兼容 iOS < 11.2 */
+		padding-bottom: env(safe-area-inset-bottom) /* 兼容 iOS >= 11.2 */
+
+	&-bottom
+		position: fixed
+		z-index: 1000
+		bottom: 0
+		bottom: constant(safe-area-inset-bottom) /* 兼容 iOS < 11.2 */
+		bottom: env(safe-area-inset-bottom) /* 兼容 iOS >= 11.2 */
+		left: 0
+		height 148rpx
+		width: 100%
+		display: flex
+
+		&_btn
+			color: #ffffff
+			font-size: 36rpx
+			width: 50%
+			height 100%
+			display: flex
+			justify-content: center
+			align-items: center
+
+			&.edit
+				background-color: #3432C1
+
+			&.share
+				background-color: #F89D4A
+
+		.edit-icon
+			width: 30rpx
+			height: 30rpx
+			margin-right: 16rpx
+
+		.share-icon
+			width: 32rpx
+			height: 32rpx
+			margin-right: 16rpx
+
+.item
+	margin-bottom: 24rpx
+
+	&.expand
+		.item-title_icon
+			transform: rotate(0)
+
+		.item-content
+			height: auto
+
+	&-content
+		transition: height .5s
+		height: 0
+		overflow: hidden
+
+	&-title
+		position relative
+		z-index: 1
+		height: 98rpx
+		background-color: #4c4d74
+		color: #fff
+		display: flex
+		align-items: center
+		padding 0 25rpx
+
+		&_icon
+			transition: transform .5s
+			flex-shrink: 0
+			height: 17rpx
+			width: 24rpx
+			transform: rotate(-90deg)
+
+		&_text
+			flex-grow: 1
+			margin-left: 13rpx
+			font-size: 32rpx
+
+		&_total
+			font-size: 32rpx
+			flex-shrink: 0
+
+	&-detail-list
+		margin-bottom: 24rpx
+
+		&_item
+			height: 98rpx
+			margin-top: 48rpx
+			display: flex
+
+			&-left
+				flex-shrink: 0
+				width: 98rpx
+				height: 98rpx
+
+			&-right
+				flex-grow: 1
+				margin-left: 24rpx
+
+			&-image
+				width: 100%
+				height: 100%
+				background-color: #4c4d74
+
+			&-title-row
+				height 50rpx
+				display: flex
+				justify-content: space-between
+				align-items: center
+
+			&-title
+				color: #232442
+				font-size: 36rpx
+
+			&-number
+				color: #F89D4A
+				font-size: 48rpx
+
+			&-desc-row
+				margin-top: 8rpx
+				height: 40rpx
+				display: flex
+				justify-content: space-between
+				align-items: center
+
+			&-desc
+				color: #4C4D74
+				font-size: 28rpx
+
+			&-detail
+				font-size: 32rpx
+				color: #4C4D74
+
+.package
+	margin-bottom: 24rpx
+
+	&.expand
+		.package-title_icon
+			transform: rotate(0)
+
+		.package-content
+			height: auto
+
+	&-content
+		transition: height .5s
+		height: 0
+		overflow: hidden
+
+	&-title
+		position relative
+		z-index: 1
+		height: 98rpx
+		background-color: #EFEFF6
+		color: #7E80A3
+		display: flex
+		align-items: center
+		padding 0 25rpx
+
+		&_icon
+			transition: transform .5s
+			flex-shrink: 0
+			height: 17rpx
+			width: 24rpx
+			transform: rotate(-90deg)
+
+		&_text
+			flex-grow: 1
+			margin-left: 13rpx
+			font-size: 32rpx
+
+			&-inline
+				position relative
+
+				&.tip::after
+					content: ""
+					position: absolute
+					right: -12rpx
+					top: 8rpx
+					width: 8rpx
+					height: 8rpx
+					background-color: #F74C31
+					border-radius: 50%
+
+		&_status
+			flex-shrink: 0
+			width: 90rpx
+			height: 40rpx
+			color: #fff
+			font-size: 30rpx
+			display: flex
+			justify-content: center
+			align-items: center
+
+			&.orange
+				background-color: #F74C31
+
+			&.yellow
+				background-color: #F89D4A
+
+			&.green
+				background-color: #63C8A4
+
+	&-status-line
+		height: 88rpx
+		border-bottom: 1rpx dashed #D1D2DC
+		display: flex
+		align-items: center
+		justify-content: space-between
+
+		&_item
+			flex-shrink: 0
+			display: flex
+			align-items: center
+
+			&-text
+				font-size: 28rpx
+				color: #A9ABBE
+
+			&-number
+				font-size: 32rpx
+				color #4C4D74
+				margin-left: 16rpx
+
+	&-detail-list
+		&_item
+			height: 98rpx
+			margin-top: 48rpx
+			display: flex
+
+			&-left
+				flex-shrink: 0
+				width: 98rpx
+				height: 98rpx
+
+			&-right
+				flex-grow: 1
+				margin-left: 24rpx
+
+			&-image
+				width: 100%
+				height: 100%
+				background-color: #4c4d74
+
+			&-title-row
+				height 50rpx
+				display: flex
+				justify-content: space-between
+				align-items: center
+
+			&-title
+				color: #A9ABBE
+				font-size: 36rpx
+
+			&-number
+				color: #7E80A3
+				font-size: 48rpx
+
+			&-desc-row
+				margin-top: 8rpx
+				height: 40rpx
+				display: flex
+				justify-content: space-between
+				align-items: center
+
+			&-desc
+				color: #A9ABBE
+				font-size: 28rpx
+
+			&-detail
+				font-size: 32rpx
+				color: #A9ABBE
+
+	&-pay-button
+		height: 98rpx
+		margin-top: 48rpx
+		border: 1rpx dashed #D1D2DC
+		display: flex
+		justify-content: center
+		align-items: center
+		margin-bottom: 24rpx
+
+		&_icon
+			width: 24rpx
+			height: 30rpx
+			margin-right: 16rpx
+
+		&_text
+			font-size: 32rpx
+			color: #7E80A3
