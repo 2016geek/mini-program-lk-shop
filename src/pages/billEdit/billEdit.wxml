@@ -52,7 +52,6 @@
         <input
           value="{{billName}}"
           bindinput="onBillNameInput"
-          placeholder-class="input-placeholder"
           class="input"
           placeholder="请输入项目名称(限制20字)"
           maxlength="20"
@@ -68,7 +67,6 @@
         <input
           value="{{billMemo}}"
           bindinput="onBillMemoInput"
-          placeholder-class="input-placeholder"
           class="input"
           maxlength="20"
           placeholder="请输入备注信息(限制20字)"
