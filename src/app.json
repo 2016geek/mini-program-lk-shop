@@ -7,15 +7,14 @@
     "pages/setting/setting",
     "pages/billEdit/billEdit",
     "pages/guide/information/index",
-		"pages/bill/list/index",
-		"pages/bill/account/list/index"
+    "pages/bill/list/index",
+    "pages/bill/account/list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Wechat",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
   },
   "usingComponents": {
     "confirm": "components/confirm/confirm"
