@@ -9,7 +9,7 @@
     <view class="item">
       <image
         class="image1"
-        src="/images/welcome/管理员认证@2x.png"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/welcome/%E7%AE%A1%E7%90%86%E5%91%98%E8%AE%A4%E8%AF%81%402x.png"
         mode="aspectFill"
       ></image>
       <text class="desc" selectable="false" space="false" decode="false">
@@ -19,7 +19,7 @@
     <view class="item">
       <image
         class="image2"
-        src="/images/welcome/文件夹@2x.png"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/welcome/%E6%96%87%E4%BB%B6%E5%A4%B9%402x.png"
         mode="aspectFill"
       ></image>
       <text class="desc" selectable="false" space="false" decode="false">
@@ -29,7 +29,7 @@
     <view class="item">
       <image
         class="image3"
-        src="/images/welcome/导出@2x.png"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/welcome/%E5%AF%BC%E5%87%BA%402x.png"
         mode="aspectFill"
       ></image>
       <text class="desc" selectable="false" space="false" decode="false">
@@ -42,14 +42,14 @@
       wx:if="{{checked}}"
       bindtap="unChecked"
       class="image"
-      src="/images/rule/勾选中@2x.png"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/%E5%8B%BE%E9%80%89%E4%B8%AD%402x.png"
       mode="aspectFill"
     ></image>
     <image
       wx:else
       bindtap="checked"
       class="image"
-      src="/images/rule/勾@2x.png"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/%E5%8B%BE%402x.png"
       mode="aspectFill"
     ></image>
     <text class="normal">同意</text>

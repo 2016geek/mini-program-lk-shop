@@ -21,10 +21,10 @@ Component({
 		visible: false,
 	},
 	methods: {
-		close() {
+		onClose() {
 			this.triggerEvent('Close')
 		},
-		confirm() {
+		onConfirm() {
 			this.triggerEvent('Confirm')
 		},
 	},

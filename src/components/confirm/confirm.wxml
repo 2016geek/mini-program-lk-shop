@@ -11,5 +11,5 @@
       <view bindtap="onCancel" class="btn gray cancel-btn">{{cancelText}}</view>
     </view>
   </view>
-  <view class="mask"></view>
+  <view class="mask" bindtap="onCancel"></view>
 </view>
