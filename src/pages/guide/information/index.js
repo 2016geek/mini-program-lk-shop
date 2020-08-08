@@ -17,14 +17,18 @@ Page({
 		],
 	},
 	onTapSelectItem(e) {
-		const { selections = [] } = this.data;
-		const { item = {} } = e.currentTarget.dataset;
+		const { selections = [] } = this.data
+		const { item = {} } = e.currentTarget.dataset
 		this.setData({
 			selections: selections.map((i) => {
-				const isSet = i.value === item.value;
-				return isSet ? { ...i, selected: !i.selected } : i;
+				const isSet = i.value === item.value
+				return isSet ? { ...i, selected: !i.selected } : i
 			}),
-		});
+		})
 	},
-	onUse() {},
-});
+	onUse() {
+		wx.navigateTo({
+			url: '/pages/bill/list/index',
+		})
+	},
+})

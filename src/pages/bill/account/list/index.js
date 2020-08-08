@@ -188,29 +188,36 @@ Page({
 	},
 
 	onLoad(parmas) {
-		console.log(parmas);
+		console.log(parmas)
 	},
 
 	onTab(e) {
-		const current = e.currentTarget.dataset.current;
+		const current = e.currentTarget.dataset.current
 		this.setData({
 			current,
-		});
+		})
 	},
 
 	onExpand(e) {
-		const index = e.currentTarget.dataset.index;
-		const { expands = [] } = this.data;
+		const index = e.currentTarget.dataset.index
+		const { expands = [] } = this.data
 		this.setData({
-			expands: expands.map((item, i) => i === index ? !item : item),
-		});
+			expands: expands.map((item, i) => (i === index ? !item : item)),
+		})
 	},
 
 	onPackageExpand(e) {
-		const index = e.currentTarget.dataset.index;
-		const { packageExpands = [] } = this.data;
+		const index = e.currentTarget.dataset.index
+		const { packageExpands = [] } = this.data
 		this.setData({
-			packageExpands: packageExpands.map((item, i) => i === index ? !item : item),
-		});
+			packageExpands: packageExpands.map((item, i) =>
+				i === index ? !item : item
+			),
+		})
 	},
-});
+	onAddBill() {
+		wx.navigateTo({
+			url: '/pages/billEdit/billEdit',
+		})
+	},
+})

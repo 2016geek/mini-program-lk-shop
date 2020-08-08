@@ -43,7 +43,7 @@ Page({
 			})
 		} else {
 			wx.navigateTo({
-				url: '../info/info',
+				url: '/pages/guide/information/index',
 			})
 		}
 	},
