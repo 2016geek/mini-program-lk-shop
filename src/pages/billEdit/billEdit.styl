@@ -107,6 +107,9 @@
       padding 44rpx 48rpx
       border-bottom 1rpx dashed #D1D2DC
       .input-item-wrapper
+        &:last-child
+          margin-bottom 0
+        margin-bottom 32rpx
         width 100%
         display flex
         align-items center
@@ -114,13 +117,13 @@
           .input-item
             margin-bottom 0
         .control-icon
-          width 32rpx
+          width 100rpx
           height 32rpx
-          background center / 32rpx 32rpx no-repeat
+          background center right / 32rpx 32rpx no-repeat
           &.add
             background-image url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/billEdit/数量-增加 (1)@2x.png')
-        .input-item
-          margin-bottom 32rpx
+          &.reduce
+            background-image url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/billEdit/%E6%95%B0%E9%87%8F-%E5%87%8F%E5%B0%91%402x.png')
       .input-item
         flex 1
         display flex
@@ -162,7 +165,7 @@
         .number
           margin-left 10rpx
           font-size 88rpx
-          min-height 88rpx
+          min-height 82rpx
           font-weight bolder
           color #F89D4A
           flex 1

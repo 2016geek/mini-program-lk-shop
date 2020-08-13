@@ -1,5 +1,5 @@
 var getBit = function (value) {
-  var len = value.length
+  var len = value.toString().length
   switch (len) {
     case 1:
       return '个'
@@ -10,6 +10,8 @@ var getBit = function (value) {
     case 4:
       return '千'
     case 5:
+      return '万'
+    default:
       return '万'
   }
 }

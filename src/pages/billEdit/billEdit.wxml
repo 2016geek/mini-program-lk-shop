@@ -1,7 +1,7 @@
 <wxs src="./billEdit.wxs" module="moneyTool" />
 <view class="bill-edit">
   <view class="img-list">
-    <view class="img-wrapper" wx:key="index" wx:for="{{imgList}}">
+    <view class="img-wrapper" wx:key="index" wx:for="{{billPics}}">
       <image
         class="img"
         src="{{item}}"
@@ -12,7 +12,7 @@
       ></image>
       <text class="icon-close"></text>
     </view>
-    <view class="add-img" wx:if="{{imgList.length<3}}" bindtap = "addImg">
+    <view class="add-img" wx:if="{{billPics.length<3}}" bindtap = "addImg">
       <view class="icon-photo"></view>
       <text class="desc">拍照</text>
     </view>
@@ -87,7 +87,7 @@
     <view class="row">
       <view class="input-item">
         <view class="label">金额</view>
-        <input class="input" value="{{settlementAmount}}" type="number">
+        <input class="input" bindchange="onBillAmountChange" value="{{billAmount}}" type="number">
         </input>
       </view>
     </view>
@@ -96,24 +96,24 @@
     <view class="row">
       <view class="input-item">
         <view class="label">数量</view>
-        <input class="input" value="{{mount}}" type="number">
+        <input bindinput="onMountInput" class="input" value="{{billDetail.mount}}" type="number">
         </input>
       </view>
       <view class="input-item">
         <view class="label">单价</view>
-        <input class="input" value="{{singlePrice}}" type="number">
+        <input bindinput="onSinglePriceInput" class="input" value="{{billDetail.singlePrice}}" type="number">
         </input>
       </view>
     </view>
     
     <view class="row">
-      <view class="input-item-wrapper" wx:key="index" wx:for="{{extralPrice}}">
+      <view class="input-item-wrapper" wx:key="index" wx:for="{{billDetail.extralPrice}}">
         <view class="input-item">
           <view class="label">附加费</view>
-          <input class="input" value="{{item}}" type="number">
+          <input class="input" bindinput="onExtralPriceInput" data-index="{{index}}" value="{{item}}" type="number">
           </input>
         </view>
-        <view class="control-icon {{index!=0?'reduce':'add'}}"></view>
+        <view  data-index="{{index}}" bindtap = "onExtralPriceTap" class="control-icon {{index==0?'add':'reduce'}}"></view>
       </view>
     </view>
     <view class="row-other">
@@ -121,19 +121,20 @@
       <view class="total-wrapper">
         <view class="unit-wrapper">
           <view class="unit">￥</view>
-          <view class="dot-name">{{moneyTool.getBit(settlementAmount)}}</view>
+          <view class="dot-name">{{moneyTool.getBit(billAmount)}}</view>
         </view>
-        <input type="number" class="number" value="{{settlementAmount}}"></input>
+        <input type="number" class="number" bindchange="onBillAmountChange" value="{{billAmount}}" bindinput="onBillAmountInput"></input>
       </view>
     </view>
   </view>
-  <view class="bottom-btn">完成</view>
+  <view wx:if="{!id}" bindtap = "submit" class="bottom-btn {{valid?'':'negative'}}">完成</view>
+  <view wx:else class="bottom-btn-group">
+    <view class="btn {{valid?'':'negative'}}">更新</view>
+    <view bindtap = "onDel" class="btn oriange negative">删除</view>
+  </view>
   <dialog title="添加客户" visible="{{userDialogVisible}}"  bindClose="closeDialog" bindConfirm="addDebtor">
     <baseInput placeholder="请输入客户名称" bindInput="onDebtorInput" value="{{addDebtorName}}" max="8"></baseInput>
   </dialog>
-  <view class="bottom-btn-group">
-    <view class="btn negative">更新</view>
-    <view bindtap = "onDel" class="btn oriange negative">删除</view>
-  </view>
+  
   <confirm wx:if="{{confirmVisible}}" bindConfirm="onDelConfirm" bindCancel="onDelCancel" title="确定删除吗？" confirmText="删除" cancelText="取消" desc="删除后信息将无法恢复，请谨慎操作"></confirm>
 </view>
