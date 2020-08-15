@@ -1,0 +1,3 @@
+module.exports.number = function (num) {
+	return num.toLocalString();
+};

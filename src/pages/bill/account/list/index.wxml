@@ -1,19 +1,15 @@
 <view class="account-bill">
   <view class="account-bill-top">
-    <view class="account-bill-top_title">总收入</view>
-    <view class="account-bill-top_sum number">{{userInfo.sum}}</view>
+    <view class="account-bill-top_title">{{userInfo.debtorName}}的总收入</view>
+    <view class="account-bill-top_sum number">{{userInfo.total}}</view>
     <view class="account-bill-top_settle-row">
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">已结算</view>
-        <view class="account-bill-top_settle-row_item-number number green"
-          >{{userInfo.settle}}</view
-        >
+        <view class="account-bill-top_settle-row_item-number number green">{{userInfo.settle}}</view>
       </view>
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">待结算</view>
-        <view class="account-bill-top_settle-row_item-number number yellow"
-          >{{userInfo.unsettle}}</view
-        >
+        <view class="account-bill-top_settle-row_item-number number yellow">{{userInfo.unSettle}}</view>
       </view>
     </view>
     <image
@@ -36,132 +32,133 @@
     >
   </view>
   <view class="account-bill-list">
-    <view
-      wx:if="{{current === 'list'}}"
-      wx:for="{{list}}"
-      wx:key="index"
-      class="item {{expands[index] ? 'expand' : ''}}"
-    >
-      <view class="item-title" bind:tap="onExpand" data-index="{{index}}">
-        <image class="item-title_icon" src="../../../../images/bill/三角.png" />
-        <view class="item-title_text">{{item.time}}</view>
-        <view class="item-title_total number">{{item.total}}</view>
-      </view>
-      <view class="item-content">
-        <view class="item-detail-list">
-          <view
-            wx:for="{{item.items}}"
-            wx:key="index"
-            class="item-detail-list_item"
-          >
-            <view class="item-detail-list_item-left">
-              <image
-                class="item-detail-list_item-image"
-                src="{{item.image}}"
-              ></image>
-            </view>
-            <view class="item-detail-list_item-right">
-              <view class="item-detail-list_item-title-row">
-                <view class="item-detail-list_item-title">{{item.title}}</view>
-                <view class="item-detail-list_item-number">{{item.total}}</view>
-              </view>
-              <view class="item-detail-list_item-desc-row">
-                <view class="item-detail-list_item-desc">{{item.time}}</view>
-                <view class="item-detail-list_item-detail"
-                  >{{item.detail}}</view
-                >
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view
-      wx:if="{{current === 'package'}}"
-      wx:for="{{packages}}"
-      wx:key="index"
-      class="package {{packageExpands[index] ? 'expand' : ''}}"
-    >
+    <block wx:if="{{current === 'list'}}">
       <view
-        class="package-title"
-        bind:tap="onPackageExpand"
-        data-index="{{index}}"
+        wx:if="{{list.length}}"
+        wx:for="{{list}}"
+        wx:key="index"
+        class="item {{expands[index] ? 'expand' : ''}}"
       >
-        <image
-          class="package-title_icon"
-          src="../../../../images/bill/三角.png"
-        />
-        <view class="package-title_text">
-          <text
-            class="package-title_text-inline {{item.status == 1 ? 'tip' : ''}}"
-            >{{item.time}}</text
-          >
+        <view class="item-title" bind:tap="onExpand" data-index="{{index}}">
+          <image class="item-title_icon" src="../../../../images/bill/三角.png" />
+          <view class="item-title_text">{{item.time}}</view>
+          <view class="item-title_total number">{{item.total}}</view>
         </view>
+        <view class="item-content">
+          <view class="item-detail-list">
+            <view
+              wx:for="{{item.items}}"
+              wx:key="index"
+              class="item-detail-list_item"
+            >
+              <view class="item-detail-list_item-left">
+                <image
+                  class="item-detail-list_item-image"
+                  src="{{item.image}}"
+                ></image>
+              </view>
+              <view class="item-detail-list_item-right">
+                <view class="item-detail-list_item-title-row">
+                  <view class="item-detail-list_item-title">{{item.title}}</view>
+                  <view class="item-detail-list_item-number">{{item.total}}</view>
+                </view>
+                <view class="item-detail-list_item-desc-row">
+                  <view class="item-detail-list_item-desc">{{item.time}}</view>
+                  <view class="item-detail-list_item-detail"
+                    >{{item.detail}}</view
+                  >
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <image wx:if="{{!list.length && !loading}}" class="list-empty" src="../../../../images/bill/待记题空.png"></image>
+    </block>
+    <block wx:if="{{current === 'package'}}">
+      <view
+        wx:if="{{packages.length}}"
+        wx:for="{{packages}}"
+        wx:key="index"
+        class="package {{packageExpands[index] ? 'expand' : ''}}"
+      >
         <view
-          class="package-title_status {{item.status == 1 ? 'orange' : item.status == 2 ? 'yellow' : 'green'}}"
-          >{{statusMap[item.status]}}</view
+          class="package-title"
+          bind:tap="onPackageExpand"
+          data-index="{{index}}"
         >
-      </view>
-      <view class="package-content">
-        <view class="package-status-line">
-          <view class="package-status-line_item">
-            <view class="package-status-line_item-text">总</view>
-            <view class="package-status-line_item-number number"
-              >{{item.total}}</view
-            >
-          </view>
-          <view class="package-status-line_item">
-            <view class="package-status-line_item-text">结</view>
-            <view class="package-status-line_item-number number"
-              >{{item.pay}}</view
-            >
-          </view>
-          <view class="package-status-line_item">
-            <view class="package-status-line_item-text">待</view>
-            <view class="package-status-line_item-number number"
-              >{{item.total - item.pay}}</view
-            >
-          </view>
-        </view>
-        <view class="package-detail-list">
-          <view
-            wx:for="{{item.items}}"
-            wx:key="index"
-            class="package-detail-list_item"
-          >
-            <view class="package-detail-list_item-left">
-              <image
-                class="package-detail-list_item-image"
-                src="{{item.image}}"
-              ></image>
-            </view>
-            <view class="package-detail-list_item-right">
-              <view class="package-detail-list_item-title-row">
-                <view class="package-detail-list_item-title"
-                  >{{item.title}}</view
-                >
-                <view class="package-detail-list_item-number"
-                  >{{item.total}}</view
-                >
-              </view>
-              <view class="package-detail-list_item-desc-row">
-                <view class="package-detail-list_item-desc">{{item.time}}</view>
-                <view class="package-detail-list_item-detail"
-                  >{{item.detail}}</view
-                >
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="package-pay-button">
           <image
-            class="package-pay-button_icon"
-            src="../../../../images/bill/路径@2x.png"
+            class="package-title_icon"
+            src="../../../../images/bill/黑色三角形.png"
           />
-          <view class="package-pay-button_text">点击付款结算</view>
+          <view class="package-title_text">
+            <text class="package-title_text-inline {{item.status == 1 ? 'tip' : ''}}">{{item.timeLabel}}计提</text>
+          </view>
+          <view class="package-title_status {{item.status == 1 ? 'orange' : item.status == 4 ? 'yellow' : 'green'}}">{{statusMap[item.status]}}</view>
+        </view>
+        <view class="package-content">
+          <view class="package-status-line">
+            <view class="package-status-line_item">
+              <view class="package-status-line_item-text">总</view>
+              <view class="package-status-line_item-number number"
+                >{{item.total}}</view
+              >
+            </view>
+            <view class="package-status-line_item">
+              <view class="package-status-line_item-text">结</view>
+              <view class="package-status-line_item-number number"
+                >{{item.settle}}</view
+              >
+            </view>
+            <view class="package-status-line_item">
+              <view class="package-status-line_item-text">待</view>
+              <view class="package-status-line_item-number number"
+                >{{item.unSettle}}</view
+              >
+            </view>
+          </view>
+          <view class="package-detail-list">
+            <view
+              wx:for="{{item.items}}"
+              wx:for-item="child"
+              wx:key="index"
+              class="package-detail-list_item"
+            >
+              <view class="package-detail-list_item-left">
+                <image
+                  class="package-detail-list_item-image"
+                  src="{{child.image}}"
+                ></image>
+              </view>
+              <view class="package-detail-list_item-right">
+                <view class="package-detail-list_item-title-row">
+                  <view class="package-detail-list_item-title"
+                    >{{child.billName}}</view
+                  >
+                  <view class="package-detail-list_item-number"
+                    >{{child.billAmount}}</view
+                  >
+                </view>
+                <view class="package-detail-list_item-desc-row">
+                  <view class="package-detail-list_item-desc">{{child.timeLabel}}</view>
+                  <view class="package-detail-list_item-detail"
+                    >{{child.detail}}</view
+                  >
+                </view>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{item.status !== 3}}" class="package-pay-button" bind:tap="onSettleTap" data-item="{{item}}">
+            <image
+              class="package-pay-button_icon"
+              src="../../../../images/bill/路径@2x.png"
+            />
+            <view class="package-pay-button_text">点击付款结算</view>
+          </view>
         </view>
       </view>
-    </view>
+      <image wx:if="{{!packages.length && !loading}}" class="package-empty" src="../../../../images/bill/已记提空.png"></image>
+    </block>
   </view>
   <view class="account-bill-bottom-content"></view>
 </view>
@@ -171,8 +168,14 @@
     <image class="edit-icon" src="../../../../images/bill/形状@2x.png"></image>
     新增
   </view>
-  <view class="account-bill-bottom_btn share">
+  <view class="account-bill-bottom_btn share" bind:tap="onAddPackage">
     <image class="share-icon" src="../../../../images/bill/share.png"></image>
     记提
   </view>
 </view>
+
+<confirm wx:if="{{packageConfirmVisible}}" bindConfirm="onPackageConfirm" bindCancel="onPackageCancel" title="确认要计提账单吗？" confirmText="确认" cancelText="等等" desc="计提后账单将打包发出，无法编辑"></confirm>
+
+<dialog title="结算" visible="{{settleDialogVisible}}"  bindClose="onSettleClose" bindConfirm="onSettleConfirm">
+  <baseInput placeholder="请输入已结算额度" bindInput="onSettleInput" value="{{settleValue}}" max="8" my-class="settle-input"></baseInput>
+</dialog>

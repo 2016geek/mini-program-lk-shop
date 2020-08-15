@@ -5,7 +5,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
@@ -81,9 +81,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "客户-账单列表",
 					"pathName": "pages/bill/account/list/index",
+					"query": "debtorId=5",
 					"scene": null
 				}
 			]

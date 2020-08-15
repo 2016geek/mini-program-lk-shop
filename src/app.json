@@ -15,8 +15,5 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Wechat",
     "navigationBarTextStyle": "black"
-  },
-  "usingComponents": {
-    "confirm": "components/confirm/confirm"
   }
 }

@@ -90,6 +90,13 @@
 	&-list
 		padding: 0 48rpx
 
+		.list-empty
+		.package-empty
+			width: 252rpx
+			height: 130rpx
+			margin: 271rpx auto 0
+			display: block
+
 	&-bottom-content
 		height 148rpx
 		padding-bottom: 0
@@ -98,7 +105,7 @@
 
 	&-bottom
 		position: fixed
-		z-index: 1000
+		z-index: 10
 		bottom: 0
 		bottom: constant(safe-area-inset-bottom) /* 兼容 iOS < 11.2 */
 		bottom: env(safe-area-inset-bottom) /* 兼容 iOS >= 11.2 */
@@ -380,3 +387,7 @@
 		&_text
 			font-size: 32rpx
 			color: #7E80A3
+
+.settle-input
+	input
+		color: #F89D4A !important
