@@ -1,76 +1,79 @@
-import { emailValidate } from '../../utils/util'
+import { emailValidate } from '../../utils/util';
+import api from '../../api'
+	;
 
+const app = getApp();
 Page({
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		billChecked: true,
-		emailChecked: true,
+		billChecked: false,
+		emailChecked: false,
 		email: '',
 	},
-
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
-	onLoad: function (options) {},
-
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {},
+	onShow: async function () {
+		this.setData({ billChecked: app.globalData.isFinishedPaid });
+		const { mailAddress, receiveMail } = await api.setting.getEmail();
+		this.setData({ emailChecked: !!receiveMail, email: mailAddress });
+	},
 
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */
-	onHide: function () {},
+	onHide: function () { },
 
 	/**
 	 * 生命周期函数--监听页面卸载
 	 */
-	onUnload: function () {},
+	onUnload: function () { },
 
 	/**
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
-	onPullDownRefresh: function () {},
+	onPullDownRefresh: function () { },
 
 	/**
 	 * 页面上拉触底事件的处理函数
 	 */
-	onReachBottom: function () {},
+	onReachBottom: function () { },
 
 	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function () {},
+	onShareAppMessage: function () { },
 	onBillChanged(event) {
-		this.setData({ billChecked: event.detail.value })
+		const { detail: { value } } = event;
+		this.setData({ billChecked: value });
+		app.setIsFinishedPaid(value);
 	},
 	onEmailChanged(event) {
-		this.setData({ emailChecked: event.detail.value })
+		this.setData({ emailChecked: event.detail.value });
 	},
 	onEmailInput(event) {
-		this.setData({ email: event.detail.value })
+		this.setData({ email: event.detail.value });
 	},
 	onEmailBlur() {
 		if (this.data.email) {
 			if (this.validate()) {
-				// todo 发请求
-			} else {
+				api.setting.setEmail({
+					mailAddress: this.data.email,
+					receiveMail: +this.data.emailChecked,
+				});
+				wx.showToast({
+					title: '邮箱修改成功',
+					icon: 'success',
+				});
+			}
+			else {
 				wx.showToast({
 					title: '邮箱格式不符合要求',
 					icon: 'none',
-				})
+				});
 			}
 		}
 	},
 	validate() {
-		return emailValidate(this.data.email)
+		return emailValidate(this.data.email);
 	},
-})
+});
