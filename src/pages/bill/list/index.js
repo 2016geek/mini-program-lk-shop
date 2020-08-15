@@ -13,6 +13,7 @@ Page({
 		pageSize: 10,
 		pageNum: 0,
 		loading: false,
+		backgroundImgs: ['', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((i) => `https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/矩形备份${i ? ' ' + i : ''}@2x.png`),
 	},
 	async onShow() {
 		this.resetData();

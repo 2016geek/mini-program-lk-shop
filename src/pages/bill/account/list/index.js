@@ -201,6 +201,7 @@ Page({
 			1: '未结',
 			2: '部分',
 			3: '结清',
+			4: '部分',
 		},
 		packageConfirmVisible: false,
 		settleDialogVisible: false,

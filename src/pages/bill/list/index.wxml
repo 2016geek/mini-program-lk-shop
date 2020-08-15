@@ -34,7 +34,7 @@
         class="bill-list_item"
       >
         <view class="bill-list_item-left">
-          <image class="bill-list_item-image"></image>
+          <image class="bill-list_item-image" src="{{backgroundImgs[index % 19]}}"></image>
           <view class="bill-list_item-image-text">{{item.debtorName[0]}}</view>
         </view>
         <view class="bill-list_item-right">
@@ -50,10 +50,8 @@
       </view>
     </view>
   </view>
-  <view class="bill-bottom">
-    <view bindtap="onAddBill" class="bill-bottom_btn bottom-btn">
-      <image class="edit-icon" src="../../../images/bill/形状@2x.png"></image>
-      记一笔
-    </view>
+  <view bindtap="onAddBill" class="bill-bottom bill-bottom_btn bottom-btn">
+    <image class="edit-icon" src="../../../images/bill/形状@2x.png"></image>
+    记一笔
   </view>
 </view>
