@@ -1,0 +1,8 @@
+<view class="root-wrap-container">
+  <block wx:if="{{customTitleBar}}">
+		<view wx:if="{{useBack}}" class="back"></view>
+    <slot name="titleBar"></slot>
+  </block>
+  <!-- 页面内容区域 -->
+  <slot></slot>
+</view>
