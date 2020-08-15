@@ -12,6 +12,7 @@ Page({
 		billPics: [],
 		addUserValue: '',
 		debtorId: '',
+		debtorName: '',
 		debtorNameList: [],
 		billDetail: {
 			singlePrice: 0,
@@ -35,20 +36,67 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {
+	onLoad: async function (options) {
 		app.watch(this.data, this.watch, this)
 		if (!options.id) {
 			this.setData({ billTime: dayjs().format('YYYY-MM-DD') })
 		} else {
-			this.setData({ id: options.id })
+			const res = await api.bill.getDetail(
+				{ id: options.id },
+				{ id: options.id }
+			)
+			const {
+				result: {
+					billAmount,
+					billDetail,
+					billMemo,
+					billName,
+					billPics,
+					billTime,
+					debtorId,
+					debtorName,
+					id,
+					proofing,
+				},
+			} = res
+			this.setData({
+				billAmount,
+				billMemo,
+				billName,
+				billPics: JSON.parse(billPics),
+				billTime,
+				debtorId,
+				debtorName,
+				id,
+				proofing: !!proofing,
+				billDetail: JSON.parse(billDetail),
+				valid: true,
+			})
 		}
 	},
 	watch: {
 		billAmount(val, old) {
-			if (this.validate(false)) {
-				this.setData({ valid: true })
-			}
+			this.judgeValid()
 		},
+		billPics(val, old) {
+			this.judgeValid()
+		},
+		debtorId(val, old) {
+			this.judgeValid()
+		},
+		billTime(val, old) {
+			this.judgeValid()
+		},
+		billName(val, old) {
+			this.judgeValid()
+		},
+	},
+	judgeValid() {
+		if (this.validate(false)) {
+			this.setData({ valid: true })
+		} else {
+			this.setData({ valid: false })
+		}
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
@@ -64,7 +112,16 @@ Page({
 	onDel() {
 		this.setData({ confirmVisible: true })
 	},
-	onDelConfirm() {
+	async onDelConfirm() {
+		const id = this.data.id
+		await api.bill.del({}, { id })
+		wx.showToast({
+			title: '删除成功',
+			icon: 'success',
+			success() {
+				wx.navigateBack({})
+			},
+		})
 		this.setData({ confirmVisible: false })
 	},
 	onDelCancel() {
@@ -89,12 +146,16 @@ Page({
 		})
 		this.computedTotalMoney()
 	},
-	onSinglePriceInput(e) {
+
+	onSinglePriceBlur(e) {
 		const {
 			detail: { value },
 		} = e
 		this.setData({
-			billDetail: { ...this.data.billDetail, singlePrice: Number(value) },
+			billDetail: {
+				...this.data.billDetail,
+				singlePrice: parseFloat(value).toFixed(2),
+			},
 		})
 		this.computedTotalMoney()
 	},
@@ -106,7 +167,7 @@ Page({
 			},
 		} = e
 		const arr = [...this.data.billDetail.extralPrice]
-		arr[index] = Number(value)
+		arr[index] = parseFloat(value).toFixed(2)
 		this.setData({
 			billDetail: { ...this.data.billDetail, extralPrice: arr },
 		})
@@ -132,10 +193,10 @@ Page({
 		const result =
 			singlePrice * mount +
 			extralPrice.reduce((total, v) => {
-				total += v
+				total += parseFloat(v)
 				return total
 			}, 0)
-		this.setData({ billAmount: result })
+		this.setData({ billAmount: parseFloat(result).toFixed(2) })
 	},
 	proofingChange(e) {
 		this.setData({ proofing: e.detail.value })
@@ -155,13 +216,25 @@ Page({
 	choseDebtor(e) {
 		const {
 			target: {
-				dataset: { value },
+				dataset: { value, name },
 			},
 		} = e
-		this.setData({ debtorId: value })
+		this.setData({ debtorId: value, debtorName: name })
 	},
 	closeDialog() {
 		this.setData({ userDialogVisible: false })
+	},
+	delImg(e) {
+		const {
+			target: {
+				dataset: { index },
+			},
+		} = e
+		const temp = [...this.data.billPics]
+		temp.splice(index, 1)
+		this.setData({
+			billPics: [...temp],
+		})
 	},
 	addImg(e) {
 		let _this = this
@@ -193,6 +266,7 @@ Page({
 		const {
 			detail: { value },
 		} = e
+
 		this.setData({ billAmount: value })
 	},
 	onExtralPriceTap(e) {
@@ -222,11 +296,6 @@ Page({
 				billDetail: { ...this.data.billDetail, extralPrice: [...arr] },
 			})
 		}
-	},
-	onBillAmountChange(e) {
-		const {
-			detail: { value },
-		} = e
 	},
 	validateEmpty({ value, label }, showToast = true) {
 		if (Array.isArray(value)) {
@@ -281,6 +350,47 @@ Page({
 		]
 		return !requireList.some((v) => !this.validateEmpty(v, showToast))
 	},
+	onComputedAmoutBlur(e) {
+		const {
+			detail: { value },
+		} = e
+		const { mount, extralPrice } = this.data.billDetail
+		const extralTotal = extralPrice.reduce((total, v) => {
+			total += parseFloat(v)
+			return total
+		}, 0)
+		let result = Number(value)
+		if (result < extralTotal) {
+			wx.showToast({
+				title: '总金额不能低于附加费',
+				icon: 'none',
+			})
+			this.setData({
+				billAmount: extralTotal.toFixed(2),
+				billDetail: {
+					singlePrice: 0,
+					mount: 0,
+					extralPrice,
+				},
+			})
+		} else {
+			let resultMount = 1
+			if (!mount) {
+				resultMount = 1
+			} else {
+				resultMount = mount
+			}
+			const resultSinglePrice = (result - extralTotal) / resultMount
+			this.setData({
+				billAmount: value,
+				billDetail: {
+					mount: resultMount,
+					singlePrice: resultSinglePrice.toFixed(2),
+					extralPrice,
+				},
+			})
+		}
+	},
 	async submit() {
 		if (!this.validate()) {
 			return
@@ -294,6 +404,7 @@ Page({
 			debtorId,
 			proofing,
 			billDetail,
+			debtorName,
 		} = this.data
 		const form = {
 			billAmount,
@@ -304,15 +415,21 @@ Page({
 			debtorId,
 			billDetail: JSON.stringify(billDetail),
 			proofing: +proofing,
+			debtorName,
 		}
-		await api.bill.add({
-			data: {
+		if (this.data.id) {
+			await api.bill.update({ ...form }, { id: this.data.id })
+		} else {
+			await api.bill.add({
 				...form,
-			},
-		})
+			})
+		}
 		wx.showToast({
 			title: '账单创建成功',
 			icon: 'success',
+			success() {
+				wx.navigateBack({})
+			},
 		})
 	},
 })
