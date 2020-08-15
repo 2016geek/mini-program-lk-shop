@@ -43,7 +43,9 @@ Page({
 		this.setData({ loading: true });
 		try {
 			const status = getApp().globalData.isFinishedPaid ? [1, 2, 4] : [1, 2, 3, 4];
+			console.log('status', status);
 			const list = await api.bill.list({ pageSize, pageNum: pageNum + 1, status });
+			console.log('request end', list);
 			const newBillList = list.map((i) => ({
 				...i,
 				billAmountLabel: numberLabel(i.billAmount),
