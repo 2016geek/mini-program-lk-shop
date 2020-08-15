@@ -380,8 +380,9 @@ Page({
 		});
 	},
 	onAddBill() {
+		const { debtorId } = this.data;
 		wx.navigateTo({
-			url: '/pages/billEdit/billEdit',
+			url: `/pages/billEdit/billEdit?debtorId=${debtorId}`,
 		});
 	},
 	onAddPackage() {
