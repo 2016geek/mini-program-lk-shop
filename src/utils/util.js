@@ -6,7 +6,7 @@ export function emailValidate(value) {
 	);
 }
 
-export const numberLabel = (num) => {
+export const numberLabel = (num = 0) => {
 	const NUMBER = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 	return NUMBER.format(num);
 	// return num;

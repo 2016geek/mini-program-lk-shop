@@ -14,6 +14,9 @@ Page({
 			debtorName: '',
 			totalBillAmount: 0,
 			totalSettlementAmount: 0,
+			total: '0.00',
+			settle: '0.00',
+			unSettle: '0.00',
 		},
 		monthList: [],
 		list: [
@@ -228,6 +231,9 @@ Page({
 				debtorName: '',
 				totalBillAmount: 0,
 				totalSettlementAmount: 0,
+				total: '0.00',
+				settle: '0.00',
+				unSettle: '0.00',
 			},
 		});
 	},
