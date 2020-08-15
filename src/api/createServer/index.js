@@ -22,11 +22,10 @@ const createServer = (method, url) => {
 				success(res) {
 					wx.hideLoading();
 					const {
-						data,
-						data: { statusCode, errorMsg },
-					} = res;
+						data: { statusCode, errorMsg, result },
+					} = res || {};
 					if (statusCode === 0) {
-						resolve(data);
+						resolve(result);
 					}
 					else {
 						wx.showToast({
