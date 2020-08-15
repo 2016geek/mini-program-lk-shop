@@ -427,6 +427,13 @@ Page({
 		this.getListForTab();
 		this.onSettleClose();
 	},
+	onItemTap(e) {
+		const { id } = e.currentTarget.dataset;
+		console.log(e);
+		wx.navigateTo({
+			url: `/pages/billEdit/billEdit?id=${id}`,
+		});
+	},
 
 	onReachBottom() {
 		console.log('onReachBottom');

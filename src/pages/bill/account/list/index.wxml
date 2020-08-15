@@ -1,6 +1,6 @@
 <view class="account-bill">
   <view class="account-bill-top">
-    <view class="account-bill-top_title">{{userInfo.debtorName}}的总收入</view>
+    <view class="account-bill-top_title">{{userInfo.debtorName}}的总计</view>
     <view class="account-bill-top_sum number">{{userInfo.total}}</view>
     <view class="account-bill-top_settle-row">
       <view class="account-bill-top_settle-row_item">
@@ -13,6 +13,7 @@
       </view>
     </view>
     <image
+      wx:if="{{userInfo.totalBillAmount == userInfo.totalSettlementAmount}}"
       class="account-bill-top_settled-icon"
       src="../../../../images/bill/已结清.png"
     ></image>
@@ -48,24 +49,27 @@
           <view class="item-detail-list">
             <view
               wx:for="{{item.items}}"
+              wx:for-item="child"
               wx:key="index"
               class="item-detail-list_item"
+              bind:tap="onItemTap"
+              data-id="{{child.id}}"
             >
               <view class="item-detail-list_item-left">
                 <image
                   class="item-detail-list_item-image"
-                  src="{{item.image}}"
+                  src="{{child.image}}"
                 ></image>
               </view>
               <view class="item-detail-list_item-right">
                 <view class="item-detail-list_item-title-row">
-                  <view class="item-detail-list_item-title">{{item.title}}</view>
-                  <view class="item-detail-list_item-number">{{item.total}}</view>
+                  <view class="item-detail-list_item-title">{{child.title}}</view>
+                  <view class="item-detail-list_item-number">{{child.total}}</view>
                 </view>
                 <view class="item-detail-list_item-desc-row">
-                  <view class="item-detail-list_item-desc">{{item.time}}</view>
+                  <view class="item-detail-list_item-desc">{{child.time}}</view>
                   <view class="item-detail-list_item-detail"
-                    >{{item.detail}}</view
+                    >{{child.detail}}</view
                   >
                 </view>
               </view>
