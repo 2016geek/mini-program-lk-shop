@@ -1,27 +1,12 @@
 <view class="setting">
   <view class="form-item">
     <view class="label">自动隐藏已结清账单</view>
-    <switch
-      color="#3432c1"
-      checked="{{billChecked}}"
-      bindchange="onBillChanged"
-    />
+    <switch color="#3432c1" checked="{{billChecked}}" bindchange="onBillChanged" />
   </view>
   <view class="form-item">
     <view class="label">定期发送账单到邮箱</view>
-    <switch
-      color="#3432c1"
-      checked="{{emailChecked}}"
-      bindchange="onEmailChanged"
-    />
+    <switch color="#3432c1" checked="{{emailChecked}}" bindchange="onEmailChanged" />
   </view>
-  <base-input
-    wx:if="{{emailChecked}}"
-    value="{{email}}"
-    bindInput="onEmailInput"
-    bindBlur="onEmailBlur"
-    style="margin-top: 32rpx; display: block;"
-    placeholder="请输入您的邮箱"
-  ></base-input>
-  <view class="bottom-btn negative">退出登录</view>
+  <base-input wx:if="{{emailChecked}}" value="{{email}}" bindInput="onEmailInput" bindBlur="onEmailBlur" style="margin-top: 32rpx; display: block;" placeholder="请输入您的邮箱"></base-input>
+  <!-- <button bindtap="logout" class="bottom-btn negative">退出登录</button> -->
 </view>

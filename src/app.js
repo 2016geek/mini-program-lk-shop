@@ -1,3 +1,6 @@
+import api from './api'
+	;
+
 App({
 	onLaunch() {
 		const res = wx.getStorageSync('isFinishedPaid');
@@ -5,8 +8,12 @@ App({
 		this.globalData.isFinishedPaid = !!res;
 	},
 	globalData: {
-		userInfo: null,
 		isFinishedPaid: false,
+		token: '',
+		userInfo: {},
+	},
+	isLogin() {
+
 	},
 	setIsFinishedPaid(value) {
 		wx.setStorageSync('isFinishedPaid', !!value);

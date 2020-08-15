@@ -1,8 +1,5 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/component/component",
     "pages/guide/welcome/welcome",
     "pages/setting/setting",
     "pages/billEdit/billEdit",

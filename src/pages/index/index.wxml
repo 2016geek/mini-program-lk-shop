@@ -1,6 +1,0 @@
-<!-- index.wxml -->
-<import src='../../wxml/motto/motto.wxml' />
-<wxs src='../../wxs/powered.wxs' module='powered' />
-<view class='container'>
-  <baseInput placeholder='hahah' bindinputChange='handleChange'></baseInput>
-</view>

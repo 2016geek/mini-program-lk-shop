@@ -1,3 +1,9 @@
+import api from '../../../api';
+import { clearPromise } from '../../../api/createServer/index'
+	;
+
+const app = getApp();
+
 Page({
 	data: {
 		info: {
@@ -15,20 +21,67 @@ Page({
 			{ value: '8', label: '糊信封' },
 			{ value: '9', label: '其他' },
 		],
+		selected: false,
 	},
 	onTapSelectItem(e) {
-		const { selections = [] } = this.data
-		const { item = {} } = e.currentTarget.dataset
+		const { selections = [] } = this.data;
+		const { item = {} } = e.currentTarget.dataset;
+		const newSelections = selections.map((i) => {
+			const isSet = i.value === item.value;
+			return isSet ? { ...i, selected: !i.selected } : i;
+		});
 		this.setData({
-			selections: selections.map((i) => {
-				const isSet = i.value === item.value
-				return isSet ? { ...i, selected: !i.selected } : i
-			}),
-		})
+			selections: newSelections,
+			selected: newSelections.some((v) => v.selected),
+		});
 	},
 	onUse() {
-		wx.navigateTo({
-			url: '/pages/bill/list/index',
-		})
+		if (!this.data.selected) {
+			wx.showToast({
+				title: '您需要至少选择一个行业',
+				icon: 'none',
+			});
+		}
 	},
-})
+	async login(data) {
+		let _this = this;
+		if (!data.detail.iv || !data.detail.encryptedData) {
+			wx.showToast({
+				title: '您需要先授权才能访问',
+				icon: 'none',
+			});
+			return;
+		}
+		wx.login({
+			async success(res) {
+				if (res.code) {
+					try {
+						const { detail: {
+							encryptedData,
+							iv,
+						} } = data;
+						const { token, ...useInfo } = await api.user.login({
+							encryptedData,
+							iv,
+							code: res.code,
+							labels: JSON.stringify(_this.data.selections),
+						});
+						app.globalData.token = token;
+						app.globalData.userInfo = useInfo;
+						clearPromise();
+						wx.navigateTo({
+							url: '/pages/bill/list/index',
+						});
+					}
+					catch (data) {
+						console.log(data);
+						// wx.navigateTo({
+						// 	url: '/pages/guide/welcome/welcome',
+						// });
+					}
+				}
+			},
+		});
+
+	},
+});

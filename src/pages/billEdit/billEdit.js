@@ -42,6 +42,9 @@ Page({
 		app.watch(this.data, this.watch, this);
 		if (!options.id) {
 			this.setData({ billTime: dayjs().format('YYYY-MM-DD') });
+			if (options.debtorId) {
+				this.setData({ debtorId: options.debtorId });
+			}
 		}
 		else {
 			const res = await api.bill.getDetail(
@@ -108,8 +111,12 @@ Page({
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow() {
-		this.getDebtorList();
+	async onShow() {
+		await this.getDebtorList();
+		if (this.data.debtorId) {
+			const debtor = this.data.debtorNameList.find((v) => v.id == this.data.debtorId) || {};
+			this.setData({ debtorName: debtor.debtorName });
+		}
 	},
 	onDel() {
 		this.setData({ confirmVisible: true });
