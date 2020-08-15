@@ -31,6 +31,7 @@ Page({
 			settle: numberLabel(res.totalSettlementAmount),
 			unSettle: numberLabel(res.totalBillAmount - res.totalSettlementAmount),
 		};
+		console.log('获取用户信息', userInfo);
 		this.setData({ userInfo });
 	},
 	async getBillList() {
@@ -47,6 +48,7 @@ Page({
 				...i,
 				billAmountLabel: numberLabel(i.billAmount),
 			}));
+			console.log('获取账单', newBillList);
 			this.setData({
 				billList: billList.concat(newBillList),
 				pageNum: pageNum + 1,
