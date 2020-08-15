@@ -21,19 +21,17 @@ const createServer = (method, url) => {
 				},
 				success(res) {
 					wx.hideLoading();
-					const {
-						data,
-						data: { statusCode, errorMsg },
-					} = res;
+					const { data } = res || {};
+					const { statusCode, errorMsg, result } = data;
 					if (statusCode === 0) {
-						resolve(data);
+						resolve(result);
 					}
 					else {
 						wx.showToast({
 							title: errorMsg,
 							icon: 'none',
 						});
-						reject(Error(errorMsg));
+						reject(data);
 					}
 				},
 				fail(e) {
