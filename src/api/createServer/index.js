@@ -21,9 +21,8 @@ const createServer = (method, url) => {
 				},
 				success(res) {
 					wx.hideLoading();
-					const {
-						data: { statusCode, errorMsg, result },
-					} = res || {};
+					const { data } = res || {};
+					const { statusCode, errorMsg, result } = data;
 					if (statusCode === 0) {
 						resolve(result);
 					}
@@ -32,7 +31,7 @@ const createServer = (method, url) => {
 							title: errorMsg,
 							icon: 'none',
 						});
-						reject(Error(errorMsg));
+						reject(data);
 					}
 				},
 				fail(e) {
