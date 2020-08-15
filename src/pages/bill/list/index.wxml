@@ -1,10 +1,10 @@
 <view class="bill">
   <view class="bill-top">
-    <image class="bill-top_bg" src="../../../images/bill/位图@2x.png"></image>
+    <image class="bill-top_bg" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/位图@2x.png"></image>
     <image
       bindtap="onSettingTap"
       class="bill-top_setting"
-      src="../../../images/bill/全局设置@2x.png"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/全局设置@2x.png"
     ></image>
     <view class="bill-top_title">总收入</view>
     <view class="bill-top_sum number">{{userInfo.total}}</view>
@@ -23,7 +23,7 @@
     <image
       wx:if="{{!billList.length}}"
       class="bill-content_empty"
-      src="../../../images/bill/编组@2x.png"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/编组@2x.png"
     ></image>
     <view wx:else class="bill-list">
       <view
@@ -51,7 +51,7 @@
     </view>
   </view>
   <view bindtap="onAddBill" class="bill-bottom bill-bottom_btn bottom-btn">
-    <image class="edit-icon" src="../../../images/bill/形状@2x.png"></image>
+    <image class="edit-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"></image>
     记一笔
   </view>
 </view>

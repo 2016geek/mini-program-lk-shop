@@ -15,7 +15,7 @@
     <image
       wx:if="{{userInfo.totalBillAmount == userInfo.totalSettlementAmount}}"
       class="account-bill-top_settled-icon"
-      src="../../../../images/bill/已结清.png"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/已结清.png"
     ></image>
   </view>
   <view class="account-bill-tab">
@@ -41,7 +41,7 @@
         class="item {{expands[index] ? 'expand' : ''}}"
       >
         <view class="item-title" bind:tap="onExpand" data-index="{{index}}">
-          <image class="item-title_icon" src="../../../../images/bill/三角.png" />
+          <image class="item-title_icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/三角.png" />
           <view class="item-title_text">{{item.time}}</view>
           <view class="item-title_total number">{{item.total}}</view>
         </view>
@@ -77,7 +77,7 @@
           </view>
         </view>
       </view>
-      <image wx:if="{{!list.length && !loading}}" class="list-empty" src="../../../../images/bill/待记题空.png"></image>
+      <image wx:if="{{!list.length && !loading}}" class="list-empty" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/待记题空.png"></image>
     </block>
     <block wx:if="{{current === 'package'}}">
       <view
@@ -93,7 +93,7 @@
         >
           <image
             class="package-title_icon"
-            src="../../../../images/bill/黑色三角形.png"
+            src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/黑色三角形.png"
           />
           <view class="package-title_text">
             <text class="package-title_text-inline {{item.status == 1 ? 'tip' : ''}}">{{item.timeLabel}}计提</text>
@@ -155,13 +155,13 @@
           <view wx:if="{{item.status !== 3}}" class="package-pay-button" bind:tap="onSettleTap" data-item="{{item}}">
             <image
               class="package-pay-button_icon"
-              src="../../../../images/bill/路径@2x.png"
+              src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/路径@2x.png"
             />
             <view class="package-pay-button_text">点击付款结算</view>
           </view>
         </view>
       </view>
-      <image wx:if="{{!packages.length && !loading}}" class="package-empty" src="../../../../images/bill/已记提空.png"></image>
+      <image wx:if="{{!packages.length && !loading}}" class="package-empty" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/已记提空.png"></image>
     </block>
   </view>
   <view class="account-bill-bottom-content"></view>
@@ -169,11 +169,11 @@
 
 <view class="account-bill-bottom">
   <view bindtap="onAddBill" class="account-bill-bottom_btn edit">
-    <image class="edit-icon" src="../../../../images/bill/形状@2x.png"></image>
+    <image class="edit-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"></image>
     新增
   </view>
   <view class="account-bill-bottom_btn share" bind:tap="onAddPackage">
-    <image class="share-icon" src="../../../../images/bill/share.png"></image>
+    <image class="share-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/share.png"></image>
     记提
   </view>
 </view>
