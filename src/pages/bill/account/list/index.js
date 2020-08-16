@@ -19,178 +19,8 @@ Page({
 			unSettle: '0.00',
 		},
 		monthList: [],
-		list: [
-			{
-				time: '2020年7月',
-				total: 123300,
-				items: [
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-				],
-			},
-			{
-				time: '2020年7月',
-				total: 123300,
-				items: [
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-				],
-			},
-			{
-				time: '2020年7月',
-				total: 123300,
-				items: [
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-				],
-			},
-		],
-		packages: [
-			{
-				time: '2020年7月计提',
-				total: 123300,
-				pay: 5000,
-				status: 1,
-				items: [
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-				],
-			},
-			{
-				time: '2020年7月计提',
-				total: 123300,
-				pay: 5000,
-				status: 2,
-				items: [
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-				],
-			},
-			{
-				time: '2020年7月计提',
-				total: 123300,
-				pay: 5000,
-				status: 3,
-				items: [
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-					{
-						image: '',
-						title: '卡套压痕',
-						total: 10000,
-						time: '7月24日',
-						detail: '2600*0.2+200+100+100',
-					},
-				],
-			},
-		],
+		list: [],
+		packages: [],
 		pageSize: 10,
 		pageNum: 0,
 		loading: false,
@@ -401,6 +231,10 @@ Page({
 		const res = await api.bill.addPackage({ debtorId });
 		console.log(res);
 		this.setData({ packageConfirmVisible: false });
+		this.resetList();
+		this.resetPackages();
+		await this.getMonthList();
+		this.getListForTab();
 	},
 	onPackageCancel() {
 		this.setData({ packageConfirmVisible: false });
