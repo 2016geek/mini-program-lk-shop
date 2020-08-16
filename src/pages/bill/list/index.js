@@ -48,7 +48,7 @@ Page({
 			console.log('request end', list);
 			const newBillList = list.map((i) => ({
 				...i,
-				billAmountLabel: numberLabel(i.billAmount),
+				billAmountLabel: numberLabel(i.billAmount - i.totalSettlementAmount),
 			}));
 			console.log('获取账单', newBillList);
 			this.setData({
