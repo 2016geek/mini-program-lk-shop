@@ -1,6 +1,4 @@
-import { BillStatusMap } from '../../../utils/bill';
 import api from '../../../api';
-import { numberLabel, timeLabel } from '../../../utils/util';
 
 Page({
 	data: {
@@ -8,33 +6,36 @@ Page({
 			debtorName: '',
 			totalBillAmount: 0,
 			totalSettlementAmount: 0,
-			total: '0.00',
-			settle: '0.00',
-			unSettle: '0.00',
+			total: 0,
+			settle: 0,
+			unSettle: 0,
 		},
 		billList: [],
 		pageSize: 10,
 		pageNum: 0,
 		loading: false,
+		isFirst: true,
 		backgroundImgs: ['', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((i) => `https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/矩形备份${i ? ' ' + i : ''}@2x.png`),
 	},
 	async onShow() {
-		this.resetData();
 		this.getUserInfo();
-		this.getBillList();
+		this.getBillList(true);
 	},
 	async getUserInfo() {
 		const res = await api.bill.amount();
 		const userInfo = {
 			...res,
-			total: numberLabel(res.totalBillAmount),
-			settle: numberLabel(res.totalSettlementAmount),
-			unSettle: numberLabel(res.totalBillAmount - res.totalSettlementAmount),
+			total: res.totalBillAmount,
+			settle: res.totalSettlementAmount,
+			unSettle: res.totalBillAmount - res.totalSettlementAmount,
 		};
 		console.log('获取用户信息', userInfo);
 		this.setData({ userInfo });
 	},
-	async getBillList() {
+	async getBillList(reset = false) {
+		if (reset) {
+			this.resetBillList();
+		}
 		const { pageSize, pageNum, billList = [] } = this.data;
 		const currentLength = billList.length;
 		const nextLength = pageNum * pageSize;
@@ -43,14 +44,11 @@ Page({
 		this.setData({ loading: true });
 		try {
 			const status = getApp().globalData.isFinishedPaid ? [1, 2, 4] : [1, 2, 3, 4];
-			console.log('status', status);
 			const list = await api.bill.list({ pageSize, pageNum: pageNum + 1, status });
-			console.log('request end', list);
 			const newBillList = list.map((i) => ({
 				...i,
-				billAmountLabel: i.status == 3 ? numberLabel(i.totalSettlementAmount) : numberLabel(i.billAmount - i.totalSettlementAmount),
+				billAmountLabel: i.status == 3 ? i.totalSettlementAmount : i.billAmount - i.totalSettlementAmount,
 			}));
-			console.log('获取账单', newBillList);
 			this.setData({
 				billList: billList.concat(newBillList),
 				pageNum: pageNum + 1,
@@ -60,20 +58,14 @@ Page({
 			this.setData({ loading: false });
 		}
 	},
-	resetData() {
+	resetBillList(cb) {
 		this.setData({
-			userInfo: {
-				debtorName: '',
-				totalBillAmount: 0,
-				totalSettlementAmount: 0,
-				total: '0.00',
-				settle: '0.00',
-				unSettle: '0.00',
-			},
 			billList: [],
 			pageSize: 10,
 			pageNum: 0,
 			loading: false,
+		}, () => {
+			cb && cb();
 		});
 	},
 	onItemTap(e) {

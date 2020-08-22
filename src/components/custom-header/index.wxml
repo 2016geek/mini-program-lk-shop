@@ -1,4 +1,6 @@
-<view class="custom-title-bar operate {{useFix ? 'fixed' : ''}}" style="padding-top:{{statusBarHeight}}px;height:{{titleBarHeight}}px;background:{{background}}">
+<view
+  class="custom-title-bar operate {{useFix ? 'fixed' : ''}}"
+  style="padding-top:{{statusBarHeight}}px;height:{{titleBarHeight}}px;background:{{background}}">
   <image
     wx:if="{{useBack}}"
     class="back"

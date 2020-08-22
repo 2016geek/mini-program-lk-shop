@@ -1,15 +1,15 @@
 <view class="account-bill">
   <view class="account-bill-top">
     <view class="account-bill-top_title">{{userInfo.debtorName}}的总计</view>
-    <view class="account-bill-top_sum number">{{userInfo.total}}</view>
+    <custom-number number="{{userInfo.total}}" my-class="account-bill-top_sum" useAnimation storageKey="account-bill-total" />
     <view class="account-bill-top_settle-row">
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">已结算</view>
-        <view class="account-bill-top_settle-row_item-number number green">{{userInfo.settle}}</view>
+        <custom-number number="{{userInfo.settle}}" my-class="account-bill-top_settle-row_item-number" useAnimation storageKey="account-bill-settle" />
       </view>
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">待结算</view>
-        <view class="account-bill-top_settle-row_item-number number yellow">{{userInfo.unSettle}}</view>
+        <custom-number number="{{userInfo.unSettle}}" my-class="account-bill-top_settle-row_item-number yellow" useAnimation storageKey="account-bill-unSettle" />
       </view>
     </view>
     <image
@@ -43,7 +43,7 @@
         <view class="item-title" bind:tap="onExpand" data-index="{{index}}">
           <image class="item-title_icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/三角.png" />
           <view class="item-title_text">{{item.time}}</view>
-          <view class="item-title_total number">{{item.total}}</view>
+          <custom-number number="{{item.total}}" my-class="item-title_total" useAnimation storageKey="account-bill-list-total-{{item.monthDate}}" />
         </view>
         <view class="item-content">
           <view class="item-detail-list">
@@ -64,7 +64,7 @@
               <view class="item-detail-list_item-right">
                 <view class="item-detail-list_item-title-row">
                   <view class="item-detail-list_item-title">{{child.title}}</view>
-                  <view class="item-detail-list_item-number">{{child.total}}</view>
+                  <custom-number number="{{child.total}}" my-class="item-detail-list_item-number" useAnimation storageKey="account-bill-list-child-total-{{child.id}}" />
                 </view>
                 <view class="item-detail-list_item-desc-row">
                   <view class="item-detail-list_item-desc">{{child.time}}</view>
@@ -104,21 +104,15 @@
           <view class="package-status-line">
             <view class="package-status-line_item">
               <view class="package-status-line_item-text">总</view>
-              <view class="package-status-line_item-number number"
-                >{{item.total}}</view
-              >
+              <custom-number number="{{item.total}}" my-class="package-status-line_item-number" useAnimation storageKey="account-bill-package-total-{{item.id}}" />
             </view>
             <view class="package-status-line_item">
               <view class="package-status-line_item-text">结</view>
-              <view class="package-status-line_item-number number"
-                >{{item.settle}}</view
-              >
+              <custom-number number="{{item.settle}}" my-class="package-status-line_item-number" useAnimation storageKey="account-bill-package-settle-{{item.id}}" />
             </view>
             <view class="package-status-line_item">
               <view class="package-status-line_item-text">待</view>
-              <view class="package-status-line_item-number number"
-                >{{item.unSettle}}</view
-              >
+              <custom-number number="{{item.unSettle}}" my-class="package-status-line_item-number" useAnimation storageKey="account-bill-package-unSettle-{{item.id}}" />
             </view>
           </view>
           <view class="package-detail-list">
@@ -139,9 +133,7 @@
                   <view class="package-detail-list_item-title"
                     >{{child.billName}}</view
                   >
-                  <view class="package-detail-list_item-number"
-                    >{{child.billAmount}}</view
-                  >
+                  <custom-number number="{{child.billAmount}}" my-class="package-detail-list_item-number" useAnimation storageKey="account-bill-package-child-{{child.id}}" />
                 </view>
                 <view class="package-detail-list_item-desc-row">
                   <view class="package-detail-list_item-desc">{{child.timeLabel}}</view>

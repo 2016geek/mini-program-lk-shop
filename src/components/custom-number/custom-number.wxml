@@ -1,0 +1,1 @@
+<view class="number my-class">{{showLabel}}</view>

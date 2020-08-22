@@ -28,7 +28,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -84,7 +84,7 @@
 					"id": 2,
 					"name": "客户-账单列表",
 					"pathName": "pages/bill/account/list/index",
-					"query": "debtorId=5",
+					"query": "debtorId=12",
 					"scene": null
 				}
 			]

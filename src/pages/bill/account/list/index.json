@@ -1,8 +1,8 @@
 {
-  "navigationBarTitleText": "index",
   "usingComponents": {
     "confirm": "../../../../components/confirm/confirm",
     "dialog": "../../../../components/dialog/dialog",
-    "baseInput": "../../../../components/baseInput/baseInput"
+    "baseInput": "../../../../components/baseInput/baseInput",
+    "custom-number": "../../../../components/custom-number/custom-number"
   }
 }

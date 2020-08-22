@@ -1,7 +1,7 @@
 {
-  "navigationBarTitleText": "index",
   "navigationStyle": "custom",
   "usingComponents": {
-    "custom-header": "../../../components/custom-header/index"
+    "custom-header": "../../../components/custom-header/index",
+    "custom-number": "../../../components/custom-number/custom-number"
   }
 }

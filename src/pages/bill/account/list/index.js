@@ -1,6 +1,6 @@
 import api from '../../../../api';
 import dayjs from 'dayjs';
-import { numberLabel, timeLabel } from '../../../../utils/util';
+import { timeLabel } from '../../../../utils/util';
 
 const extraLabel = (detail = '') => {
 	const { singlePrice = '', mount = '', extralPrice = [] } = JSON.parse(detail) || {};
@@ -14,9 +14,9 @@ Page({
 			debtorName: '',
 			totalBillAmount: 0,
 			totalSettlementAmount: 0,
-			total: '0.00',
-			settle: '0.00',
-			unSettle: '0.00',
+			total: 0,
+			settle: 0,
+			unSettle: 0,
 		},
 		monthList: [],
 		list: [],
@@ -61,9 +61,9 @@ Page({
 				debtorName: '',
 				totalBillAmount: 0,
 				totalSettlementAmount: 0,
-				total: '0.00',
-				settle: '0.00',
-				unSettle: '0.00',
+				total: 0,
+				settle: 0,
+				unSettle: 0,
 			},
 		});
 	},
@@ -97,9 +97,9 @@ Page({
 		const res = await api.bill.debtorAmount({}, { debtorId });
 		const userInfo = {
 			...res,
-			total: numberLabel(res.totalBillAmount),
-			settle: numberLabel(res.totalSettlementAmount),
-			unSettle: numberLabel(res.totalBillAmount - res.totalSettlementAmount),
+			total: res.totalBillAmount,
+			settle: res.totalSettlementAmount,
+			unSettle: res.totalBillAmount - res.totalSettlementAmount,
 		};
 		this.setData({ userInfo });
 	},
@@ -125,13 +125,13 @@ Page({
 				return {
 					...item,
 					time: timeLabel(monthDate, 'year'),
-					total: numberLabel(totalBillAmount),
+					total: totalBillAmount,
 					items: res
 						.filter((i) => dayjs(monthDate).month() === dayjs(i.billTime).month())
 						.map((i) => ({
 							image: (JSON.parse(i.billPics || '[]') || [])[0],
 							title: i.billName,
-							total: numberLabel(i.billAmount),
+							total: i.billAmount,
 							time: timeLabel(i.billTime, 'month'),
 							detail: extraLabel(i.billDetail),
 							...i,
@@ -168,9 +168,9 @@ Page({
 				return {
 					...item,
 					timeLabel: timeLabel(item.accrualTime, 'year'),
-					total: numberLabel(item.totalBillAmount),
-					settle: numberLabel(item.totalSettlementAmount),
-					unSettle: numberLabel(item.totalBillAmount - item.totalSettlementAmount),
+					total: item.totalBillAmount,
+					settle: item.totalSettlementAmount,
+					unSettle: item.totalBillAmount - item.totalSettlementAmount,
 					items,
 				};
 			});

@@ -120,3 +120,21 @@ export function getSystemInfo() {
 		return defaultInfo;
 	}
 }
+
+export const createCountDown = () => {
+	let currentKey = null;
+	return (toDo, time = 1000) => {
+		const countDown = (key) => {
+			const timer = setTimeout(() => {
+				const res = toDo && toDo();
+				clearTimeout(timer);
+				if (res === false) return;
+				if (key !== currentKey) return;
+				countDown(key);
+			}, time);
+		};
+		const key = Symbol('countDown');
+		currentKey = key;
+		countDown(key);
+	};
+};
