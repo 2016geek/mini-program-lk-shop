@@ -1,0 +1,17 @@
+<view class="custom-title-bar operate {{useFix ? 'fixed' : ''}}" style="padding-top:{{statusBarHeight}}px;height:{{titleBarHeight}}px;background:{{background}}">
+  <image
+    wx:if="{{useBack}}"
+    class="back"
+    bindtap="onBackTap"
+    src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/顶部返回.png"
+  ></image>
+  <image
+    wx:if="{{useSetting}}"
+    class="setting"
+    bindtap="onSettingTap"
+    src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/全局设置@2x.png"
+  ></image>
+  <slot></slot>
+</view>
+<!-- 占位 -->
+<view wx:if="{{usePlace}}" class="custom-title-bar place" style="height:{{statusBarHeight + titleBarHeight}}px"></view>

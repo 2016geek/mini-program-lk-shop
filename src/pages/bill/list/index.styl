@@ -1,6 +1,5 @@
 .bill
 	width: 100%
-	min-height: 100vh
 	padding-bottom: 148rpx
 	padding-bottom: calc(148rpx + constant(safe-area-inset-bottom)) /* 兼容 iOS < 11.2 */
 	padding-bottom: calc(148rpx + env(safe-area-inset-bottom)) /* 兼容 iOS >= 11.2 */
@@ -9,9 +8,7 @@
 		position relative
 		box-sizing: border-box
 		width: 100%
-		height: 456rpx
-		padding-left: 48rpx
-		padding-top: 69rpx
+		padding-bottom: 46rpx
 		color: #fff
 
 		&_bg
@@ -22,14 +19,11 @@
 			top: 0
 			z-index: -1
 
-		&_setting
-			width: 32rpx
-			height: 32rpx
-
 		&_title
 			font-size: 36rpx
 			line-height: 50rpx
-			margin-top: 68rpx
+			margin-top: 41rpx
+			margin-left: 48rpx
 
 		&_sum
 			font-size: 88rpx
@@ -37,6 +31,7 @@
 			margin-top: 16rpx
 			display: flex
 			align-items: center
+			margin-left: 48rpx
 
 		&_settle-row
 			height: 46rpx
@@ -44,6 +39,7 @@
 			display: flex
 			justify-content: space-between
 			padding-right: 48rpx
+			padding-left: 48rpx
 
 			&_item
 				height: 100%
@@ -111,6 +107,7 @@
 				left: 50%
 				top: 50%
 				transform: translate(-50%, -50%)
+				color: #fff
 
 			&-right
 				flex-grow: 1

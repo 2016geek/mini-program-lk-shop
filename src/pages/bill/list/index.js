@@ -87,11 +87,6 @@ Page({
 			url: '/pages/billEdit/billEdit',
 		});
 	},
-	onSettingTap() {
-		wx.navigateTo({
-			url: '/pages/setting/setting',
-		});
-	},
 
 	onReachBottom() {
 		console.log('onReachBottom');

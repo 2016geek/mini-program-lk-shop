@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "index",
-  "navigationStyle": "custom",
   "usingComponents": {
     "confirm": "../../../../components/confirm/confirm",
     "dialog": "../../../../components/dialog/dialog",
