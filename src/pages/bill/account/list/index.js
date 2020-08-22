@@ -55,19 +55,6 @@ Page({
 		this.getListForTab();
 	},
 
-	resetInfo() {
-		this.setData({
-			userInfo: {
-				debtorName: '',
-				totalBillAmount: 0,
-				totalSettlementAmount: 0,
-				total: 0,
-				settle: 0,
-				unSettle: 0,
-			},
-		});
-	},
-
 	resetList() {
 		this.setData({
 			list: [],
