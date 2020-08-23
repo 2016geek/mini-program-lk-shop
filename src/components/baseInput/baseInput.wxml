@@ -1,6 +1,11 @@
 <view class="base-input {{extralClass}} my-class">
-	<input class="input" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="" placeholder-class="input-placeholder"
-	 maxlength="140" maxlength="{{max}}" bindinput="onInput" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm">
-	</input>
+	<view class="input-wrapper">
+		<input class="input" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="" placeholder-class="input-placeholder"
+		maxlength="140" maxlength="{{max}}" bindinput="onInput" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm">
+	 </input>
+	 <view wx:if="{{showConfirmBtn}}" bindtap = "onConfirm" class="confirm-btn">
+		 确定
+	 </view>
+	</view>
 	<view wx:if="{{max!=-1}}" class="max-length">{{result.length}}/{{max}}</view>
 </view>

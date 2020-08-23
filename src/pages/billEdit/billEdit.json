@@ -3,5 +3,6 @@
     "dialog": "../../components/dialog/dialog",
     "baseInput": "../../components/baseInput/baseInput",
     "confirm": "../../components/confirm/confirm"
-  }
+  },
+  "navigationBarTitleText": "账单"
 }

@@ -1,11 +1,7 @@
 import api from '../../../../api';
 import dayjs from 'dayjs';
 import { timeLabel } from '../../../../utils/util';
-
-const extraLabel = (detail = '') => {
-	const { singlePrice = '', mount = '', extralPrice = [] } = JSON.parse(detail) || {};
-	return `${+singlePrice}x${+mount}` + extralPrice.filter((i) => +i).map((i) => `+${+i}`).join('');
-};
+import { extraLabel } from '../../../../utils/bill';
 
 Page({
 	data: {
@@ -124,7 +120,9 @@ Page({
 					time: timeLabel(monthDate, 'year'),
 					total: totalBillAmount,
 					items: res
-						.filter((i) => dayjs(monthDate).month() === dayjs(i.billTime).month())
+						.filter(
+							(i) => dayjs(monthDate).month() === dayjs(i.billTime).month(),
+						)
 						.map((i) => ({
 							image: (JSON.parse(i.billPics || '[]') || [])[0],
 							title: i.billName,
@@ -150,14 +148,23 @@ Page({
 	},
 
 	async getPackageList() {
-		const { debtorId, packagePageSize, packagePageNum, packages = [] } = this.data;
+		const {
+			debtorId,
+			packagePageSize,
+			packagePageNum,
+			packages = [],
+		} = this.data;
 		const currentLength = packages.length;
 		const nextLength = packagePageNum * packagePageSize;
 		const hasNextPage = currentLength >= nextLength;
 		if (!hasNextPage) return;
 		try {
 			this.setData({ packageLoading: true });
-			const res = await api.bill.debtorAccrual({ debtorId, pageSize: packagePageSize, pageNum: packagePageNum + 1 });
+			const res = await api.bill.debtorAccrual({
+				debtorId,
+				pageSize: packagePageSize,
+				pageNum: packagePageNum + 1,
+			});
 			const packageList = res.map((item) => {
 				const { userBillDTOList = [] } = item || {};
 				const items = userBillDTOList.map((i) => ({
@@ -266,7 +273,11 @@ Page({
 	},
 	async onSettleConfirm() {
 		const { debtorId, settleValue, settleId } = this.data;
-		await api.bill.settle({ accrualId: settleId, debtorId, amount: settleValue });
+		await api.bill.settle({
+			accrualId: settleId,
+			debtorId,
+			amount: settleValue,
+		});
 		this.getDebtorInfo();
 		this.resetList();
 		this.resetPackages();

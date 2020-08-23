@@ -1,6 +1,9 @@
 <view class="bill">
   <view class="bill-top">
-    <image class="bill-top_bg" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/位图@2x.png"></image>
+    <image
+      class="bill-top_bg"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/位图@2x.png"
+    ></image>
     <custom-header useSetting usePlace />
     <view class="bill-top_title">总收入</view>
     <custom-number number="{{userInfo.total}}" my-class="bill-top_sum" useAnimation storageKey="bill-total" loading="{{infoLoading}}" />
@@ -30,21 +33,31 @@
         class="bill-list_item"
       >
         <view class="bill-list_item-left">
-          <image class="bill-list_item-image" src="{{backgroundImgs[index % 19]}}"></image>
+          <image
+            class="bill-list_item-image"
+            src="{{backgroundImgs[index % 19]}}"
+          ></image>
           <view class="bill-list_item-image-text">{{item.debtorName[0]}}</view>
         </view>
         <view class="bill-list_item-right">
           <view class="bill-list_item-title-row">
-            <view class="bill-list_item-title">{{item.debtorName}}的账单</view>
+            <view class="bill-list_item-title"
+              ><view class="ellipsis1">{{item.debtorName}}的账单</view></view
+            >
             <custom-number
               number="{{item.billAmountLabel}}"
               my-class="bill-list_item-number {{item.status == 3 ? 'green' : 'yellow'}}"
               useAnimation
-              storageKey="bill-list-{{item.debtorId}}" />
+              storageKey="bill-list-{{item.debtorId}}"
+            />
           </view>
           <view class="bill-list_item-desc-row">
-            <view class="bill-list_item-desc">共计 {{item.billCount}} 笔明细 | {{item.billTime}}</view>
-            <view class="bill-list_item-number-tip">{{item.status == 3 ? '已结清' : '待结算'}}</view>
+            <view class="bill-list_item-desc"
+              >共计 {{item.billCount}} 笔明细 | {{item.billTime}}</view
+            >
+            <view class="bill-list_item-number-tip"
+              >{{item.status == 3 ? '已结清' : '待结算'}}</view
+            >
           </view>
         </view>
       </view>
@@ -52,7 +65,10 @@
     <loading wx:if="{{loading}}" />
   </view>
   <view bindtap="onAddBill" class="bill-bottom bill-bottom_btn bottom-btn">
-    <image class="edit-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"></image>
+    <image
+      class="edit-icon"
+      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"
+    ></image>
     记一笔
   </view>
 </view>

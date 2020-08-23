@@ -4,6 +4,9 @@ const STORAGE_PRE = 'customNumber-';
 
 Component({
 	externalClasses: ['my-class'],
+	options: {
+		addGlobalClass: true,
+	},
 	properties: {
 		number: {
 			type: Number,
@@ -79,10 +82,13 @@ Component({
 					return;
 				}
 				const current = isUp ? currentNumber + step : currentNumber - step;
-				this.setData({
-					currentNumber: current,
-					showLabel: numberLabel(current),
-				}, () => this.setCurrentNumber());
+				this.setData(
+					{
+						currentNumber: current,
+						showLabel: numberLabel(current),
+					},
+					() => this.setCurrentNumber(),
+				);
 				clearTimeout(timer);
 			}, this.data.timeStep);
 		},
@@ -110,4 +116,3 @@ Component({
 		},
 	},
 });
-
