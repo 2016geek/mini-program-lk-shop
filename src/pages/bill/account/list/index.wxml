@@ -122,6 +122,9 @@
               wx:for-item="child"
               wx:key="index"
               class="package-detail-list_item"
+              bind:tap="onItemTap"
+              data-id="{{child.id}}"
+              data-review="{{true}}"
             >
               <view class="package-detail-list_item-left">
                 <image

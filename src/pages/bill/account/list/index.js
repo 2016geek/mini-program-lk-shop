@@ -286,10 +286,10 @@ Page({
 		this.onSettleClose();
 	},
 	onItemTap(e) {
-		const { id } = e.currentTarget.dataset;
+		const { id, review } = e.currentTarget.dataset;
 		console.log(e);
 		wx.navigateTo({
-			url: `/pages/billEdit/billEdit?id=${id}`,
+			url: `/pages/billEdit/billEdit?id=${id}&review=${review}`,
 		});
 	},
 
