@@ -7,7 +7,7 @@ Component({
 	properties: {
 		number: {
 			type: Number,
-			value: 0,
+			value: -1,
 		},
 		totalTime: {
 			type: Number,
@@ -21,17 +21,22 @@ Component({
 			type: String,
 			value: '',
 		},
+		loading: {
+			type: Boolean,
+			value: false,
+		},
 	},
 	data: {
 		oldNumber: 0,
 		currentNumber: 0,
-		showLabel: '00.00',
+		showLabel: '',
 		step: 0,
 		isUp: true,
 		timeStep: 20,
 	},
 	observers: {
 		number(num) {
+			if (this.data.loading) return;
 			const { currentNumber, totalTime, timeStep, storageKey } = this.data;
 			const storageValue = this.getStorageValue();
 			const old = storageKey ? storageValue : currentNumber;
@@ -40,6 +45,7 @@ Component({
 			const times = Math.min(totalTime / timeStep, distance);
 			const step = distance / times;
 
+			if (old === num) return;
 			this.setData({ step, isUp }, () => {
 				this.setCurrentNumber();
 			});
@@ -81,13 +87,16 @@ Component({
 			}, this.data.timeStep);
 		},
 		getStorageValue() {
-			const { storageKey } = this.data;
+			const { storageKey, currentNumber } = this.data;
 			if (!storageKey) return 0;
 			try {
 				const value = wx.getStorageSync(STORAGE_PRE + storageKey);
-				this.setData({
-					currentNumber: value || 0,
-				});
+				if (currentNumber !== value) {
+					this.setData({
+						currentNumber: value || 0,
+						showLabel: numberLabel(value),
+					});
+				}
 				return value || 0;
 			}
 			catch (e) {

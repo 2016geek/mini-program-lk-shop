@@ -3,6 +3,7 @@
     "confirm": "../../../../components/confirm/confirm",
     "dialog": "../../../../components/dialog/dialog",
     "baseInput": "../../../../components/baseInput/baseInput",
-    "custom-number": "../../../../components/custom-number/custom-number"
+    "custom-number": "../../../../components/custom-number/custom-number",
+    "loading": "../../../../components/loading/index"
   }
 }

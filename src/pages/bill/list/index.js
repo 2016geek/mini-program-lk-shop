@@ -13,7 +13,8 @@ Page({
 		billList: [],
 		pageSize: 10,
 		pageNum: 0,
-		loading: false,
+		infoLoading: true,
+		loading: true,
 		isFirst: true,
 		backgroundImgs: ['', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((i) => `https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/矩形备份${i ? ' ' + i : ''}@2x.png`),
 	},
@@ -22,15 +23,21 @@ Page({
 		this.getBillList(true);
 	},
 	async getUserInfo() {
-		const res = await api.bill.amount();
-		const userInfo = {
-			...res,
-			total: res.totalBillAmount,
-			settle: res.totalSettlementAmount,
-			unSettle: res.totalBillAmount - res.totalSettlementAmount,
-		};
-		console.log('获取用户信息', userInfo);
-		this.setData({ userInfo });
+		try {
+			this.setData({ infoLoading: true });
+			const res = await api.bill.amount();
+			const userInfo = {
+				...res,
+				total: res.totalBillAmount,
+				settle: res.totalSettlementAmount,
+				unSettle: res.totalBillAmount - res.totalSettlementAmount,
+			};
+			console.log('获取用户信息', userInfo);
+			this.setData({ userInfo, infoLoading: false });
+		}
+		finally {
+			this.setData({ infoLoading: false });
+		}
 	},
 	async getBillList(reset = false) {
 		if (reset) {
@@ -52,6 +59,7 @@ Page({
 			this.setData({
 				billList: billList.concat(newBillList),
 				pageNum: pageNum + 1,
+				loading: false,
 			});
 		}
 		finally {

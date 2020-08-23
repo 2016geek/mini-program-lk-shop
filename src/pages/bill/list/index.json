@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "custom-header": "../../../components/custom-header/index",
-    "custom-number": "../../../components/custom-number/custom-number"
+    "custom-number": "../../../components/custom-number/custom-number",
+    "loading": "../../../components/loading/index"
   }
 }

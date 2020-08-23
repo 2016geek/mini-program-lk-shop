@@ -23,12 +23,13 @@ Page({
 		packages: [],
 		pageSize: 10,
 		pageNum: 0,
-		loading: false,
+		infoLoading: false,
+		loading: true,
 		packagePageSize: 10,
 		packagePageNum: 0,
-		packageLoading: false,
-		expands: [false, false, false],
-		packageExpands: [false, false, false],
+		packageLoading: true,
+		expands: [],
+		packageExpands: [],
 		current: 'list',
 		statusMap: {
 			1: '未结',
@@ -81,14 +82,20 @@ Page({
 
 	async getDebtorInfo() {
 		const { debtorId } = this.data;
-		const res = await api.bill.debtorAmount({}, { debtorId });
-		const userInfo = {
-			...res,
-			total: res.totalBillAmount,
-			settle: res.totalSettlementAmount,
-			unSettle: res.totalBillAmount - res.totalSettlementAmount,
-		};
-		this.setData({ userInfo });
+		try {
+			this.setData({ infoLoading: true });
+			const res = await api.bill.debtorAmount({}, { debtorId });
+			const userInfo = {
+				...res,
+				total: res.totalBillAmount,
+				settle: res.totalSettlementAmount,
+				unSettle: res.totalBillAmount - res.totalSettlementAmount,
+			};
+			this.setData({ userInfo, infoLoading: false });
+		}
+		finally {
+			this.setData({ infoLoading: false });
+		}
 	},
 
 	async getMonthList() {
@@ -101,7 +108,10 @@ Page({
 		const { debtorId, monthList = [], list = [], pageSize, pageNum } = this.data;
 		const startIndex = pageNum * pageSize;
 		const endIndex = (pageNum + 1) * pageSize;
-		if (startIndex >= monthList.length) return;
+		if (startIndex >= monthList.length) {
+			this.setData({ loading: false });
+			return;
+		}
 		const billMonthList = monthList.slice(startIndex, endIndex);
 		const billDate = billMonthList.map((i) => i.monthDate);
 		try {
@@ -125,9 +135,13 @@ Page({
 						})),
 				};
 			});
+			const oldExpands = this.data.expands;
+			const newExpands = newList.map(() => false);
 			this.setData({
 				pageNum: pageNum + 1,
 				list: list.concat(newList),
+				expands: oldExpands.concat(newExpands),
+				loading: false,
 			});
 		}
 		finally {
@@ -161,9 +175,13 @@ Page({
 					items,
 				};
 			});
+			const oldExpands = this.data.packageExpands;
+			const newExpands = packageList.map(() => false);
 			this.setData({
 				packagePageNum: packagePageNum + 1,
 				packages: packages.concat(packageList || []),
+				packageExpands: oldExpands.concat(newExpands),
+				packageLoading: false,
 			});
 		}
 		finally {
