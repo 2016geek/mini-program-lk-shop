@@ -1,11 +1,9 @@
 // src/pages/billEdit/billEdit.js
-import api from '../../api';
+import api from '../../api'
 
-const uploadImage = require('../../utils/oss/uploadAliyun.js');
+const uploadImage = require('../../utils/oss/uploadAliyun.js')
 const dayjs = require('../../vendor/dayjs')
-	;
-
-const app = getApp();
+const app = getApp()
 Page({
 	/**
 	 * 页面的初始数据
@@ -13,13 +11,16 @@ Page({
 	data: {
 		billPics: [],
 		addUserValue: '',
+		currentExtraName: '附加费',
+		extraDialogVisible: false,
+		currentExtraIndex: 0,
 		debtorId: '',
 		debtorName: '',
 		debtorNameList: [],
 		billDetail: {
 			singlePrice: 0,
 			mount: 0,
-			extralPrice: [0],
+			extralPrice: [{ name: '附加费', value: 0 }],
 		},
 		billTime: '',
 		billName: '',
@@ -33,24 +34,27 @@ Page({
 		uploading: false,
 		id: '',
 		valid: false,
+		canEdit: true,
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: async function (options) {
-		app.watch(this.data, this.watch, this);
-		if (!options.id) {
-			this.setData({ billTime: dayjs().format('YYYY-MM-DD') });
-			if (options.debtorId) {
-				this.setData({ debtorId: options.debtorId });
-			}
+		app.watch(this.data, this.watch, this)
+		if (options.review) {
+			this.setData({ canEdit: false })
 		}
-		else {
+		if (!options.id) {
+			this.setData({ billTime: dayjs().format('YYYY-MM-DD') })
+			if (options.debtorId) {
+				this.setData({ debtorId: options.debtorId })
+			}
+		} else {
 			const res = await api.bill.getDetail(
 				{ id: options.id },
-				{ id: options.id },
-			);
+				{ id: options.id }
+			)
 			const {
 				billAmount,
 				billDetail,
@@ -62,7 +66,7 @@ Page({
 				debtorName,
 				id,
 				proofing,
-			} = res;
+			} = res
 			this.setData({
 				billAmount,
 				billMemo,
@@ -75,98 +79,176 @@ Page({
 				proofing: !!proofing,
 				billDetail: JSON.parse(billDetail),
 				valid: true,
-			});
+			})
 		}
 	},
 	watch: {
 		billAmount(val, old) {
-			this.judgeValid();
+			this.judgeValid()
 		},
 		billPics(val, old) {
-			this.judgeValid();
+			this.judgeValid()
 		},
 		debtorId(val, old) {
-			this.judgeValid();
+			this.judgeValid()
 		},
 		billTime(val, old) {
-			this.judgeValid();
+			this.judgeValid()
 		},
 		billName(val, old) {
-			this.judgeValid();
+			this.judgeValid()
 		},
 	},
 	judgeValid() {
 		if (this.validate(false)) {
-			this.setData({ valid: true });
-		}
-		else {
-			this.setData({ valid: false });
+			this.setData({ valid: true })
+		} else {
+			this.setData({ valid: false })
 		}
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
-	onReady: function () { },
+	onReady: function () {},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	async onShow() {
-		await this.getDebtorList();
+		await this.getDebtorList()
 		if (this.data.debtorId) {
-			const debtor = this.data.debtorNameList.find((v) => v.id == this.data.debtorId) || {};
-			this.setData({ debtorName: debtor.debtorName });
+			const debtor =
+				this.data.debtorNameList.find((v) => v.id == this.data.debtorId) || {}
+			this.setData({ debtorName: debtor.debtorName })
 		}
 	},
+	closeExtraDialog() {
+		this.setData({
+			extraDialogVisible: false,
+		})
+	},
+	updateExtraName() {
+		const arr = this.data.billDetail.extralPrice
+		arr[this.data.currentExtraIndex].name = this.data.currentExtraName
+		this.setData({
+			billDetail: {
+				...this.data.billDetail,
+				extralPrice: arr,
+			},
+			extraDialogVisible: false,
+			currentExtraIndex: '',
+			currentExtraName: '',
+		})
+	},
+	onExtraNameInput(e) {
+		const {
+			detail: { value },
+		} = e
+		this.setData({
+			currentExtraName: value,
+		})
+	},
+	onOpenExtraDialog(e) {
+		const {
+			target: {
+				dataset: { index },
+			},
+		} = e
+		this.setData({
+			currentExtraIndex: index,
+			currentExtraName: this.data.billDetail.extralPrice[index].name,
+			extraDialogVisible: true,
+		})
+	},
 	onDel() {
-		this.setData({ confirmVisible: true });
+		this.setData({ confirmVisible: true })
 	},
 	async onDelConfirm() {
-		const id = this.data.id;
-		await api.bill.del({}, { id });
+		const id = this.data.id
+		await api.bill.del({}, { id })
 		wx.showToast({
 			title: '删除成功',
 			icon: 'success',
 			success() {
-				wx.navigateBack({});
+				wx.navigateBack({})
 			},
-		});
-		this.setData({ confirmVisible: false });
+		})
+		this.setData({ confirmVisible: false })
 	},
 	onDelCancel() {
-		this.setData({ confirmVisible: false });
+		this.setData({ confirmVisible: false })
 	},
 	async getDebtorList() {
-		const result = await api.debtor.list();
-		this.setData({ debtorNameList: result });
+		const result = await api.debtor.list()
+		this.setData({ debtorNameList: result })
 	},
 	onDebtorInput(e) {
 		const {
 			detail: { value },
-		} = e;
-		this.setData({ addDebtorName: value });
+		} = e
+		this.setData({ addDebtorName: value })
 	},
 	onMountInput(e) {
 		const {
 			detail: { value },
-		} = e;
+		} = e
 		this.setData({
 			billDetail: { ...this.data.billDetail, mount: Number(value) },
-		});
-		this.computedTotalMoney();
+		})
+		this.computedTotalMoney()
 	},
 
 	onSinglePriceBlur(e) {
 		const {
 			detail: { value },
-		} = e;
+		} = e
 		this.setData({
 			billDetail: {
 				...this.data.billDetail,
-				singlePrice: parseFloat(value).toFixed(2),
+				singlePrice: parseFloat(Number(value)).toFixed(2),
 			},
-		});
-		this.computedTotalMoney();
+		})
+		this.computedTotalMoney()
+	},
+	onSinglePriceFocus(e) {
+		const {
+			detail: { value },
+		} = e
+		if (value == 0) {
+			this.setData({
+				billDetail: {
+					...this.data.billDetail,
+					singlePrice: '',
+				},
+			})
+		}
+	},
+	onExtraPriceFocus(e) {
+		const {
+			detail: { value },
+			target: {
+				dataset: { index },
+			},
+		} = e
+		const arr = [...this.data.billDetail.extralPrice]
+		if (value == 0) {
+			arr[index].value = ''
+		} else {
+			arr[index].value = parseFloat(Number(value)).toFixed(2)
+		}
+		this.setData({
+			billDetail: { ...this.data.billDetail, extralPrice: arr },
+		})
+	},
+	onTotalPriceFocus(e) {
+		const {
+			detail: { value },
+		} = e
+		if (value == 0) {
+			this.setData({
+				billAmount: '',
+			})
+		}
 	},
 	onExtralPriceInput(e) {
 		const {
@@ -174,83 +256,91 @@ Page({
 			target: {
 				dataset: { index },
 			},
-		} = e;
-		const arr = [...this.data.billDetail.extralPrice];
-		arr[index] = parseFloat(value).toFixed(2);
+		} = e
+		const arr = [...this.data.billDetail.extralPrice]
+		arr[index].value = parseFloat(Number(value)).toFixed(2)
 		this.setData({
 			billDetail: { ...this.data.billDetail, extralPrice: arr },
-		});
-		this.computedTotalMoney();
+		})
+		this.computedTotalMoney()
 	},
 	async addDebtor() {
 		if (!this.data.addDebtorName) {
 			wx.showToast({
 				title: '客户名称不能为空',
 				icon: 'none',
-			});
-			return;
+			})
+			return
 		}
-		await api.debtor.add({ debtorName: this.data.addDebtorName });
-		this.getDebtorList();
-		this.setData({ userDialogVisible: false, addDebtorName: '' });
+		await api.debtor.add({ debtorName: this.data.addDebtorName })
+		await this.getDebtorList()
+		const debtor = this.data.debtorNameList.find(
+			(v) => v.debtorName == this.data.addDebtorName
+		) || { debtorName: '', id: '' }
+		this.setData({
+			userDialogVisible: false,
+			addDebtorName: '',
+			debtorName: debtor.debtorName,
+			debtorId: debtor.id,
+		})
 	},
 	setDebtorVisible() {
-		this.setData({ userDialogVisible: true });
+		this.setData({ userDialogVisible: true })
 	},
 	computedTotalMoney() {
-		const { singlePrice, mount, extralPrice } = this.data.billDetail;
+		const { singlePrice, mount, extralPrice } = this.data.billDetail
 		const result =
 			singlePrice * mount +
 			extralPrice.reduce((total, v) => {
-				total += parseFloat(v);
-				return total;
-			}, 0);
-		this.setData({ billAmount: parseFloat(result).toFixed(2) });
+				total += parseFloat(v.value)
+				return total
+			}, 0)
+		this.setData({ billAmount: parseFloat(result).toFixed(2) })
 	},
 	proofingChange(e) {
-		this.setData({ proofing: e.detail.value });
+		this.setData({ proofing: e.detail.value })
 	},
 	onBillNameInput(e) {
-		this.setData({ billName: e.detail.value });
+		this.setData({ billName: e.detail.value })
 	},
 	onBillMemoInput(e) {
-		this.setData({ billMemo: e.detail.value });
+		this.setData({ billMemo: e.detail.value })
 	},
 	bindDateChange(e) {
 		const {
 			detail: { value },
-		} = e;
-		this.setData({ billTime: value });
+		} = e
+		this.setData({ billTime: value })
 	},
 	choseDebtor(e) {
 		const {
 			target: {
 				dataset: { value, name },
 			},
-		} = e;
-		this.setData({ debtorId: value, debtorName: name });
+		} = e
+		this.setData({ debtorId: value, debtorName: name })
 	},
 	closeDialog() {
-		this.setData({ userDialogVisible: false });
+		this.setData({ userDialogVisible: false })
 	},
 	delImg(e) {
 		const {
 			target: {
 				dataset: { index },
 			},
-		} = e;
-		const temp = [...this.data.billPics];
-		temp.splice(index, 1);
+		} = e
+		const temp = [...this.data.billPics]
+		temp.splice(index, 1)
 		this.setData({
 			billPics: [...temp],
-		});
+		})
 	},
 	addImg(e) {
-		let _this = this;
-		this.setData({ uploading: true });
+		let _this = this
+		this.setData({ uploading: true })
 		wx.chooseImage({
 			success(res) {
-				const tempFilePaths = res.tempFilePaths;
+				const tempFilePaths = res.tempFilePaths
 				uploadImage(
 					tempFilePaths[0],
 					'miniapp/userUpload/',
@@ -258,55 +348,56 @@ Page({
 						_this.setData({
 							uploading: false,
 							billPics: [..._this.data.billPics, res],
-						});
+						})
 					},
 					function (res) {
 						wx.showToast({
 							title: '图片上传失败，请重试',
 							icon: 'none',
-						});
-						_this.setData({ uploading: false });
-					},
-				);
+						})
+						_this.setData({ uploading: false })
+					}
+				)
 			},
-		});
+		})
 	},
 	onBillAmountInput(e) {
 		const {
 			detail: { value },
-		} = e;
+		} = e
 
-		this.setData({ billAmount: value });
+		this.setData({ billAmount: value })
 	},
 	onExtralPriceTap(e) {
 		const {
 			target: {
 				dataset: { index },
 			},
-		} = e;
+		} = e
 		if (index == 0) {
 			if (this.data.billDetail.extralPrice.length >= 3) {
 				wx.showToast({
 					title: '最多只能添加3个附加费',
 					icon: 'none',
-				});
-			}
-			else {
+				})
+			} else {
 				this.setData({
 					billDetail: {
 						...this.data.billDetail,
-						extralPrice: [...this.data.billDetail.extralPrice, 0],
+						extralPrice: [
+							...this.data.billDetail.extralPrice,
+							{ name: '附加费', value: 0 },
+						],
 					},
-				});
+				})
 			}
-		}
-		else {
-			const arr = this.data.billDetail.extralPrice;
-			arr.splice(index, 1);
+		} else {
+			const arr = this.data.billDetail.extralPrice
+			arr.splice(index, 1)
 			this.setData({
 				billDetail: { ...this.data.billDetail, extralPrice: [...arr] },
-			});
-			this.computedTotalMoney();
+			})
+			this.computedTotalMoney()
 		}
 	},
 	validateEmpty({ value, label }, showToast = true) {
@@ -316,33 +407,31 @@ Page({
 					wx.showToast({
 						title: `${label}`,
 						icon: 'none',
-					});
-				return false;
+					})
+				return false
 			}
-			return true;
-		}
-		else {
+			return true
+		} else {
 			if (!value) {
 				showToast &&
 					wx.showToast({
 						title: `${label}`,
 						icon: 'none',
-					});
-				return false;
+					})
+				return false
 			}
-			return true;
+			return true
 		}
 	},
 	validate(showToast = true) {
 		const {
 			billAmount,
 			billMemo,
-			billName,
 			billPics,
 			billTime,
 			debtorId,
 			proofing,
-		} = this.data;
+		} = this.data
 		const requireList = [
 			{
 				label: '请上传照片',
@@ -353,31 +442,45 @@ Page({
 				value: debtorId,
 			},
 			{
-				label: '请填写项目名称',
-				value: billName,
-			},
-			{
 				label: '请设置总额',
 				value: billAmount,
 			},
-		];
-		return !requireList.some((v) => !this.validateEmpty(v, showToast));
+		]
+		return !requireList.some((v) => !this.validateEmpty(v, showToast))
+	},
+	onComputedAmoutInput(e) {
+		const {
+			detail: { value },
+		} = e
+		if (value.split('.')[0].length > 9) {
+			wx.showToast({
+				title: '金额超出限制',
+				icon: 'none',
+			})
+			this.setData({
+				billAmount: 999999999,
+			})
+		} else {
+			this.setData({
+				billAmount: value,
+			})
+		}
 	},
 	onComputedAmoutBlur(e) {
 		const {
 			detail: { value },
-		} = e;
-		const { mount, extralPrice } = this.data.billDetail;
+		} = e
+		const { mount, extralPrice } = this.data.billDetail
 		const extralTotal = extralPrice.reduce((total, v) => {
-			total += parseFloat(v);
-			return total;
-		}, 0);
-		let result = Number(value);
+			total += parseFloat(v.value)
+			return total
+		}, 0)
+		let result = Number(value)
 		if (result < extralTotal) {
 			wx.showToast({
 				title: '总金额不能低于附加费',
 				icon: 'none',
-			});
+			})
 			this.setData({
 				billAmount: extralTotal.toFixed(2),
 				billDetail: {
@@ -385,30 +488,37 @@ Page({
 					mount: 0,
 					extralPrice,
 				},
-			});
-		}
-		else {
-			let resultMount = 1;
-			if (!mount) {
-				resultMount = 1;
-			}
-			else {
-				resultMount = mount;
-			}
-			const resultSinglePrice = (result - extralTotal) / resultMount;
+			})
+		} else if (result == 0 && extralTotal == 0) {
 			this.setData({
-				billAmount: value,
+				billAmount: result.toFixed(2),
+				billDetail: {
+					mount: 0,
+					singlePrice: 0,
+					extralPrice,
+				},
+			})
+		} else {
+			let resultMount = 1
+			if (!mount) {
+				resultMount = 1
+			} else {
+				resultMount = mount
+			}
+			const resultSinglePrice = (result - extralTotal) / resultMount
+			this.setData({
+				billAmount: result.toFixed(2),
 				billDetail: {
 					mount: resultMount,
 					singlePrice: resultSinglePrice.toFixed(2),
 					extralPrice,
 				},
-			});
+			})
 		}
 	},
 	async submit() {
 		if (!this.validate()) {
-			return;
+			return
 		}
 		const {
 			billAmount,
@@ -420,7 +530,7 @@ Page({
 			proofing,
 			billDetail,
 			debtorName,
-		} = this.data;
+		} = this.data
 		const form = {
 			billAmount,
 			billMemo,
@@ -431,21 +541,20 @@ Page({
 			billDetail: JSON.stringify(billDetail),
 			proofing: +proofing,
 			debtorName,
-		};
-		if (this.data.id) {
-			await api.bill.update({ ...form }, { id: this.data.id });
 		}
-		else {
+		if (this.data.id) {
+			await api.bill.update({ ...form }, { id: this.data.id })
+		} else {
 			await api.bill.add({
 				...form,
-			});
+			})
 		}
 		wx.showToast({
 			title: '账单创建成功',
 			icon: 'success',
 			success() {
-				wx.navigateBack({});
+				wx.navigateBack({})
 			},
-		});
+		})
 	},
-});
+})

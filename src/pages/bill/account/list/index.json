@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "index",
   "navigationStyle": "custom",
+  "navigationBarTitleText": "客户账单",
   "usingComponents": {
     "confirm": "../../../../components/confirm/confirm",
     "dialog": "../../../../components/dialog/dialog",

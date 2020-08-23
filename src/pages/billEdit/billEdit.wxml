@@ -1,11 +1,12 @@
 <wxs src="./billEdit.wxs" module="moneyTool" />
-<view class="bill-edit">
+<view class="bill-edit {{canEdit?'':'disabled'}}">
+  <view wx:if="{{!canEdit}}" class="untap-modal"></view>
   <view class="img-list">
     <view class="img-wrapper" wx:key="index" wx:for="{{billPics}}">
       <image class="img" src="{{item}}" mode="aspectFill" lazy-load="false" binderror="" bindload=""></image>
-      <text class="icon-close" data-index="{{index}}" bindtap="delImg"></text>
+      <text wx:if="{{canEdit}}" class="icon-close" data-index="{{index}}" bindtap="delImg"></text>
     </view>
-    <view class="add-img" wx:if="{{billPics.length<3}}" bindtap="addImg">
+    <view class="add-img" wx:if="{{billPics.length<3&&canEdit}}" bindtap="addImg">
       <view class="icon-photo"></view>
       <text class="desc">拍照</text>
     </view>
@@ -13,7 +14,7 @@
   <view class="part">
     <view class="title-wrapper">
       <view class="title">客户</view>
-      <view class="other">
+      <view wx:if="{{canEdit}}" class="other">
         <view bindtap="setDebtorVisible" class="add">添加</view>
       </view>
     </view>
@@ -53,7 +54,7 @@
     <view class="title-wrapper">
       <view class="title">打样</view>
       <view class="other">
-        <switch color="#3432C1" checked="{{proofing}}" type="switch" bindchange="proofingChange"></switch>
+        <switch disabled="{{!canEdit}}" color="#3432C1" checked="{{proofing}}" type="switch" bindchange="proofingChange"></switch>
       </view>
     </view>
   </view>
@@ -61,7 +62,7 @@
     <view class="row">
       <view class="input-item">
         <view class="label">金额</view>
-        <input class="input" bindblur="onComputedAmoutBlur" value="{{billAmount}}" type="digit"></input>
+        <input class="input" bindfocus="onTotalPriceFocus" bindinput="onComputedAmoutInput" value="{{billAmount}}" type="digit"></input>
       </view>
     </view>
   </view>
@@ -73,16 +74,17 @@
       </view>
       <view class="input-item">
         <view class="label">单价</view>
-        <input bindblur="onSinglePriceBlur" class="input" value="{{billDetail.singlePrice}}" type="digit"></input>
+        <input bindblur="onSinglePriceBlur" class="input" bindfocus="onSinglePriceFocus" value="{{billDetail.singlePrice}}" type="digit"></input>
       </view>
     </view>
     <view class="row">
       <view class="input-item-wrapper" wx:key="index" wx:for="{{billDetail.extralPrice}}">
         <view class="input-item">
-          <view class="label">附加费</view>
-          <input class="input" bindblur="onExtralPriceInput" data-index="{{index}}" value="{{item}}" type="digit"></input>
+          <view wx:if="{{canEdit}}" bindtap = "onOpenExtraDialog" class="edit-icon" data-index="{{index}}"></view>
+          <view class="label">{{item.name}}</view>
+          <input class="input" bindblur="onExtralPriceInput" bindfocus="onExtraPriceFocus" data-index="{{index}}" value="{{item.value}}" type="digit"></input>
         </view>
-        <view data-index="{{index}}" bindtap="onExtralPriceTap" class="control-icon {{index==0?'add':'reduce'}}"></view>
+        <view  wx:if="{{canEdit}}" data-index="{{index}}" bindtap="onExtralPriceTap" class="control-icon {{index==0?'add':'reduce'}}"></view>
       </view>
     </view>
     <view class="row-other">
@@ -92,15 +94,18 @@
           <view class="unit">￥</view>
           <view class="dot-name">{{moneyTool.getBit(billAmount)}}</view>
         </view>
-        <input type="digit" class="number" bindblur="onComputedAmoutBlur" value="{{billAmount}}"></input>
+        <input type="digit" bindfocus="onTotalPriceFocus" class="number" bindinput="onComputedAmoutInput" bindblur="onComputedAmoutBlur" value="{{billAmount}}"></input>
       </view>
     </view>
   </view>
   <view wx:if="{{!id}}" bindtap="submit" class="bottom-btn {{valid?'':'negative'}}">完成</view>
-  <view wx:else class="bottom-btn-group">
+  <view wx:if="{{id&&canEdit}}" class="bottom-btn-group">
     <view class="btn {{valid?'':'negative'}}" bindtap="submit">更新</view>
     <view bindtap="onDel" class="btn oriange">删除</view>
   </view>
+  <dialog title="自定义附加费" visible="{{extraDialogVisible}}" bindClose="closeExtraDialog" bindConfirm="updateExtraName">
+    <baseInput placeholder="请输入费用名称" bindInput="onExtraNameInput" value="{{currentExtraName}}" max="8"></baseInput>
+  </dialog>
   <dialog title="添加客户" visible="{{userDialogVisible}}" bindClose="closeDialog" bindConfirm="addDebtor">
     <baseInput placeholder="请输入客户名称" bindInput="onDebtorInput" value="{{addDebtorName}}" max="8"></baseInput>
   </dialog>

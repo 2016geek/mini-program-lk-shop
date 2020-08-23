@@ -17,11 +17,16 @@ Component({
 			type: String,
 			value: '',
 		},
+		showConfirmBtn: {
+			type: Boolean,
+			value: false,
+		},
 	},
 	externalClasses: ['my-class'],
 	data: {
 		result: '',
 		extralClass: '',
+		value: '',
 	},
 	methods: {
 		onInput(event) {
@@ -35,8 +40,8 @@ Component({
 			this.setData({ extralClass: 'active' })
 			this.triggerEvent('Focus')
 		},
-		onComfirm(event) {
-			this.triggerEvent('Comfirm')
+		onConfirm(event) {
+			this.triggerEvent('Confirm')
 		},
 	},
 	created: function () {

@@ -1,15 +1,25 @@
 .base-input
     &.active
-        .input
+        .input-wrapper
             border-color #3432C1
-    .input
+    .input-wrapper
+        display flex
+        justify-content space-between
         border-bottom 2rpx solid #D1D2DC
         padding-bottom 13rpx
+        align-content center
+    .input
         font-size 28rpx
         color #333333
+        flex 1
     .input-placeholder
         color #D1D2DC
     .max-length
         margin-top 24rpx
         font-size 28rpx
         color #D1D2DC
+    .confirm-btn
+        font-size 26rpx
+        color #3432C1
+        font-weight bolder
+        align-content center

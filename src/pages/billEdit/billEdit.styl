@@ -1,6 +1,24 @@
 .bill-edit
   background-color #EFEFF6
   padding-bottom 148rpx
+  .untap-modal
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
+    z-index 1000
+  &.disabled
+    .tag-item.active
+      background-color #7E80A3 !important
+    .picker
+      color #7E80A3 !important
+    .input
+      color #7E80A3 !important
+    .number
+      color #7E80A3 !important
+    .unit
+      color #7E80A3 !important
   .img-list
     padding 48rpx
     display flex
@@ -38,6 +56,7 @@
         font-size 32rpx
         color #7E80A3
         margin-top 24rpx
+        line-height 1
         text-align center
   .part
     padding 48rpx
@@ -89,6 +108,7 @@
       margin-top 8rpx
       display flex
       flex-wrap wrap
+      overflow auto
       .tag-item
         padding 20rpx 42rpx
         background-color #EFEFF6
@@ -128,10 +148,14 @@
         flex 1
         display flex
         align-items center
+        .edit-icon
+          width 30rpx
+          height 30rpx
+          background center / 30rpx 30rpx no-repeat url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/billEdit/pen%402x.png')
+          margin-right 24rpx
         .label
           font-size 36rpx
           font-weight bolder
-          width 108rpx
           margin-right 32rpx
         .input
           flex 1
@@ -150,7 +174,7 @@
         display flex
         margin-top 24rpx
         .unit-wrapper
-          width 24rpx
+          width 47rpx
           display flex
           flex-direction column
           justify-content space-between
