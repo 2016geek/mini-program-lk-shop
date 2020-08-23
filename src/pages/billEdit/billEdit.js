@@ -35,6 +35,7 @@ Page({
 		id: '',
 		valid: false,
 		canEdit: true,
+		keyboardOpen: false,
 	},
 
 	/**
@@ -447,6 +448,11 @@ Page({
 			},
 		]
 		return !requireList.some((v) => !this.validateEmpty(v, showToast))
+	},
+	onKeybordChange(e) {
+		this.setData({
+			keyboardOpen: true,
+		})
 	},
 	onComputedAmoutInput(e) {
 		const {

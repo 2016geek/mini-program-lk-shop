@@ -1,5 +1,5 @@
 <wxs src="./billEdit.wxs" module="moneyTool" />
-<view class="bill-edit {{canEdit?'':'disabled'}}">
+<view class="bill-edit  {{canEdit?'':'disabled'}}">
   <view wx:if="{{!canEdit}}" class="untap-modal"></view>
   <view class="img-list">
     <view class="img-wrapper" wx:key="index" wx:for="{{billPics}}">
@@ -94,7 +94,7 @@
           <view class="unit">￥</view>
           <view class="dot-name">{{moneyTool.getBit(billAmount)}}</view>
         </view>
-        <input type="digit" bindfocus="onTotalPriceFocus" class="number" bindinput="onComputedAmoutInput" bindblur="onComputedAmoutBlur" value="{{billAmount}}"></input>
+        <input bindkeyboardheightchange="onKeybordChange" type="digit" bindfocus="onTotalPriceFocus" class="total-input" bindinput="onComputedAmoutInput" bindblur="onComputedAmoutBlur" value="{{billAmount}}"></input>
       </view>
     </view>
   </view>
