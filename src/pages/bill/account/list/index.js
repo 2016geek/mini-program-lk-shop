@@ -289,7 +289,7 @@ Page({
 		const { id, review } = e.currentTarget.dataset;
 		console.log(e);
 		wx.navigateTo({
-			url: `/pages/billEdit/billEdit?id=${id}&review=${review}`,
+			url: `/pages/billEdit/billEdit?id=${id}&review=${review ? true : ''}`,
 		});
 	},
 
