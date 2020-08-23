@@ -1,5 +1,8 @@
 {
-  "navigationBarTitleText": "index",
+  "navigationBarTitleText": "主页",
   "navigationStyle": "custom",
-  "navigationBarTitleText": "主页"
+  "usingComponents": {
+    "custom-header": "../../../components/custom-header/index",
+    "custom-number": "../../../components/custom-number/custom-number"
+  }
 }

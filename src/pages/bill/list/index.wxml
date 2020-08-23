@@ -1,21 +1,17 @@
 <view class="bill">
   <view class="bill-top">
     <image class="bill-top_bg" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/位图@2x.png"></image>
-    <image
-      bindtap="onSettingTap"
-      class="bill-top_setting"
-      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/全局设置@2x.png"
-    ></image>
+    <custom-header useSetting usePlace />
     <view class="bill-top_title">总收入</view>
-    <view class="bill-top_sum number">{{userInfo.total}}</view>
+    <custom-number number="{{userInfo.total}}" my-class="bill-top_sum" useAnimation storageKey="bill-total" />
     <view class="bill-top_settle-row">
       <view class="bill-top_settle-row_item">
         <view class="bill-top_settle-row_item-label">已结算</view>
-        <view class="bill-top_settle-row_item-number number">{{userInfo.settle}}</view>
+        <custom-number number="{{userInfo.settle}}" my-class="bill-top_settle-row_item-number" useAnimation storageKey="bill-settle" />
       </view>
       <view class="bill-top_settle-row_item">
         <view class="bill-top_settle-row_item-label">待结算</view>
-        <view class="bill-top_settle-row_item-number number">{{userInfo.unSettle}}</view>
+        <custom-number number="{{userInfo.unSettle}}" my-class="bill-top_settle-row_item-number" useAnimation storageKey="bill-unSettle" />
       </view>
     </view>
   </view>
@@ -40,7 +36,11 @@
         <view class="bill-list_item-right">
           <view class="bill-list_item-title-row">
             <view class="bill-list_item-title">{{item.debtorName}}的账单</view>
-            <view class="bill-list_item-number number {{item.status == 3 ? 'green' : 'yellow'}}">{{item.billAmountLabel}}</view>
+            <custom-number
+              number="{{item.billAmountLabel}}"
+              my-class="bill-list_item-number {{item.status == 3 ? 'green' : 'yellow'}}"
+              useAnimation
+              storageKey="bill-list-{{item.debtorId}}" />
           </view>
           <view class="bill-list_item-desc-row">
             <view class="bill-list_item-desc">共计 {{item.billCount}} 笔明细 | {{item.billTime}}</view>
