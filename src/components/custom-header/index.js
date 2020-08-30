@@ -24,7 +24,7 @@ Component({
 		titleBarHeight: 0,
 		statusBarHeight: 0,
 	},
-	attached() {
+	created() {
 		wx.nextTick(() => {
 			const { titleBarHeight, statusBarHeight } = getSystemInfo();
 			this.setData({ titleBarHeight, statusBarHeight });

@@ -96,7 +96,7 @@ export function getSystemInfo() {
 		if (model.indexOf('iPhone X') !== -1) {
 			isIphoneX = true;
 		}
-		const { height } = this.getMenuButtonInfo();
+		const { height } = getMenuButtonInfo();
 		const titleBarHeight = height ? height + 12 : 46;
 		getApp().titleBarInfo = {
 			...systemInfo,
