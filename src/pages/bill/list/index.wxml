@@ -50,6 +50,7 @@
               number="{{item.billAmountLabel}}"
               my-class="bill-list_item-number {{item.status == 3 ? 'green' : 'yellow'}}"
               useAnimation
+              scale
               storageKey="bill-list-{{item.debtorId}}"
             />
           </view>

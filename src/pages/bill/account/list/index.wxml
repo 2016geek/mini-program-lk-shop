@@ -1,15 +1,15 @@
 <view class="account-bill">
   <view class="account-bill-top">
     <view class="account-bill-top_title">{{userInfo.debtorName}}的总计</view>
-    <custom-number number="{{userInfo.total}}" my-class="account-bill-top_sum" useAnimation storageKey="account-bill-total-{{debtorId}}" loading="{{infoLoading}}" />
+    <custom-number number="{{userInfo.total}}" my-class="account-bill-top_sum" useAnimation scale storageKey="account-bill-total-{{debtorId}}" loading="{{infoLoading}}" />
     <view class="account-bill-top_settle-row">
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">已结算</view>
-        <custom-number number="{{userInfo.settle}}" my-class="account-bill-top_settle-row_item-number" useAnimation storageKey="account-bill-settle-{{debtorId}}" loading="{{infoLoading}}" />
+        <custom-number number="{{userInfo.settle}}" my-class="account-bill-top_settle-row_item-number" useAnimation scale storageKey="account-bill-settle-{{debtorId}}" loading="{{infoLoading}}" />
       </view>
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">待结算</view>
-        <custom-number number="{{userInfo.unSettle}}" my-class="account-bill-top_settle-row_item-number yellow" useAnimation storageKey="account-bill-unSettle-{{debtorId}}" loading="{{infoLoading}}" />
+        <custom-number number="{{userInfo.unSettle}}" my-class="account-bill-top_settle-row_item-number yellow" useAnimation scale storageKey="account-bill-unSettle-{{debtorId}}" loading="{{infoLoading}}" />
       </view>
     </view>
     <image
@@ -63,12 +63,12 @@
               </view>
               <view class="item-detail-list_item-right">
                 <view class="item-detail-list_item-title-row">
-                  <view class="item-detail-list_item-title">{{child.title}}</view>
-                  <custom-number number="{{child.total}}" my-class="item-detail-list_item-number" useAnimation storageKey="account-bill-list-child-total-{{debtorId}}-{{item.monthDate}}-{{child.id}}" />
+                  <view class="item-detail-list_item-title ellipsis1">{{child.title}}</view>
+                  <custom-number number="{{child.total}}" my-class="item-detail-list_item-number" useAnimation scale storageKey="account-bill-list-child-total-{{debtorId}}-{{item.monthDate}}-{{child.id}}" />
                 </view>
                 <view class="item-detail-list_item-desc-row">
                   <view class="item-detail-list_item-desc">{{child.time}}</view>
-                  <view class="item-detail-list_item-detail"
+                  <view class="item-detail-list_item-detail ellipsis1"
                     >{{child.detail}}</view
                   >
                 </view>
@@ -105,15 +105,15 @@
           <view class="package-status-line">
             <view class="package-status-line_item">
               <view class="package-status-line_item-text">总</view>
-              <custom-number number="{{item.total}}" my-class="package-status-line_item-number" useAnimation storageKey="account-bill-package-total-{{debtorId}}-{{item.id}}" />
+              <custom-number number="{{item.total}}" my-class="package-status-line_item-number" useAnimation scale storageKey="account-bill-package-total-{{debtorId}}-{{item.id}}" />
             </view>
             <view class="package-status-line_item">
               <view class="package-status-line_item-text">结</view>
-              <custom-number number="{{item.settle}}" my-class="package-status-line_item-number" useAnimation storageKey="account-bill-package-settle-{{debtorId}}-{{item.id}}" />
+              <custom-number number="{{item.settle}}" my-class="package-status-line_item-number" useAnimation scale storageKey="account-bill-package-settle-{{debtorId}}-{{item.id}}" />
             </view>
             <view class="package-status-line_item">
               <view class="package-status-line_item-text">待</view>
-              <custom-number number="{{item.unSettle}}" my-class="package-status-line_item-number" useAnimation storageKey="account-bill-package-unSettle-{{debtorId}}-{{item.id}}" />
+              <custom-number number="{{item.unSettle}}" my-class="package-status-line_item-number" useAnimation scale storageKey="account-bill-package-unSettle-{{debtorId}}-{{item.id}}" />
             </view>
           </view>
           <view class="package-detail-list">
@@ -134,14 +134,14 @@
               </view>
               <view class="package-detail-list_item-right">
                 <view class="package-detail-list_item-title-row">
-                  <view class="package-detail-list_item-title"
+                  <view class="package-detail-list_item-title ellipsis1"
                     >{{child.billName}}</view
                   >
-                  <custom-number number="{{child.billAmount}}" my-class="package-detail-list_item-number" useAnimation storageKey="account-bill-package-child-{{debtorId}}-{{item.id}}-{{child.id}}" />
+                  <custom-number number="{{child.billAmount}}" my-class="package-detail-list_item-number" useAnimation scale storageKey="account-bill-package-child-{{debtorId}}-{{item.id}}-{{child.id}}" />
                 </view>
                 <view class="package-detail-list_item-desc-row">
                   <view class="package-detail-list_item-desc">{{child.timeLabel}}</view>
-                  <view class="package-detail-list_item-detail"
+                  <view class="package-detail-list_item-detail ellipsis1"
                     >{{child.detail}}</view
                   >
                 </view>
