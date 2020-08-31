@@ -14,7 +14,15 @@ export function emailValidate(value) {
 		value,
 	);
 }
-
+export function mountFont(money) {
+	const length = money.toString().length;
+	if (length < 7) {
+		return 'font-size:24px;';
+	}
+	else {
+		return 'font-size:' + (24 - (length - 6) * 3) + 'px';
+	}
+}
 export const numberLabel = (num = 0) => {
 	// const NUMBER = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 	// return NUMBER.format(num);

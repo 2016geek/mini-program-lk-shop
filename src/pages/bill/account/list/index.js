@@ -238,6 +238,9 @@ Page({
 		console.log('onAddPackage');
 		this.setData({ packageConfirmVisible: true });
 	},
+	onShareAppMessage: function () {
+
+	},
 	async onPackageConfirm() {
 		const { debtorId } = this.data;
 		const res = await api.bill.addPackage({ debtorId });

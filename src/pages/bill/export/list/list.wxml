@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="logo"></view>
+  <view class="top">
+    <view class="name-wrapper">{{debtorName}} {{accrualTime}}计提</view>
+    <view class="number total-money">{{totalBillAmount}}</view>
+  </view>
+  <view class="list">
+    <view class="item" wx:key="index" wx:for="{{list}}">
+      <view class="img-wrapper" data-index="{{index}}" bindtap="onTapImage">
+        <image class="img" src="{{item.billPics[0]}}"></image>
+        <view class="bg-card"></view>
+      </view>
+      <view class="content">
+        <view class="first">
+          <view class="title">{{item.billName}}</view>
+          <view class="number money" style="{{item.billAmountStyle}}">{{item.billAmount}}</view>
+        </view>
+        <view class="second">
+          <view class="date">{{item.billTime}}</view>
+          <view class="number detail">{{item.billDetail}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="slogan">记账核账就用良刻管家</view>
+  <view class="bottom-btn-group">
+    <view class="btn" bindtap="savePic">存图片</view>
+    <view bindtap="copyTable" class="btn gray">导出表格</view>
+  </view>
+</view>

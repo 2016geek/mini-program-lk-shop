@@ -64,9 +64,9 @@ const createServer = (method, url, isNeedLogin = true) => {
 		}
 		return new Promise((resolve, reject) => {
 			if (method !== 'GET') {
-				// wx.showLoading({
-				// 	title: '请求中,请稍等',
-				// });
+				wx.showLoading({
+					title: '请求中,请稍等',
+				});
 			}
 			wx.request({
 				url: host + newUrl,
@@ -91,7 +91,7 @@ const createServer = (method, url, isNeedLogin = true) => {
 					}
 				},
 				fail(e) {
-					// wx.hideLoading();
+					wx.hideLoading();
 					reject(e);
 				},
 			});

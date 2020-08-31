@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/bill/list/index",
     "pages/guide/welcome/welcome",
     "pages/setting/setting",
     "pages/billEdit/billEdit",
     "pages/guide/information/index",
-    "pages/bill/list/index",
-    "pages/bill/account/list/index"
+    "pages/bill/account/list/index",
+    "pages/bill/export/list/list",
+    "pages/bill/export/webview/webview"
   ],
   "window": {
     "backgroundTextStyle": "light",
