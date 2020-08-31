@@ -17,10 +17,10 @@ export function emailValidate(value) {
 export function mountFont(money) {
 	const length = money.toString().length;
 	if (length < 7) {
-		return 'font-size:24px;';
+		return 'font-size:48rpx;';
 	}
 	else {
-		return 'font-size:' + (24 - (length - 6) * 3) + 'px';
+		return 'font-size:' + (48 - (length - 6) * 6) + 'rpx';
 	}
 }
 export const numberLabel = (num = 0) => {

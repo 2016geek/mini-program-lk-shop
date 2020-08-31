@@ -41,9 +41,11 @@
         </view>
         <view class="bill-list_item-right">
           <view class="bill-list_item-title-row">
-            <view class="bill-list_item-title"
-              ><view class="ellipsis1">{{item.debtorName}}的账单</view></view
-            >
+            <view class="bill-list_item-title">
+              <view class="ellipsis1">
+                <tip value="{{item.billAmountLabel}}" storageKey="tip-bill-list-{{item.debtorId}}">{{item.debtorName}}的账单</tip>
+              </view>
+            </view>
             <custom-number
               number="{{item.billAmountLabel}}"
               my-class="bill-list_item-number {{item.status == 3 ? 'green' : 'yellow'}}"

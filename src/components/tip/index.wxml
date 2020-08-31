@@ -1,0 +1,3 @@
+<text class="tip-text {{showTip ? 'tip' : ''}}">
+  <slot></slot>
+</text>
