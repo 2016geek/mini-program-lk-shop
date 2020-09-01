@@ -8,28 +8,35 @@ Component({
 			type: String,
 			value: '',
 			observer: function (v) {
-				this.setData({ title: v })
+				this.setData({ title: v });
 			},
 		},
 		desc: {
 			type: String,
 			value: '',
 			observer: function (v) {
-				this.setData({ desc: v })
+				this.setData({ desc: v });
 			},
 		},
 		confirmText: {
 			type: String,
 			value: '',
 			observer: function (v) {
-				this.setData({ confirmText: v })
+				this.setData({ confirmText: v });
+			},
+		},
+		confirmType: {
+			type: String,
+			value: '',
+			observer: function (v) {
+				this.setData({ confirmType: v });
 			},
 		},
 		cancelText: {
 			type: String,
 			value: '',
 			observer: function (v) {
-				this.setData({ cancelText: v })
+				this.setData({ cancelText: v });
 			},
 		},
 	},
@@ -40,11 +47,11 @@ Component({
 		cancelText: '',
 	},
 	methods: {
-		onConfirm() {
-			this.triggerEvent('Confirm')
+		onConfirm(e) {
+			this.triggerEvent('Confirm', e);
 		},
 		onCancel() {
-			this.triggerEvent('Cancel')
+			this.triggerEvent('Cancel');
 		},
 	},
-})
+});

@@ -15,7 +15,7 @@ Page({
 		const token = getApp().globalData.token;
 		const { id } = options;
 		this.setData({
-			url: `http://www.lk.com:8080?token=${token}&id=${id}`,
+			url: `https://www.hzliangke.com/accountbook/index.html?id=${id}`,
 		});
 	},
 	onMessage(e) {

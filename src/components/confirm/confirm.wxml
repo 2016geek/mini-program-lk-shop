@@ -5,8 +5,8 @@
       <view class="desc">{{desc}}</view>
     </view>
     <view class="footer">
-      <view bindtap="onConfirm" hover-class="btn-hover" class="btn confirm-btn"
-        >{{confirmText}}</view
+      <button bindtap="onConfirm" open-type="{{confirmType}}" hover-class="btn-hover" class="btn confirm-btn"
+        >{{confirmText}}</button
       >
       <view bindtap="onCancel" class="btn gray cancel-btn">{{cancelText}}</view>
     </view>
