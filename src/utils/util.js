@@ -17,10 +17,10 @@ export function emailValidate(value) {
 export function mountFont(money) {
 	const length = money.toString().length;
 	if (length < 7) {
-		return 'font-size:24px;';
+		return 'font-size:48rpx;';
 	}
 	else {
-		return 'font-size:' + (24 - (length - 6) * 3) + 'px';
+		return 'font-size:' + (48 - (length - 6) * 6) + 'rpx';
 	}
 }
 export const numberLabel = (num = 0) => {
@@ -48,10 +48,11 @@ export const numberLabel = (num = 0) => {
 	return addThousands(num) + addFloatPoint(num);
 };
 
-export const timeLabel = (time, type = 'year') => {
+export const timeLabel = (time, type = 'year', custom = '') => {
 	if (type === 'year') return dayjs(time).format('YYYY年MM月DD日');
 	else if (type === 'month') return dayjs(time).format('YYYY年MM月');
 	else if (type === 'day') return dayjs(time).format('YYYY.MM.DD');
+	else if (type === 'custom') return dayjs(time).format(custom);
 };
 
 export function getMenuButtonInfo() {

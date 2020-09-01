@@ -129,7 +129,7 @@ Page({
 							image: (JSON.parse(i.billPics || '[]') || [])[0],
 							title: i.billName,
 							total: i.billAmount,
-							time: timeLabel(i.billTime, 'month'),
+							time: timeLabel(i.billTime, 'custom', 'MM月DD日'),
 							detail: extraLabel(i.billDetail),
 							...i,
 						})),
@@ -173,7 +173,7 @@ Page({
 					...i,
 					image: (JSON.parse(i.billPics || '[]') || [])[0],
 					detail: extraLabel(i.billDetail),
-					timeLabel: timeLabel(i.billTime, 'month'),
+					timeLabel: timeLabel(i.billTime, 'custom', 'MM月DD日'),
 				}));
 				return {
 					...item,

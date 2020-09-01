@@ -28,14 +28,19 @@ Component({
 			type: Boolean,
 			value: false,
 		},
+		scale: {
+			type: Boolean,
+			value: false,
+		},
 	},
 	data: {
 		oldNumber: 0,
 		currentNumber: 0,
-		showLabel: '',
+		showLabel: '0.00',
 		step: 0,
 		isUp: true,
 		timeStep: 20,
+		scaleNumber: 1,
 	},
 	observers: {
 		number(num) {
@@ -57,6 +62,15 @@ Component({
 			const { number } = this.data;
 			if (number === current) {
 				this.setStorageValue(current);
+			}
+		},
+		showLabel(label = '') {
+			const overLength = label.length - 7;
+			if (overLength <= 0) {
+				this.setData({ scaleNumber: 1 });
+			}
+			else {
+				this.setData({ scaleNumber: (24 - overLength * 2) / 24 });
 			}
 		},
 	},
