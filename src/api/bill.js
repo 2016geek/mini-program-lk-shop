@@ -13,5 +13,5 @@ export default {
 	debtorList: createServer('POST', '/accountbook/rest/bill/v1/debtor/list'),
 	addPackage: createServer('POST', '/accountbook/rest/bill/v1/accrual'),
 	settle: createServer('PUT', '/accountbook/rest/bill/v1/settlement'),
-	getAccrualDetail: createServer('GET', '/accountbook/rest/bill/v1/accrual/{id}'),
+	getAccrualDetail: createServer('GET', '/accountbook/rest/bill/v1/accrual/detail/{id}'),
 };

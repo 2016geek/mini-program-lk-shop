@@ -16,17 +16,20 @@ Page({
 		const { id } = options;
 		this.setData({
 			url: `https://www.hzliangke.com/accountbook/index.html?id=${id}`,
+			// url: `http://www.lk.com:8080/?id=${id}`,
+
 		});
 	},
 	onMessage(e) {
 		const { detail: { data } } = e;
+		const filePath = wx.env.USER_DATA_PATH + '/' + Math.random().toString(36).slice(-8) + '.png';
 		wx.getFileSystemManager().writeFile({
-			filePath: wx.env.USER_DATA_PATH + '/test1.png', // 这里先把文件写到临时目录里.
+			filePath, // 这里先把文件写到临时目录里.
 			data: data[0].slice(22), // 注意这里
 			encoding: 'base64',
 			success: (res) => {
 				wx.saveImageToPhotosAlbum({
-					filePath: wx.env.USER_DATA_PATH + '/test1.png', // 这是把临时文件 保存到 相册, 收工
+					filePath, // 这是把临时文件 保存到 相册, 收工
 					success: (res) => {
 						wx.showToast({
 							title: '保存成功！',
