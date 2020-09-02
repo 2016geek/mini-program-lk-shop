@@ -1,15 +1,15 @@
 <view class="account-bill">
   <view class="account-bill-top">
     <view class="account-bill-top_title">{{userInfo.debtorName}}的总计</view>
-    <custom-number number="{{userInfo.total}}" my-class="account-bill-top_sum" useAnimation scale storageKey="account-bill-total-{{debtorId}}" loading="{{infoLoading}}" />
+    <custom-number number="{{userInfo.total}}" my-class="account-bill-top_sum" useAnimation storageKey="account-bill-total-{{debtorId}}" loading="{{infoLoading}}" />
     <view class="account-bill-top_settle-row">
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">已结算</view>
-        <custom-number number="{{userInfo.settle}}" my-class="account-bill-top_settle-row_item-number" useAnimation scale storageKey="account-bill-settle-{{debtorId}}" loading="{{infoLoading}}" />
+        <custom-number number="{{userInfo.settle}}" my-class="account-bill-top_settle-row_item-number" useAnimation storageKey="account-bill-settle-{{debtorId}}" loading="{{infoLoading}}" />
       </view>
       <view class="account-bill-top_settle-row_item">
         <view class="account-bill-top_settle-row_item-label">待结算</view>
-        <custom-number number="{{userInfo.unSettle}}" my-class="account-bill-top_settle-row_item-number yellow" useAnimation scale storageKey="account-bill-unSettle-{{debtorId}}" loading="{{infoLoading}}" />
+        <custom-number number="{{userInfo.unSettle}}" my-class="account-bill-top_settle-row_item-number yellow" useAnimation storageKey="account-bill-unSettle-{{debtorId}}" loading="{{infoLoading}}" />
       </view>
     </view>
     <image

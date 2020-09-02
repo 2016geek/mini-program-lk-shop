@@ -65,12 +65,12 @@ Component({
 			}
 		},
 		showLabel(label = '') {
-			const overLength = label.length - 7;
+			const overLength = label.replace(/\./g, '').replace(/\,/g, '').length - 7;
 			if (overLength <= 0) {
 				this.setData({ scaleNumber: 1 });
 			}
 			else {
-				this.setData({ scaleNumber: (24 - overLength * 2) / 24 });
+				this.setData({ scaleNumber: (24 - overLength / 3 * 2) / 24 });
 			}
 		},
 	},
