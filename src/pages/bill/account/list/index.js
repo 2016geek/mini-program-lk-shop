@@ -35,8 +35,10 @@ Page({
 		},
 		packageConfirmVisible: false,
 		settleDialogVisible: false,
+		shareConfirmVisible: false,
 		settleValue: '',
 		settleId: '',
+		createPackageId: '',
 	},
 
 	onLoad(params) {
@@ -235,17 +237,17 @@ Page({
 		});
 	},
 	onAddPackage() {
-		console.log('onAddPackage');
 		this.setData({ packageConfirmVisible: true });
 	},
 	onShareAppMessage: function () {
-
+		return {
+			path: `/pages/bill/export/list/list?id=${this.data.createPackageId}`,
+		};
 	},
 	async onPackageConfirm() {
 		const { debtorId } = this.data;
-		const res = await api.bill.addPackage({ debtorId });
-		console.log(res);
-		this.setData({ packageConfirmVisible: false });
+		const { id } = await api.bill.addPackage({ debtorId });
+		this.setData({ packageConfirmVisible: false, shareConfirmVisible: true, createPackageId: id });
 		this.resetList();
 		this.resetPackages();
 		await this.getMonthList();
@@ -299,5 +301,13 @@ Page({
 	onReachBottom() {
 		console.log('onReachBottom');
 		this.getListForTab();
+	},
+	onShareConfirm(e) {
+		this.setData({ shareConfirmVisible: false });
+	},
+	onShareCancel() {
+		this.setData({
+			shareConfirmVisible: false,
+		});
 	},
 });

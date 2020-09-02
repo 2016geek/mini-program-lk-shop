@@ -15,12 +15,13 @@ export function emailValidate(value) {
 	);
 }
 export function mountFont(money) {
-	const length = money.toString().length;
+	console.log(money.toString());
+	const length = money.toString().split('.')[0].length;
 	if (length < 7) {
 		return 'font-size:48rpx;';
 	}
 	else {
-		return 'font-size:' + (48 - (length - 6) * 6) + 'rpx';
+		return 'font-size:' + (48 - (length - 6) * 4) + 'rpx';
 	}
 }
 export const numberLabel = (num = 0) => {

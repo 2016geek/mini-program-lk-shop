@@ -176,6 +176,7 @@
 </view>
 
 <confirm wx:if="{{packageConfirmVisible}}" bindConfirm="onPackageConfirm" bindCancel="onPackageCancel" title="确认要计提账单吗？" confirmText="确认" cancelText="等等" desc="计提后账单将打包发出，无法编辑"></confirm>
+<confirm wx:if="{{shareConfirmVisible}}" bindConfirm="onShareConfirm" bindCancel="onShareCancel" title="计提完成" confirmText="分享" confirmType="share" cancelText="取消" desc="您可以将账单分享给客户"></confirm>
 
 <dialog title="结算" visible="{{settleDialogVisible}}"  bindClose="onSettleClose" bindConfirm="onSettleConfirm">
   <baseInput placeholder="请输入已结算额度" bindInput="onSettleInput" value="{{settleValue}}" max="8" my-class="settle-input"></baseInput>
