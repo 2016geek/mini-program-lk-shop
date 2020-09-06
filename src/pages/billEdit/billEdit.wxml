@@ -2,7 +2,7 @@
 <view class="bill-edit  {{canEdit?'':'disabled'}}">
   <view wx:if="{{!canEdit}}" class="untap-modal"></view>
   <view class="img-list">
-    <view class="img-wrapper" wx:key="index" wx:for="{{billPics}}">
+    <view class="img-wrapper" wx:key="index" wx:for="{{billPics}}" bindtap="onTapImage">
       <image class="img" src="{{item}}" mode="aspectFill" lazy-load="false" binderror="" bindload=""></image>
       <text wx:if="{{canEdit}}" class="icon-close" data-index="{{index}}" bindtap="delImg"></text>
     </view>
@@ -54,7 +54,7 @@
     <view class="title-wrapper">
       <view class="title">打样</view>
       <view class="other">
-        <switch disabled="{{!canEdit}}" color="#3432C1" checked="{{proofing}}" type="switch" bindchange="proofingChange"></switch>
+        <switch disabled="{{!canEdit}}" color="{{switchColor}}" checked="{{proofing}}" type="switch" bindchange="proofingChange"></switch>
       </view>
     </view>
   </view>

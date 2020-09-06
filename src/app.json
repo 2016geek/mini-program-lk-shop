@@ -7,7 +7,8 @@
     "pages/guide/information/index",
     "pages/bill/account/list/index",
     "pages/bill/export/list/list",
-    "pages/bill/export/webview/webview"
+    "pages/bill/export/webview/webview",
+    "pages/setting/share/share"
   ],
   "window": {
     "backgroundTextStyle": "light",

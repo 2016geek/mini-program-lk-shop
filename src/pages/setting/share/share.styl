@@ -1,0 +1,44 @@
+/* src/pages/setting/share/share.wxss */
+.share
+  padding 0 40rpx
+  background-color #fff
+  .form-item
+    height 98rpx
+    display flex
+    align-items center
+    justify-content space-between
+    margin-top 32rpx
+    .label
+      font-size 32rpx
+      color #333
+  .days-wrapper
+    margin-top 32rpx
+    .title
+      color: #7E80A3
+      font-size 28rpx
+    .day-list
+      .item
+        margin-top 51rpx
+        padding-left 56rpx
+        position relative
+        color: #333
+        font-size 32rpx
+        &.active
+          &::before
+            content: ''
+            display inline-block
+            width 32rpx
+            height 20rpx
+            position absolute
+            left 0
+            top: 50%
+            background: center / 32rpx 20rpx no-repeat url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/setting/Stroke%201%402x.png')
+            transform: translateY(-50%)
+  .ps
+    font-size 28rpx
+    color: #7E80A3
+    position absolute
+    left 50%
+    transform: translateX(-50%)
+    bottom calc(196rpx + constant(safe-area-inset-bottom))
+    bottom calc(196rpx + env(safe-area-inset-bottom))

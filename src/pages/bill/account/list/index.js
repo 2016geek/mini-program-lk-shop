@@ -242,6 +242,8 @@ Page({
 	onShareAppMessage: function () {
 		return {
 			path: `/pages/bill/export/list/list?id=${this.data.createPackageId}`,
+			imageUrl: 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/setting/sharePIc%402x.jpg',
+			title: `请核对【${this.data.userInfo.debtorName}的计提账单】`, // todo 需要加上计提时间
 		};
 	},
 	async onPackageConfirm() {

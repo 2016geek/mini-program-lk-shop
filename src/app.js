@@ -11,6 +11,7 @@ App({
 		isFinishedPaid: false,
 		token: '',
 		userInfo: {},
+		code: '',
 	},
 	isLogin() {
 

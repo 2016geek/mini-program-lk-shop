@@ -10,6 +10,7 @@ Page({
 			settle: 0,
 			unSettle: 0,
 		},
+		hasPhone: false,
 		billList: [],
 		pageSize: 10,
 		pageNum: 0,
@@ -17,10 +18,23 @@ Page({
 		loading: true,
 		isFirst: true,
 		backgroundImgs: ['', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((i) => `https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/矩形备份${i ? ' ' + i : ''}@2x.png`),
+		code: '',
 	},
 	async onShow() {
-		this.getUserInfo();
-		this.getBillList(true);
+		await this.getUserInfo();
+		await this.getBillList(true);
+		this.getCode();
+	},
+	getCode() {
+		const _this = this;
+		this.setData({
+			hasPhone: !!getApp().globalData.userInfo.phone,
+		});
+		wx.login({
+			async success(res) {
+				_this.setData({ code: res.code });
+			},
+		});
 	},
 	async getUserInfo() {
 		try {
@@ -87,7 +101,12 @@ Page({
 			url: '/pages/billEdit/billEdit',
 		});
 	},
-
+	async onGetPhone(e) {
+		const { detail } = e;
+		const res = await api.user.bindPhone({ ...detail, code: this.data.code });
+		getApp().globalData.userInfo = res;
+		this.onAddBill();
+	},
 	onReachBottom() {
 		console.log('onReachBottom');
 		this.getBillList();

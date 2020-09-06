@@ -7,8 +7,10 @@ const login = () => {
 	return new Promise((resolve, reject) => {
 		wx.login({
 			async success(res) {
+				const app = getApp();
 				if (res.code) {
 					try {
+						app.globalData.code = res.code;
 						wx.request({
 							url: host + '/accountbook/rest/user/v1/login',
 							method: 'POST',
@@ -25,8 +27,8 @@ const login = () => {
 									reject(res);
 									return;
 								}
-								const app = getApp();
 								app.globalData.token = token;
+								app.globalData.userInfo = result;
 								resolve(token);
 							},
 							fail(e) {

@@ -24,5 +24,9 @@
     placeholder="请输入您的邮箱"
     bindConfirm="onEmailConfirm"
   ></base-input>
+  <view class="form-item" bindtap="onShare">
+    <view class="label">邀请协作</view>
+    <view class="arrow"></view>
+  </view>
   <!-- <button bindtap="logout" class="bottom-btn negative">退出登录</button> -->
 </view>
