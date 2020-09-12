@@ -10,6 +10,10 @@ Component({
 			type: Boolean,
 			value: false,
 		},
+		useClose: {
+			type: Boolean,
+			value: false,
+		},
 		/** 是否需要占位 */
 		usePlace: {
 			type: Boolean,
@@ -38,6 +42,13 @@ Component({
 		},
 		onBackTap() {
 			wx.navigateBack();
+		},
+		onCloseTap() {
+			getApp().globalData.requestHeaders = {};
+			getApp().globalData.isCooperate = false;
+			wx.navigateTo({
+				url: '/pages/bill/list/index',
+			});
 		},
 	},
 });

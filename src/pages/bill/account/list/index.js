@@ -271,6 +271,9 @@ Page({
 			settleValue: totalBillAmount - totalSettlementAmount,
 		});
 	},
+	onShareTap() {
+		
+	},
 	onSettleClose() {
 		this.setData({
 			settleDialogVisible: false,

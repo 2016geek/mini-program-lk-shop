@@ -1,5 +1,5 @@
-import api from './api'
-	;
+import api from './api';
+import { getPageUrl } from './utils/util';
 
 App({
 	onLaunch() {
@@ -12,6 +12,8 @@ App({
 		token: '',
 		userInfo: {},
 		code: '',
+		requestHeaders: {},
+		isCooperate: false, // 是否协作模式
 	},
 	isLogin() {
 

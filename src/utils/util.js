@@ -148,3 +148,25 @@ export const createCountDown = () => {
 		countDown(key);
 	};
 };
+
+export const getPageUrl = (pageId = 0, needOptions = true) => {
+  if (pageId !== 0 && pageId !== -1) {
+    throw new Error('pageId must be 0 or -1.');
+  }
+
+  const routeList = getCurrentPages() || [];
+  const curPage = routeList[routeList.length - 1 + pageId];
+
+  if (!curPage) {
+    return '';
+  }
+
+  const { route, options } = curPage;
+
+  if (needOptions && options) {
+    const queryStr = Object.keys(options).map(key => `${key}=${options[key]}`).join('&');
+    return queryStr ? `${route}?${queryStr}` : route;
+  }
+  return route;
+};
+

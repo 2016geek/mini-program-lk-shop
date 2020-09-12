@@ -74,10 +74,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "账单列表",
 					"pathName": "pages/bill/list/index",
-					"query": "",
+					"query": "userId=1&nickname=刘畅&portrait=https://wx.qlogo.cn/mmopen/vi_32/KaWyHBaKoBh2sznicS8ermVbuyVq9cgoVwictDtuyCSb5qHicl0hp2XbGTlZMj1CiaGuEJ42TsbxOM5PYHDiaFx4VjA/132",
 					"scene": null
 				},
 				{

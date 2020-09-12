@@ -59,6 +59,7 @@
                 <image
                   class="item-detail-list_item-image"
                   src="{{child.image}}"
+                  mode="aspectFit"
                 ></image>
               </view>
               <view class="item-detail-list_item-right">
@@ -130,6 +131,7 @@
                 <image
                   class="package-detail-list_item-image"
                   src="{{child.image}}"
+                  mode="aspectFit"
                 ></image>
               </view>
               <view class="package-detail-list_item-right">
@@ -148,12 +150,21 @@
               </view>
             </view>
           </view>
-          <view wx:if="{{item.status !== 3}}" class="package-pay-button" bind:tap="onSettleTap" data-item="{{item}}">
-            <image
-              class="package-pay-button_icon"
-              src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/路径@2x.png"
-            />
-            <view class="package-pay-button_text">点击付款结算</view>
+          <view wx:if="{{item.status !== 3}}" class="package-operate-row">
+            <view class="package-pay-button" bind:tap="onSettleTap" data-item="{{item}}">
+              <image
+                class="package-pay-button_icon"
+                src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/路径@2x.png"
+              />
+              <view class="package-pay-button_text">付款结算</view>
+            </view>
+            <view class="package-share-button" bind:tap="onShareTap" data-item="{{item}}">
+              <image
+                class="package-share-button_icon"
+                src="../../../../images/bill/share1.png"
+              />
+              <view class="package-share-button_text">分享账单</view>
+            </view>
           </view>
         </view>
       </view>

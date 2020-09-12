@@ -1,5 +1,12 @@
 <view class="bill">
-  <view class="bill-top">
+  <view wx:if="{{isCooperate}}" class="bill-share-top">
+    <custom-header useClose usePlace background="#F89D4A" />
+    <view class="bill-share-info">
+      <view class="bill-share-info-name">{{cooperateInfo.title}}</view>
+      <image class="bill-share-info-img" src="{{cooperateInfo.portrait}}" mode="aspectFit" />
+    </view>
+  </view>
+  <view wx:else class="bill-top">
     <image
       class="bill-top_bg"
       src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/位图@2x.png"
@@ -36,6 +43,7 @@
           <image
             class="bill-list_item-image"
             src="{{backgroundImgs[index % 19]}}"
+            mode="aspectFit"
           ></image>
           <view class="bill-list_item-image-text">{{item.debtorName[0]}}</view>
         </view>

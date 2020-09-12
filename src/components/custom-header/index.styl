@@ -50,3 +50,21 @@
   image
     width: 48rpx
     height: 48rpx
+
+.close
+  width: 28rpx
+  height: 27rpx
+  margin-left: 47rpx
+  position relative
+  &::after
+    content ''
+    position: absolute
+    width: 96rpx
+    height: 96rpx
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+  image
+    width: 28rpx
+    height: 27rpx

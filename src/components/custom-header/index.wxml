@@ -7,6 +7,9 @@
   <view class="setting" wx:if="{{useSetting}}" bindtap="onSettingTap">
     <image src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/全局设置@2x.png"></image>
   </view>
+  <view class="close" wx:if="{{useClose}}" bindtap="onCloseTap">
+    <image src="../../images/bill/close.png"></image>
+  </view>
   <slot></slot>
 </view>
 <!-- 占位 -->

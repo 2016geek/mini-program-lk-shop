@@ -77,6 +77,7 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 				data,
 				header: {
 					token: getApp().globalData.token,
+					// ...getApp().globalData.requestHeaders,
 				},
 				success(res) {
 					wx.hideLoading()

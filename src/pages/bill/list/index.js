@@ -19,6 +19,22 @@ Page({
 		isFirst: true,
 		backgroundImgs: ['', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].map((i) => `https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/矩形备份${i ? ' ' + i : ''}@2x.png`),
 		code: '',
+		isCooperate: false,
+		cooperateInfo: {},
+	},
+	onLoad(params) {
+		const { userId } = params;
+		if (userId) {
+			this.setData({
+				isCooperate: true,
+				cooperateInfo: {
+					...params,
+					title: `${params.nickname.length > 11 ? params.nickname.slice(0, 11) + '...' : params.nickname}的协作账本`
+				}
+			});
+			getApp().globalData.isCooperate = true;
+			getApp().globalData.requestHeaders = params;
+		}
 	},
 	async onShow() {
 		await this.getUserInfo();
