@@ -22,7 +22,9 @@ Page({
 		billDetail: {
 			singlePrice: 0,
 			mount: 0,
-			extralPrice: [{ name: '附加费', value: 0 }],
+			extralPrice: wx.getStorageSync('extralPrice') || [
+				{ name: '附加费', value: 0 },
+			],
 		},
 		billTime: '',
 		billName: '',
@@ -147,7 +149,11 @@ Page({
 		});
 	},
 	onTapImage(e) {
-		const { currentTarget: { dataset: { index } } } = e;
+		const {
+			currentTarget: {
+				dataset: { index },
+			},
+		} = e;
 		wx.previewImage({
 			current: this.data.billPics[index], // 当前显示图片的http链接
 			urls: this.data.billPics, // 需要预览的图片http链接列表
@@ -576,6 +582,10 @@ Page({
 				...form,
 			});
 		}
+		wx.setStorage({
+			key: 'extralPrice',
+			data: billDetail.extralPrice.map((v) => { v.value = 0; return v; }),
+		});
 		wx.showToast({
 			title: '账单创建成功',
 			icon: 'success',

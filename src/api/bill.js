@@ -6,7 +6,7 @@ export default {
 	del: createServer('DELETE', '/accountbook/rest/bill/v1/id/{id}'),
 	update: createServer('PUT', '/accountbook/rest/bill/v1/id/{id}'),
 	amount: createServer('GET', '/accountbook/rest/bill/v1/amount'),
-	list: createServer('POST', '/accountbook/rest/bill/v1/list'),
+	list: createServer('POST', '/accountbook/rest/bill/v1/list', true, false),
 	debtorAccrual: createServer('GET', '/accountbook/rest/bill/v1/debtor/accrual/list'),
 	debtorAmount: createServer('GET', '/accountbook/rest/bill/v1/amount/debtorId/{debtorId}'),
 	debtorMonthList: createServer('GET', '/accountbook/rest/bill/v1/debtor/month/list'),
