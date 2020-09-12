@@ -1,5 +1,8 @@
 // src/pages/setting/share/share.js
-const app = getApp();
+import api from '../../../api';
+
+const app = getApp();;
+
 Page({
 
 	/**
@@ -10,18 +13,18 @@ Page({
 		dayList: [
 			{
 				label: '1天',
-				value: 1,
+				value: '1',
 			},
 			{
 				label: '7天',
-				value: 7,
+				value: '7',
 			},
 			{
 				label: '30天',
-				value: 30,
+				value: '30',
 			},
 		],
-		choseDay: 1,
+		choseDay: '1',
 	},
 
 	/**
@@ -41,20 +44,28 @@ Page({
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function () {
-
+	onShow: async function () {
+		const result = await api.setting.getSetting();
+		const isOpenObj = result.find((v) => v.settingKey === 'COLLABORATION_SWITCH') || { settingKey: 'COLLABORATION_SWITCH', settingValue: 'Y' };
+		const daysObj = result.find((v) => v.key === 'COLLABORATION_VALIDITY') || { settingKey: 'COLLABORATION_VALIDITY', settingValue: 1 };
+		this.setData({
+			isOpen: isOpenObj.settingValue === 'Y',
+			choseDay: daysObj.settingValue,
+		});
 	},
 	onOpenChanged(event) {
 		const {
 			detail: { value },
 		} = event;
 		this.setData({ isOpen: value });
+		api.setting.setSetting({ settingKey: 'COLLABORATION_SWITCH', settingValue: value ? 'Y' : 'N' });
 	},
 	onChoseDay(e) {
 		const { currentTarget: { dataset: { value } } } = e;
 		this.setData({
 			choseDay: value,
 		});
+		api.setting.setSetting({ settingKey: 'COLLABORATION_VALIDITY', settingValue: value });
 	},
 	onShareAppMessage: function () {
 		const { userId, nickname, portrait } = app.globalData.userInfo;

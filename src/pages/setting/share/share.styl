@@ -2,17 +2,42 @@
 .share
   padding 0 40rpx
   background-color #fff
+  &.disabled
+    .days-wrapper
+      .title
+        color: #D1D2DC
+      .day-list
+        .item
+          color: #D1D2DC
+          &.active
+            &::before
+              background-image: url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/setting/gou-gray%402x.png')
+    .ps
+      color: #D1D2DC
+    .bottom-btn
+      background-color: #A9ABBE
+
+  .disable-mask
+    position absolute
+    z-index 10
+    width: 100vw
+    height 100vh
+    left 0
+    top: 0
   .form-item
     height 98rpx
     display flex
     align-items center
     justify-content space-between
     margin-top 32rpx
+    position relative
+    z-index 100
     .label
       font-size 32rpx
       color #333
   .days-wrapper
     margin-top 32rpx
+    
     .title
       color: #7E80A3
       font-size 28rpx

@@ -11,6 +11,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
+		userInfo: {},
 		billPics: [],
 		addUserValue: '',
 		currentExtraName: '附加费',
@@ -25,6 +26,12 @@ Page({
 			extralPrice: wx.getStorageSync('extralPrice') || [
 				{ name: '附加费', value: 0 },
 			],
+		},
+		creator: {
+			userId: '',
+			protrait: '',
+			nickname: '',
+			phone: '',
 		},
 		billTime: '',
 		billName: '',
@@ -48,6 +55,7 @@ Page({
 	 */
 	onLoad: async function (options) {
 		app.watch(this.data, this.watch, this);
+		this.setData({ userInfo: getApp().globalData.userInfo });
 		if (options.review) {
 			this.setData({ canEdit: false, switchColor: '#eee' });
 		}
@@ -73,6 +81,7 @@ Page({
 				debtorName,
 				id,
 				proofing,
+				creator,
 			} = res;
 			this.setData({
 				billAmount,
@@ -83,6 +92,7 @@ Page({
 				debtorId,
 				debtorName,
 				id,
+				creator: { ...creator, phone: `**${creator.phone.slice(-4)}` },
 				proofing: !!proofing,
 				billDetail: JSON.parse(billDetail),
 				valid: true,

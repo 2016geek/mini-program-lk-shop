@@ -1,4 +1,5 @@
-<view class="share">
+<view class="share {{isOpen?'':'disabled'}}">
+  <view wx:if="{{!isOpen}}" class="disable-mask"></view>
   <view class="form-item">
     <view class="label">开启协作</view>
     <switch
@@ -7,10 +8,10 @@
       bindchange="onOpenChanged"
     />
   </view>
-  <view class="days-wrapper">
+  <view class="days-wrapper ">
     <view class="title">协作链接有效期</view>
     <view class="day-list">
-      <view wx:key="index" bindtap="onChoseDay" wx:for="{{dayList}}" data-value="{{item.value}}" class="item {{item.value===choseDay?'active':''}}">{{item.label}}</view>
+      <view wx:key="index" bindtap="onChoseDay" wx:for="{{dayList}}" data-value="{{item.value}}" class="item {{item.value==choseDay?'active':''}}">{{item.label}}</view>
     </view>
   </view>
   <view class="ps">协作用户仅可为您新增账单</view>

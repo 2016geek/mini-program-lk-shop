@@ -1,9 +1,9 @@
 <wxs src="./billEdit.wxs" module="moneyTool" />
 <view class="bill-edit  {{canEdit?'':'disabled'}}">
   <view wx:if="{{!canEdit}}" class="untap-modal"></view>
-  <view class="creator-wrapper">
-    <image class="portrait" src="" mode="aspectFill"></image>
-    <view class="desc">用户 **8771 创建</view>
+  <view wx:if="{{userInfo.userId!==creator.userId&&id}}" class="creator-wrapper">
+    <image class="portrait" src="{{creator.portrait}}" mode="aspectFill"></image>
+    <view class="desc">{{creator.nickname}} {{creator.phone}} 创建</view>
   </view>
   <view class="img-list">
     <view class="img-wrapper" wx:key="index" wx:for="{{billPics}}" bindtap="onTapImage">
