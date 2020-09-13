@@ -52,6 +52,14 @@
 			display flex
 			justify-content center
 			align-items center
+			height 148rpx
+			background-color #3432C1
+			color #fff
+			width 100%
+			font-weight bolder
+			font-size 36rpx
+			transition all 0.2s
+			flex 1
 			.edit-icon
 				width 29.85rpx
 				height 29.85rpx
@@ -137,3 +145,15 @@
 		&-img
 			width: 32rpx
 			height: 32rpx
+
+.bottom-container
+	position: fixed
+	z-index: 10
+	bottom: 0
+	bottom: constant(safe-area-inset-bottom) /* 兼容 iOS < 11.2 */
+	bottom: env(safe-area-inset-bottom) /* 兼容 iOS >= 11.2 */
+	left: 0
+	height 148rpx
+	width: 100%
+	display: flex
+	background-color: #fff

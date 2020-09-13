@@ -61,7 +61,7 @@
                   src="{{child.image}}"
                   mode="aspectFit"
                 >
-                <image wx:if="{{true}}" class="small-image" src="{{}}" mode="aspectFit"></image>
+                <image wx:if="{{child.creator}}" class="small-image" src="{{child.creator.portrait}}" mode="aspectFit"></image>
                 </image>
               </view>
               <view class="item-detail-list_item-right">
@@ -178,14 +178,20 @@
 </view>
 
 <view class="account-bill-bottom">
-  <view bindtap="onAddBill" class="account-bill-bottom_btn edit">
+  <view wx:if="{{isCooperate}}" bindtap="onAddBill" class="account-bill-bottom_btn edit width100">
     <image class="edit-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"></image>
     新增
   </view>
-  <view class="account-bill-bottom_btn share" bind:tap="onAddPackage">
-    <image class="share-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/share.png"></image>
-    记提
-  </view>
+  <block wx:else>
+    <view bindtap="onAddBill" class="account-bill-bottom_btn edit">
+      <image class="edit-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"></image>
+      新增
+    </view>
+    <view class="account-bill-bottom_btn share" bind:tap="onAddPackage">
+      <image class="share-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/share.png"></image>
+      记提
+    </view>
+  </block>
 </view>
 
 <confirm wx:if="{{packageConfirmVisible}}" bindConfirm="onPackageConfirm" bindCancel="onPackageCancel" title="确认要计提账单吗？" confirmText="确认" cancelText="等等" desc="计提后账单将打包发出，无法编辑"></confirm>
