@@ -68,8 +68,9 @@ Page({
 						});
 						app.globalData.token = token;
 						app.globalData.userInfo = useInfo;
+						console.log('userInfo', useInfo);
 						clearPromise();
-						wx.navigateTo({
+						wx.reLaunch({
 							url: '/pages/bill/list/index',
 						});
 					}
