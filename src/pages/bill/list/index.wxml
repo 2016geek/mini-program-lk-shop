@@ -43,7 +43,7 @@
           <image
             class="bill-list_item-image"
             src="{{backgroundImgs[index % 19]}}"
-            mode="aspectFit"
+            mode="aspectFill"
           ></image>
           <view class="bill-list_item-image-text">{{item.debtorName[0]}}</view>
         </view>
