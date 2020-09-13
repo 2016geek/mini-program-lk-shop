@@ -192,5 +192,14 @@
 <confirm wx:if="{{shareConfirmVisible}}" bindConfirm="onShareConfirm" bindCancel="onShareCancel" title="计提完成" confirmText="分享" confirmType="share" cancelText="取消" desc="您可以将账单分享给客户"></confirm>
 
 <dialog title="结算" visible="{{settleDialogVisible}}"  bindClose="onSettleClose" bindConfirm="onSettleConfirm">
-  <baseInput placeholder="请输入已结算额度" bindInput="onSettleInput" value="{{settleValue}}" max="8" my-class="settle-input"></baseInput>
+  <baseInput
+    placeholder="请输入已结算额度"
+    bindInput="onSettleInput"
+    value="{{settleValue}}"
+    max="8"
+    my-class="settle-input"
+    customTip
+    tip="{{settleStatus}}">
+    <view class="settle-input-tip">请输入已结算额度</view>
+  </baseInput>
 </dialog>

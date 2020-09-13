@@ -41,6 +41,8 @@ Page({
 		createPackageId: '',
 		currentPackageId: '',
 		isCooperate: false,
+		settleStatus: '全部结清',
+		maxSettleValue: '',
 	},
 
 	onLoad(params) {
@@ -268,7 +270,12 @@ Page({
 	},
 	onSettleInput(e) {
 		const { value } = e.detail;
-		this.setData({ settleValue: value });
+		const max = this.data.maxSettleValue;
+		const isMax = +max === +value;
+		this.setData({
+			settleValue: value,
+			settleStatus: isMax ? '全部结清' : '部分结清',
+		});
 	},
 	async onSettleTap(e) {
 		const { item } = e.currentTarget.dataset;
@@ -277,6 +284,8 @@ Page({
 			settleId: id,
 			settleDialogVisible: true,
 			settleValue: totalBillAmount - totalSettlementAmount,
+			maxSettleValue: totalBillAmount - totalSettlementAmount,
+			settleStatus: '全部结清',
 		});
 	},
 	onShareTap(e) {

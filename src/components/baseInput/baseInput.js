@@ -21,6 +21,14 @@ Component({
 			type: Boolean,
 			value: false,
 		},
+		customTip: {
+			type: Boolean,
+			value: false,
+		},
+		tip: {
+			type: String,
+			value: '',
+		},
 	},
 	externalClasses: ['my-class'],
 	data: {

@@ -7,5 +7,7 @@
 		 确定
 	 </view>
 	</view>
-	<view wx:if="{{max!=-1}}" class="max-length">{{result.length}}/{{max}}</view>
+	<view wx:if="{{customTip}}" class="max-length">{{tip}}</view>
+	<view wx:elif="{{max!=-1}}" class="max-length">{{result.length}}/{{max}}</view>
+	<slot></slot>
 </view>
