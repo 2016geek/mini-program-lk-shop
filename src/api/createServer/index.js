@@ -71,13 +71,17 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 					title: '请求中,请稍等',
 				})
 			}
+			const requestHeaders = getApp().globalData.requestHeaders;
 			wx.request({
 				url: host + newUrl,
 				method,
-				data,
+				data: {
+					shareUserId: requestHeaders.userId,
+					shareTime: requestHeaders.shareTime,
+					...data,
+				},
 				header: {
 					token: getApp().globalData.token,
-					// ...getApp().globalData.requestHeaders,
 				},
 				success(res) {
 					wx.hideLoading()
