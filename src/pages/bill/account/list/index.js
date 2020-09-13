@@ -39,7 +39,6 @@ Page({
 		settleValue: '',
 		settleId: '',
 		createPackageId: '',
-		currentPackageId: '',
 		isCooperate: false,
 		settleStatus: '全部结清',
 		maxSettleValue: '',
@@ -243,8 +242,10 @@ Page({
 	onAddPackage() {
 		this.setData({ packageConfirmVisible: true });
 	},
-	onShareAppMessage: function () {
-		const id = this.data.currentPackageId || this.data.createPackageId;
+	onShareAppMessage: function (e) {
+		const { item = {} } = e.target.dataset;
+		const id = item.id || this.data.createPackageId;
+		console.log('onShareAppMessage', id);
 		return {
 			path: `/pages/bill/export/list/list?id=${id}`,
 			imageUrl: 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/setting/sharePIc%402x.jpg',
@@ -258,7 +259,6 @@ Page({
 			packageConfirmVisible: false,
 			shareConfirmVisible: true,
 			createPackageId: id,
-			currentPackageId: '',
 		});
 		this.resetList();
 		this.resetPackages();
@@ -290,7 +290,7 @@ Page({
 	},
 	onShareTap(e) {
 		const { item } = e.currentTarget.dataset;
-		this.setData({ currentPackageId: item.id });
+		console.log('onShareTap', item.id);
 	},
 	onSettleClose() {
 		this.setData({
