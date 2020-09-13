@@ -37,9 +37,7 @@ Page({
 		billDetail: {
 			singlePrice: 0,
 			mount: 0,
-			extralPrice: wx.getStorageSync('extralPrice') || [
-				{ name: '附加费', value: 0 },
-			],
+			extralPrice: [{ name: '附加费', value: 0 }],
 		},
 		creator: {
 			userId: '',
@@ -69,6 +67,7 @@ Page({
 	 */
 	onLoad: async function (options) {
 		app.watch(this.data, this.watch, this);
+
 		this.setData({ userInfo: getApp().globalData.userInfo });
 		if (options.review) {
 			this.setData({ canEdit: false, switchColor: '#eee' });
@@ -77,6 +76,9 @@ Page({
 			this.setData({ billTime: dayjs().format('YYYY-MM-DD') });
 			if (options.debtorId) {
 				this.setData({ debtorId: options.debtorId });
+			}
+			if (wx.getStorageSync('extralPrice')) {
+				this.setData({ billDetail: { ...this.data.billDetail, extralPrice: wx.getStorageSync('extralPrice') } });
 			}
 		}
 		else {
@@ -388,13 +390,14 @@ Page({
 				const tempFilePaths = res.tempFilePaths;
 
 				try {
-					const results = await Promise.all(tempFilePaths.map(path => uploadImagePromise(path, 'miniapp/userUpload/')));
+					const results = await Promise.all(tempFilePaths.map((path) => uploadImagePromise(path, 'miniapp/userUpload/')));
 
 					_this.setData({
 						uploading: false,
 						billPics: [..._this.data.billPics, ...results],
 					});
-				} catch (e) {
+				}
+				catch (e) {
 					wx.showToast({
 						title: '图片上传失败，请重试',
 						icon: 'none',
@@ -607,7 +610,7 @@ Page({
 		}
 		wx.setStorage({
 			key: 'extralPrice',
-			data: billDetail.extralPrice.map((v) => { v.value = 0; return v; }),
+			data: this.data.billDetail.extralPrice.map((v) => { v.value = 0; return v; }),
 		});
 		wx.showToast({
 			title: '账单创建成功',

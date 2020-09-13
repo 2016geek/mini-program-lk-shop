@@ -1,8 +1,6 @@
 // src/pages/setting/share/share.js
 import api from '../../../api';
 
-const app = getApp();;
-
 Page({
 
 	/**
@@ -31,7 +29,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		wx.hideShareMenu({
+			menus: ['shareAppMessage', 'shareTimeline'],
+		});
 	},
 
 	/**
@@ -68,11 +68,12 @@ Page({
 		api.setting.setSetting({ settingKey: 'COLLABORATION_VALIDITY', settingValue: value });
 	},
 	onShareAppMessage: function () {
-		const { userId, nickname, portrait } = app.globalData.userInfo;
+		console.log('settingshare', getApp().globalData.userInfo);
+		const { userId, nickname, portrait } = getApp().globalData.userInfo;
 		return {
 			path: `/pages/bill/list/index?userId=${userId}&nickname=${nickname}&portrait=${portrait}&shareTime=${new Date().getTime()}`,
 			imageUrl: 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/setting/sharePIc%402x.jpg',
-			title: `邀请您协作账本，有效期${this.data.dayList.find((v) => v.value === this.data.choseDay).label}`,
+			title: `邀请您协作账本，有效期${this.data.dayList.find((v) => v.value == this.data.choseDay).label}`,
 		};
 	},
 });
