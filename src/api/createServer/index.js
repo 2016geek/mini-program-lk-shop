@@ -90,7 +90,7 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 					wx.hideLoading();
 					const { data } = res || {};
 					const { statusCode, errorMsg, result } = data;
-					console.log('request success', newUrl, allData);
+					console.log('request success', newUrl, 'requestData:', allData, 'res:', res);
 					if (statusCode === 0) {
 						resolve(result);
 					}
