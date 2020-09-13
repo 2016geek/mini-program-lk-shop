@@ -100,6 +100,13 @@
 					"pathName": "pages/no-permission/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "协作分享页面",
+					"pathName": "pages/setting/share/share",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
