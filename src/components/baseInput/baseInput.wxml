@@ -1,7 +1,19 @@
 <view class="base-input {{extralClass}} my-class">
 	<view class="input-wrapper">
-		<input class="input" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="" placeholder-class="input-placeholder"
-		maxlength="140" maxlength="{{max}}" bindinput="onInput" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm">
+		<input
+			class="input"
+			value="{{value}}"
+			type="{{type}}"
+			placeholder="{{placeholder}}"
+			placeholder-style=""
+			placeholder-class="input-placeholder"
+			maxlength="140"
+			maxlength="{{max}}"
+			cursor-spacing="{{cursorSpacing}}"
+			bindinput="onInput"
+			bindfocus="onFocus"
+			bindblur="onBlur"
+			bindconfirm="onConfirm">
 	 </input>
 	 <view wx:if="{{showConfirmBtn}}" bindtap = "onConfirm" class="confirm-btn">
 		 确定

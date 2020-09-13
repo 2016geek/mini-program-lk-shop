@@ -86,6 +86,13 @@
 					"pathName": "pages/bill/account/list/index",
 					"query": "debtorId=12",
 					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/bill/export/list/list",
+					"pathName": "pages/bill/export/list/list",
+					"query": "id=58",
+					"scene": null
 				}
 			]
 		}

@@ -210,6 +210,7 @@
     max="8"
     my-class="settle-input"
     customTip
+    cursorSpacing="{{50}}"
     tip="{{settleStatus}}">
     <view class="settle-input-tip">请输入已结算额度</view>
   </baseInput>

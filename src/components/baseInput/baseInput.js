@@ -29,6 +29,10 @@ Component({
 			type: String,
 			value: '',
 		},
+		cursorSpacing: {
+			type: Number,
+			value: 0,
+		},
 	},
 	externalClasses: ['my-class'],
 	data: {
