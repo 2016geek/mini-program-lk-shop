@@ -23,6 +23,10 @@ Component({
 			type: String,
 			value: '',
 		},
+		title: {
+			type: String,
+			value: '',
+		},
 	},
 	data: {
 		titleBarHeight: 0,

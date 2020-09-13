@@ -29,8 +29,8 @@ Page({
 				isCooperate: true,
 				cooperateInfo: {
 					...params,
-					title: `${params.nickname.length > 11 ? params.nickname.slice(0, 11) + '...' : params.nickname}的协作账本`
-				}
+					title: `${params.nickname.length > 11 ? params.nickname.slice(0, 11) + '...' : params.nickname}的协作账本`,
+				},
 			});
 			getApp().globalData.isCooperate = true;
 			getApp().globalData.requestHeaders = params;

@@ -10,6 +10,7 @@
   <view class="close" wx:if="{{useClose}}" bindtap="onCloseTap">
     <image src="../../images/bill/close.png" mode="aspectFit"></image>
   </view>
+  <view wx:if="{{title}}" class="title">{{title}}</view>
   <slot></slot>
 </view>
 <confirm wx:if="{{quitVisible}}" bindConfirm="onQuitConfirm" bindCancel="onQuitCancel" title="确认退出协作吗？" confirmText="退出" cancelText="取消" desc="退出后您只可以通过分享链接进入"></confirm>
