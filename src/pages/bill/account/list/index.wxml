@@ -61,7 +61,12 @@
                   src="{{child.image}}"
                   mode="aspectFit"
                 >
-                <image wx:if="{{child.creator}}" class="small-image" src="{{child.creator.portrait}}" mode="aspectFit"></image>
+                <image
+                  wx:if="{{child.creatorUserId !== child.ownerUserId && child.creator}}"
+                  class="small-image"
+                  src="{{child.creator.portrait}}"
+                  mode="aspectFit">
+                </image>
                 </image>
               </view>
               <view class="item-detail-list_item-right">
