@@ -75,18 +75,20 @@
     </view>
     <loading wx:if="{{loading}}" />
   </view>
-  <view wx:if="{{hasPhone}}" bindtap="onAddBill" class="bill-bottom bill-bottom_btn bottom-btn">
-    <image
-      class="edit-icon"
-      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"
-    ></image>
-    记一笔
+  <view class="bottom-container">
+    <view wx:if="{{hasPhone}}" bindtap="onAddBill" class="bill-bottom bill-bottom_btn">
+      <image
+        class="edit-icon"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"
+      ></image>
+      记一笔
+    </view>
+    <button wx:else open-type="getPhoneNumber" bindgetphonenumber="onGetPhone" class="bill-bottom bill-bottom_btn">
+      <image
+        class="edit-icon"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"
+      ></image>
+      记一笔
+    </button>
   </view>
-  <button wx:else open-type="getPhoneNumber" bindgetphonenumber="onGetPhone" class="bill-bottom bill-bottom_btn bottom-btn">
-    <image
-      class="edit-icon"
-      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/形状@2x.png"
-    ></image>
-    记一笔
-  </button>
 </view>
