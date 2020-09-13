@@ -2,8 +2,22 @@
 import api from '../../api';
 
 const uploadImage = require('../../utils/oss/uploadAliyun.js');
-const dayjs = require('../../vendor/dayjs')
-	;
+const dayjs = require('../../vendor/dayjs');
+
+const uploadImagePromise = (path, url) => {
+	return new Promise((resolve, reject) => {
+		uploadImage(
+			path,
+			url,
+			function (res) {
+				resolve(res);
+			},
+			function (res) {
+				reject(res);
+			},
+		);
+	});
+};
 
 const app = getApp();
 Page({
@@ -369,25 +383,24 @@ Page({
 		let _this = this;
 		this.setData({ uploading: true });
 		wx.chooseImage({
-			success(res) {
+			count: 3,
+			success: async (res) => {
 				const tempFilePaths = res.tempFilePaths;
-				uploadImage(
-					tempFilePaths[0],
-					'miniapp/userUpload/',
-					function (res) {
-						_this.setData({
-							uploading: false,
-							billPics: [..._this.data.billPics, res],
-						});
-					},
-					function (res) {
-						wx.showToast({
-							title: '图片上传失败，请重试',
-							icon: 'none',
-						});
-						_this.setData({ uploading: false });
-					},
-				);
+
+				try {
+					const results = await Promise.all(tempFilePaths.map(path => uploadImagePromise(path, 'miniapp/userUpload/')));
+
+					_this.setData({
+						uploading: false,
+						billPics: [..._this.data.billPics, ...results],
+					});
+				} catch (e) {
+					wx.showToast({
+						title: '图片上传失败，请重试',
+						icon: 'none',
+					});
+					_this.setData({ uploading: false });
+				}
 			},
 		});
 	},
