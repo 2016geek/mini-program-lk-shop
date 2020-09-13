@@ -385,7 +385,7 @@ Page({
 		let _this = this;
 		this.setData({ uploading: true });
 		wx.chooseImage({
-			count: 3,
+			count: 3 - _this.data.billPics.length,
 			success: async (res) => {
 				const tempFilePaths = res.tempFilePaths;
 
