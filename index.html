@@ -244,6 +244,7 @@
         _this.status = result.status
         _this.totalBillAmount = result.totalBillAmount
         _this.list = result.userBillDTOList.map(v => {
+          console.log(JSON.parse(v.billPics))
           v.billPics = JSON.parse(v.billPics)[0]
           v.billDetail = _this.extraLabel(v.billDetail)
           v.billTime = dayjs(v.billTime).format('M[月]DD[日]')

@@ -31,7 +31,6 @@ const login = () => {
 								}
 								app.globalData.token = token;
 								app.globalData.userInfo = result;
-								console.log('login success', res);
 								resolve(token);
 							},
 							fail(e) {

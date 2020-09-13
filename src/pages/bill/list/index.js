@@ -34,6 +34,11 @@ Page({
 			});
 			getApp().globalData.isCooperate = true;
 			getApp().globalData.requestHeaders = params;
+			// if (getApp().globalData.userInfo.userId == getApp().globalData.userInfo.userId) {
+			// 	this.setData({ isCooperate: false });
+			// 	getApp().globalData.isCooperate = false;
+			// 	getApp().globalData.requestHeaders = {};
+			// }
 		}
 	},
 	async onShow() {

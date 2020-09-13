@@ -73,7 +73,7 @@ Page({
 	copyTable() {
 		console.log(this.data.fileUrl);
 		wx.downloadFile({
-			url: 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/bill_accrual/%E5%AE%A2%E6%88%B7%E8%B4%A6%E5%8D%95%E6%98%8E%E7%BB%862020-09-01_202009012111272515.xlsx',
+			url: this.data.fileUrl,
 			success: function (res) {
 				const filePath = res.tempFilePath;
 				wx.openDocument({

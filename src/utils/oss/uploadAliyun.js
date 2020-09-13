@@ -1,12 +1,12 @@
-const env = require('./aliyun.config.js') // 配置文件，在这里配置你的OSS keyId和KeySecret,timeout:87600;
+const env = require('./aliyun.config.js'); // 配置文件，在这里配置你的OSS keyId和KeySecret,timeout:87600;
 // 更好的做法是把这些信息放到服务器进行签名，防止信息泄露
 
-const Base64 = require('./base64.js') // Base64,hmac,sha1,crypto相关算法
+const Base64 = require('./base64.js'); // Base64,hmac,sha1,crypto相关算法
 // 参考这里https://github.com/peterhuang007/weixinFileToaliyun.git
 
-require('./hmac.js')
-require('./sha1.js')
-const Crypto = require('./crypto.js')
+require('./hmac.js');
+require('./sha1.js');
+const Crypto = require('./crypto.js');
 
 const uploadFile = function (filePath, dir, successc, failc) {
 	if (!filePath || filePath.length < 9) {
@@ -14,16 +14,16 @@ const uploadFile = function (filePath, dir, successc, failc) {
 			title: '图片错误',
 			content: '请重试',
 			showCancel: false,
-		})
-		return
+		});
+		return;
 	}
-	console.log(filePath)
-	const aliyunFileKey = dir + filePath.replace('http://tmp/', '') // 我直接拿微信本地的名字当做传到服务器上的名字了，dir传的是images/，表示要传到这个目录下
+	console.log('test', filePath);
+	const aliyunFileKey = dir + filePath.replace(/(http|wxfile)\:\/\/tmp\//g, ''); // 我直接拿微信本地的名字当做传到服务器上的名字了，dir传的是images/，表示要传到这个目录下
 
-	const aliyunServerURL = env.uploadImageUrl // OSS地址，需要https
-	const accessid = env.OSSAccessKeyId
-	const policyBase64 = getPolicyBase64()
-	const signature = getSignature(policyBase64) // 获取签名
+	const aliyunServerURL = env.uploadImageUrl; // OSS地址，需要https
+	const accessid = env.OSSAccessKeyId;
+	const policyBase64 = getPolicyBase64();
+	const signature = getSignature(policyBase64); // 获取签名
 	wx.uploadFile({
 		url: aliyunServerURL,
 		filePath: filePath,
@@ -37,44 +37,44 @@ const uploadFile = function (filePath, dir, successc, failc) {
 		},
 		success: function (res) {
 			if (res.statusCode != 200) {
-				failc(new Error('上传错误:' + JSON.stringify(res)))
-				return
+				failc(new Error('上传错误:' + JSON.stringify(res)));
+				return;
 			}
 			successc(
-				'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/' + aliyunFileKey
-			)
+				'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/' + aliyunFileKey,
+			);
 		},
 		fail: function (err) {
-			err.wxaddinfo = aliyunServerURL
-			failc(err)
+			err.wxaddinfo = aliyunServerURL;
+			failc(err);
 		},
-	})
-}
+	});
+};
 
 const getPolicyBase64 = function () {
-	let date = new Date()
-	date.setHours(date.getHours() + env.timeout)
-	let srcT = date.toISOString()
+	let date = new Date();
+	date.setHours(date.getHours() + env.timeout);
+	let srcT = date.toISOString();
 	const policyText = {
 		expiration: srcT, // 设置该Policy的失效时间，超过这个失效时间之后，就没有办法通过这个policy上传文件了
 		conditions: [
 			['content-length-range', 0, 5 * 1024 * 1024], // 设置上传文件的大小限制,5mb
 		],
-	}
+	};
 
-	const policyBase64 = Base64.encode(JSON.stringify(policyText))
-	return policyBase64
-}
+	const policyBase64 = Base64.encode(JSON.stringify(policyText));
+	return policyBase64;
+};
 
 const getSignature = function (policyBase64) {
-	const accesskey = env.AccessKeySecret
+	const accesskey = env.AccessKeySecret;
 
 	const bytes = Crypto.HMAC(Crypto.SHA1, policyBase64, accesskey, {
 		asBytes: true,
-	})
-	const signature = Crypto.util.bytesToBase64(bytes)
+	});
+	const signature = Crypto.util.bytesToBase64(bytes);
 
-	return signature
-}
+	return signature;
+};
 
-module.exports = uploadFile
+module.exports = uploadFile;
