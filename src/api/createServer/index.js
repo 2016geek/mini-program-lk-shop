@@ -89,10 +89,18 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 					wx.hideLoading();
 					const { data } = res || {};
 					const { statusCode, errorMsg, result } = data;
+					console.log('request success', newUrl, allData);
 					if (statusCode === 0) {
 						resolve(result);
 					}
 					else {
+						if (statusCode === 30001) {
+							wx.navigateTo({
+								url: '/pages/no-permission/index',
+							});
+							reject(data);
+							return;
+						}
 						wx.showToast({
 							title: errorMsg,
 							icon: 'none',
@@ -101,6 +109,7 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 					}
 				},
 				fail(e) {
+					console.log('request fail', newUrl, allData);
 					wx.hideLoading();
 					reject(e);
 				},

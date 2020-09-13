@@ -93,6 +93,13 @@
 					"pathName": "pages/bill/export/list/list",
 					"query": "id=58",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/no-permission/index",
+					"pathName": "pages/no-permission/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

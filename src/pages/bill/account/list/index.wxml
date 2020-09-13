@@ -59,13 +59,13 @@
                 <image
                   class="item-detail-list_item-image"
                   src="{{child.image}}"
-                  mode="aspectFit"
+                  mode="aspectFill"
                 >
                 <image
                   wx:if="{{child.creatorUserId !== child.ownerUserId && child.creator}}"
                   class="small-image"
                   src="{{child.creator.portrait}}"
-                  mode="aspectFit">
+                  mode="aspectFill">
                 </image>
                 </image>
               </view>
@@ -138,7 +138,7 @@
                 <image
                   class="package-detail-list_item-image"
                   src="{{child.image}}"
-                  mode="aspectFit"
+                  mode="aspectFill"
                 ></image>
               </view>
               <view class="package-detail-list_item-right">

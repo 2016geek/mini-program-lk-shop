@@ -3,7 +3,7 @@
     <custom-header title='协作模式' useClose usePlace background="#F89D4A" />
     <view class="bill-share-info">
       <view class="bill-share-info-name">{{cooperateInfo.title}}</view>
-      <image class="bill-share-info-img" src="{{cooperateInfo.portrait}}" mode="aspectFit" />
+      <image class="bill-share-info-img" src="{{cooperateInfo.portrait}}" mode="aspectFill" />
     </view>
   </view>
   <view wx:else class="bill-top">

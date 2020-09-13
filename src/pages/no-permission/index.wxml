@@ -1,0 +1,3 @@
+<view class="container">
+	<image class="empty" src="../../images/bill/no-permision.png"></image>
+</view>
