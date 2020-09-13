@@ -1,6 +1,6 @@
 <view class="bill">
   <view wx:if="{{isCooperate}}" class="bill-share-top">
-    <custom-header useClose usePlace background="#F89D4A" />
+    <custom-header title='协作模式' useClose usePlace background="#F89D4A" />
     <view class="bill-share-info">
       <view class="bill-share-info-name">{{cooperateInfo.title}}</view>
       <image class="bill-share-info-img" src="{{cooperateInfo.portrait}}" mode="aspectFit" />
