@@ -46,10 +46,11 @@ Page({
 
 	onLoad(params) {
 		const { debtorId = '' } = params;
-		this.setData({ debtorId, isCooperate: getApp().globalData.isCooperate });
+		this.setData({ debtorId });
 	},
 
 	async onShow() {
+		this.setData({ isCooperate: getApp().globalData.isCooperate });
 		this.getDebtorInfo();
 		this.resetList();
 		this.resetPackages();
