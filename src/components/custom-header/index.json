@@ -1,4 +1,7 @@
 {
-	"component": true
+	"component": true,
+	"usingComponents": {
+    "confirm": "../confirm/confirm"
+  }
 }
 

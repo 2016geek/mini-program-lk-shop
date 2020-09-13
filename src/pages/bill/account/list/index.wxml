@@ -60,7 +60,9 @@
                   class="item-detail-list_item-image"
                   src="{{child.image}}"
                   mode="aspectFit"
-                ></image>
+                >
+                <image wx:if="{{true}}" class="small-image" src="{{}}" mode="aspectFit"></image>
+                </image>
               </view>
               <view class="item-detail-list_item-right">
                 <view class="item-detail-list_item-title-row">
@@ -150,7 +152,7 @@
               </view>
             </view>
           </view>
-          <view wx:if="{{item.status !== 3}}" class="package-operate-row">
+          <view wx:if="{{!isCooperate && item.status !== 3}}" class="package-operate-row">
             <view class="package-pay-button" bind:tap="onSettleTap" data-item="{{item}}">
               <image
                 class="package-pay-button_icon"
@@ -158,13 +160,13 @@
               />
               <view class="package-pay-button_text">付款结算</view>
             </view>
-            <view class="package-share-button" bind:tap="onShareTap" data-item="{{item}}">
+            <button class="package-share-button" bind:tap="onShareTap" open-type="share" data-item="{{item}}">
               <image
                 class="package-share-button_icon"
                 src="../../../../images/bill/share1.png"
               />
               <view class="package-share-button_text">分享账单</view>
-            </view>
+            </button>
           </view>
         </view>
       </view>

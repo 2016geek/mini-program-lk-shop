@@ -39,11 +39,13 @@ Page({
 		settleValue: '',
 		settleId: '',
 		createPackageId: '',
+		currentPackageId: '',
+		isCooperate: false,
 	},
 
 	onLoad(params) {
 		const { debtorId = '' } = params;
-		this.setData({ debtorId });
+		this.setData({ debtorId, isCooperate: getApp().globalData.isCooperate });
 	},
 
 	async onShow() {
@@ -240,8 +242,9 @@ Page({
 		this.setData({ packageConfirmVisible: true });
 	},
 	onShareAppMessage: function () {
+		const id = this.data.currentPackageId || this.data.createPackageId;
 		return {
-			path: `/pages/bill/export/list/list?id=${this.data.createPackageId}`,
+			path: `/pages/bill/export/list/list?id=${id}`,
 			imageUrl: 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/setting/sharePIc%402x.jpg',
 			title: `请核对【${this.data.userInfo.debtorName}的计提账单】`, // todo 需要加上计提时间
 		};
@@ -249,7 +252,12 @@ Page({
 	async onPackageConfirm() {
 		const { debtorId } = this.data;
 		const { id } = await api.bill.addPackage({ debtorId });
-		this.setData({ packageConfirmVisible: false, shareConfirmVisible: true, createPackageId: id });
+		this.setData({
+			packageConfirmVisible: false,
+			shareConfirmVisible: true,
+			createPackageId: id,
+			currentPackageId: '',
+		});
 		this.resetList();
 		this.resetPackages();
 		await this.getMonthList();
@@ -271,8 +279,9 @@ Page({
 			settleValue: totalBillAmount - totalSettlementAmount,
 		});
 	},
-	onShareTap() {
-		
+	onShareTap(e) {
+		const { item } = e.currentTarget.dataset;
+		this.setData({ currentPackageId: item.id });
 	},
 	onSettleClose() {
 		this.setData({

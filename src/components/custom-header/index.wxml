@@ -2,15 +2,16 @@
   class="custom-title-bar operate {{useFix ? 'fixed' : ''}}"
   style="padding-top:{{statusBarHeight}}px;height:{{titleBarHeight}}px;background:{{background}}">
   <view class="back" wx:if="{{useBack}}" bindtap="onBackTap">
-    <image src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/顶部返回.png"></image>
+    <image src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/顶部返回.png" mode="aspectFit"></image>
   </view>
   <view class="setting" wx:if="{{useSetting}}" bindtap="onSettingTap">
-    <image src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/全局设置@2x.png"></image>
+    <image src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/bill/全局设置@2x.png" mode="aspectFit"></image>
   </view>
   <view class="close" wx:if="{{useClose}}" bindtap="onCloseTap">
-    <image src="../../images/bill/close.png"></image>
+    <image src="../../images/bill/close.png" mode="aspectFit"></image>
   </view>
   <slot></slot>
 </view>
+<confirm wx:if="{{quitVisible}}" bindConfirm="onQuitConfirm" bindCancel="onQuitCancel" title="确认退出协作吗？" confirmText="退出" cancelText="取消" desc="退出后您只可以通过分享链接进入"></confirm>
 <!-- 占位 -->
 <view wx:if="{{usePlace}}" class="custom-title-bar place" style="height:{{statusBarHeight + titleBarHeight}}px"></view>

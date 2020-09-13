@@ -203,9 +203,19 @@
 				width: 100%
 				height: 100%
 				background-color: #4c4d74
+				position relative
+
+				.small-image
+					width: 32rpx
+					height: 32rpx
+					position: absolute
+					right: 0
+					bottom: 0
+					border-top: 1rpx solid #ffffff
+					border-left: 1rpx solid #ffffff
 
 			&-title-row
-				height 50rpx
+				height: 50rpx
 				display: flex
 				justify-content: space-between
 				align-items: center
@@ -400,6 +410,8 @@
 			color: #7E80A3
 
 	&-share-button
+		padding: 0
+		background: none
 		height: 98rpx
 		margin-top: 48rpx
 		border: 1rpx dashed #D1D2DC
@@ -408,6 +420,10 @@
 		align-items: center
 		margin-bottom: 24rpx
 		width 315rpx
+		border-radius: 0
+
+		&::after
+			border: none
 
 		&_icon
 			width: 26rpx

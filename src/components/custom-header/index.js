@@ -27,6 +27,7 @@ Component({
 	data: {
 		titleBarHeight: 0,
 		statusBarHeight: 0,
+		quitVisible: false,
 	},
 	created() {
 		wx.nextTick(() => {
@@ -44,11 +45,18 @@ Component({
 			wx.navigateBack();
 		},
 		onCloseTap() {
+			this.setData({ quitVisible: true });
+		},
+		onQuitConfirm() {
+			this.setData({ quitVisible: false });
 			getApp().globalData.requestHeaders = {};
 			getApp().globalData.isCooperate = false;
 			wx.navigateTo({
 				url: '/pages/bill/list/index',
 			});
+		},
+		onQuitCancel() {
+			this.setData({ quitVisible: false });
 		},
 	},
 });
