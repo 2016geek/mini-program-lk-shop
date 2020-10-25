@@ -251,7 +251,7 @@ Page({
 		this.setData({
 			billDetail: {
 				...this.data.billDetail,
-				singlePrice: parseFloat(Number(value)).toFixed(2),
+				singlePrice: parseFloat(Number(value)).toFixed(4),
 			},
 		});
 		this.computedTotalMoney();
@@ -621,7 +621,7 @@ Page({
 				billAmount: result.toFixed(2),
 				billDetail: {
 					mount: resultMount,
-					singlePrice: resultSinglePrice.toFixed(2),
+					singlePrice: resultSinglePrice.toFixed(4),
 					extralPrice,
 				},
 			});

@@ -24,7 +24,7 @@
     </view>
     <view class="tag-list">
       <view bindtap="choseDebtor" data-value="{{item.id}}" data-name="{{item.debtorName}}" wx:for="{{debtorNameList}}" wx:key="index" class="{{debtorId==item.id?'active':''}} tag-item">
-      <text class="icon-close" data-index="{{index}}" bind:tap="delDebtor"></text>
+      <text wx:if="{{item.canDelete}}" class="icon-close" data-index="{{index}}" bind:tap="delDebtor"></text>
         {{item.debtorName}}
       </view>
     </view>
