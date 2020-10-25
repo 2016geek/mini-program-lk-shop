@@ -53,6 +53,7 @@ Page({
 		addDebtorName: '',
 		proofing: false,
 		confirmVisible: false,
+		existConfirmVisible: false,
 		userDialogVisible: false,
 		uploading: false,
 		id: '',
@@ -310,6 +311,33 @@ Page({
 		});
 		this.computedTotalMoney();
 	},
+	onExistConfirm() {
+		let index = null;
+		let choseItem = {};
+		const filterList = this.data.debtorNameList.filter((v, i) => {
+			if (v.debtorName === this.data.addDebtorName) {
+				index = i;
+				choseItem = v;
+			}
+			return v.debtorName !== this.data.addDebtorName;
+		});
+		if (index !== null) {
+			this.setData({
+				debtorNameList: [choseItem, ...filterList],
+				debtorId: choseItem.id,
+				debtorName: choseItem.debtorName,
+			});
+		}
+		this.setData({
+			existConfirmVisible: false,
+			userDialogVisible: false,
+		});
+	},
+	onExistCancel() {
+		this.setData({
+			existConfirmVisible: false,
+		});
+	},
 	async addDebtor() {
 		if (!this.data.addDebtorName) {
 			wx.showToast({
@@ -317,6 +345,15 @@ Page({
 				icon: 'none',
 			});
 			return;
+		}
+		else {
+			const isExist = this.data.debtorNameList.some((v) => v.debtorName === this.data.addDebtorName);
+			if (isExist) {
+				this.setData({
+					existConfirmVisible: true,
+				});
+				return;
+			}
 		}
 		await api.debtor.add({ debtorName: this.data.addDebtorName });
 		await this.getDebtorList();
@@ -329,6 +366,22 @@ Page({
 			debtorName: debtor.debtorName,
 			debtorId: debtor.id,
 		});
+	},
+	async delDebtor(e) {
+		const {
+			target: {
+				dataset: { index },
+			},
+		} = e;
+		const choseItem = this.data.debtorNameList[index];
+		await api.debtor.del({}, { id: choseItem.id });
+		await this.getDebtorList();
+		if (!this.data.debtorNameList.some((v) => v.id === this.data.debtorId)) {
+			this.setData({
+				debtorId: '',
+				debtorName: '',
+			});
+		}
 	},
 	setDebtorVisible() {
 		this.setData({ userDialogVisible: true });

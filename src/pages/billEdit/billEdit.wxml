@@ -24,6 +24,7 @@
     </view>
     <view class="tag-list">
       <view bindtap="choseDebtor" data-value="{{item.id}}" data-name="{{item.debtorName}}" wx:for="{{debtorNameList}}" wx:key="index" class="{{debtorId==item.id?'active':''}} tag-item">
+      <text class="icon-close" data-index="{{index}}" bind:tap="delDebtor"></text>
         {{item.debtorName}}
       </view>
     </view>
@@ -114,4 +115,6 @@
     <baseInput placeholder="请输入客户名称" bindInput="onDebtorInput" value="{{addDebtorName}}" max="8"></baseInput>
   </dialog>
   <confirm wx:if="{{confirmVisible}}" bindConfirm="onDelConfirm" bindCancel="onDelCancel" title="确定删除吗？" confirmText="删除" cancelText="取消" desc="删除后信息将无法恢复，请谨慎操作"></confirm>
+  <confirm wx:if="{{confirmDelDebtorVisible}}" bindConfirm="onDelDebtorConfirm" bindCancel="onDelCancel" title="确定删除吗？" confirmText="删除" cancelText="取消" desc="删除后信息将无法恢复，请谨慎操作"></confirm>
+  <confirm wx:if="{{existConfirmVisible}}" bindConfirm="onExistConfirm" bindCancel="onExistCancel" title="该客户已存在" confirmText="确认" cancelText="重命名" desc="是否继续使用原客户 {{this.data.addDebtorName}}"></confirm>
 </view>

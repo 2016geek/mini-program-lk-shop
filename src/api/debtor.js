@@ -1,6 +1,7 @@
-import createServer from './createServer'
+import createServer from './createServer';
 
 export default {
 	list: createServer('GET', '/accountbook/rest/debtor/v1/list'),
 	add: createServer('POST', '/accountbook/rest/debtor/v1'),
-}
+	del: createServer('GET', '/accountbook/rest/debtor/v1/del/{id}'),
+};
