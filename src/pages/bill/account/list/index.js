@@ -241,6 +241,13 @@ Page({
 		});
 	},
 	onAddPackage() {
+		if (!this.data.list.length) {
+			wx.showToast({
+				title: '当前没有可以计提的账单',
+				icon: 'none',
+			});
+			return;
+		}
 		this.setData({ packageConfirmVisible: true });
 	},
 	onShareAppMessage: function (e) {

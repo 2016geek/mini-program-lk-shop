@@ -1,4 +1,4 @@
-const host = 'https://www.hzliangke.com';
+const host = 'https://test.hzliangke.com';
 let tempLoginPromise = null;
 export const clearPromise = () => {
 	tempLoginPromise = null;

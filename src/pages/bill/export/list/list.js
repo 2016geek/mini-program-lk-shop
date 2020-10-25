@@ -79,9 +79,16 @@ Page({
 				wx.openDocument({
 					filePath: filePath,
 					fileType: 'xlsx',
+					showMenu: true,
 					success: function (res) {
 					},
+					fail: function (err) {
+						console.log('openFail', err);
+					},
 				});
+			},
+			fail: function (err) {
+				console.log('下载失败', err);
 			},
 		});
 	},
