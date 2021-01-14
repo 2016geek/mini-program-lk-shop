@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "base-input": "../../components/baseInput/baseInput"
-  },
-  "navigationBarTitleText": "设置"
-}

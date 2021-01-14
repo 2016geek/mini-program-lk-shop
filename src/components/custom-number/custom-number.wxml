@@ -1,3 +1,0 @@
-<view class="my-class">
-  <text class="number custom-number" style="zoom:{{scale ? scaleNumber : 1}};">{{showLabel}}</text>
-</view>
