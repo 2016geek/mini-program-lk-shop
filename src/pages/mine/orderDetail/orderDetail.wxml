@@ -1,0 +1,80 @@
+<wxs src="/wxs/util.wxs" module="util"></wxs>
+
+<view wx:if="{{!loading}}" class="order-detail">
+  <scroll-view class="order" scroll-x="{{false}}" scroll-y="{{true}}">
+    <view class="timeline">
+      <block wx:for="{{timeLine}}" wx:key="index">
+        <view class="item {{data.status >= item.status ? 'done' : ''}}">
+          <view wx:if="{{index !== 0}}" class="line" />
+          <view class="icon">
+            <image src="{{data.status >= item.status ? item.activeIcon : item.icon}}" />
+          </view>
+          <text class="text">{{item.text}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="info">
+      <view class="cell">
+        <text class="title">订单状态：{{util.getDetailStatusText(data.status).text}}</text>
+        <text wx:if="{{data.status === 2}}" class="countdown number">00:{{util.addZero(minute)}}:{{util.addZero(second)}}</text>
+      </view>
+      <text class="tips">{{util.getDetailStatusText(data.status).desc}}</text>
+      <view class="product-img">
+        <image src="{{data.previewPic}}" />
+      </view>
+      <view class="cell price">
+        <text class="title">{{data.orderType === 1 ? '纸质手提袋': '笔记本'}}</text>
+        <text class="content number">¥ {{data.totalAmount}}</text>
+      </view>
+      <view class="cell" catch:tap="navigateToInfo">
+        <text class="cell-tips">订单编号 {{data.orderCode}}</text>
+        <image class="cell-arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/orderDetail/%E7%BC%96%E7%BB%84%2018%402x.png" />
+      </view>
+    </view>
+    <view wx:if="{{(data.status === 4 || data.status === 5) && traceList.length}}" class="real-time-info">
+      <view class="title-header">
+        <view class="line" />
+        <text class="title">实时信息</text>
+      </view>
+      <view class="vertical-timeline">
+        <view class="item">
+          <view class="line" />
+          <view class="round" />
+          <view class="item-info">
+            <text class="info-text">2020-11-28 21:40:30</text>
+            <text class="info-text">货品上传信息或物流信息印刷工序货品完成验收</text>
+            <view class="img-list">
+              <view class="image-wrapper">
+                <image mode="widthFix" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="line" />
+          <view class="round" />
+          <view class="item-info">
+            <text class="info-text">2020-11-28 21:40:30</text>
+            <text class="info-text">货品上传信息或物流信息印刷工序货品完成验收超出换行啦啦啦</text>
+            <view class="img-list">
+              <view class="image-wrapper">
+                <image mode="widthFix" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="round" />
+          <view class="item-info">
+            <text class="info-text">2020-11-28 21:40:30</text>
+            <text class="info-text">移交物流【中通】单号【04129030120304123】</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="footer-btns">
+    <view class="btn white">印前电话</view>
+    <view class="btn">微信对接</view>
+  </view>
+</view>

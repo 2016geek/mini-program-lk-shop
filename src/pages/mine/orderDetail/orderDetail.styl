@@ -1,0 +1,170 @@
+.order-detail
+  .order
+    height: calc(100vh - 148rpx)
+    .timeline
+      padding: 0 36rpx
+      padding-top 30rpx
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: space-between
+      .item
+        display: flex
+        flex-direction: column
+        align-items: center
+        position relative
+        .line
+          width: calc((100vw - 320rpx) / 4)
+          height: 8rpx
+          background-color: #F7F7F7
+          position: absolute
+          z-index: 8
+          top: 30rpx;
+          right: 64rpx;
+        .icon
+          width: 64rpx
+          height: 64rpx
+          border-radius: 50%
+          display: flex
+          align-items: center
+          justify-content: center
+          background-color: #F7F7F7
+          position relative
+          z-index: 9
+          image
+            width: 32rpx
+            height: 32rpx
+        .text
+          font-size: 22rpx
+          line-height 27rpx
+          color: #969696
+          margin-top 33rpx
+      .done
+        .line
+          background-color: #3432C1
+        .icon
+          background-color: #3432C1
+        .text
+          color: #1C1C1C
+          font-weight 600
+    .info
+      padding: 77rpx 48rpx 0
+      .cell
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-between
+        .title
+          font-size: 30rpx
+          line-height 33rpx
+          color: #232442
+          font-weight: 600
+        .countdown
+          font-size: 36rpx
+          line-height 42rpx
+          color: #F89D4A
+          font-weight: bold
+        .content
+          font-size: 34rpx
+          line-height 40rpx
+          color: #232442
+          font-weight: 600
+        .cell-tips
+          font-size: 21rpx
+          line-height 33rpx
+          color: #232442
+        .cell-arrow
+          width: 14rpx
+          height: 22rpx
+      .tips
+        font-size: 24rpx
+        line-height 33rpx
+        color: #232442
+        font-weight: 600
+        margin-top 15rpx
+      .product-img
+        margin-top 77rpx
+        width: 654rpx
+        height: 390rpx
+        opacity: 0.09
+        border: 2rpx solid #979797
+        overflow hidden
+        display: flex
+        align-items: center
+        justify-content: center
+        image
+          max-width: 100%
+          max-height: 100%
+      .price
+        margin: 24rpx 0 12rpx
+    .real-time-info
+      margin-top 36rpx
+      background-color: #EFEFF6
+      padding: 32rpx 48rpx 48rpx
+      .title-header
+        display: flex
+        flex-direction: row
+        align-items: center
+        .line
+          width: 8rpx
+          height: 40rpx
+          background-color: #3432C1
+          margin-right 16rpx
+        .title
+          font-size: 30rpx
+          line-height 42rpx
+          color: #232442
+          font-weight: 600
+      .vertical-timeline
+        margin-top 50rpx
+        .item:not(:last-child)
+          padding-bottom: 32rpx
+        .item
+          display: flex
+          flex-direction: row
+          position relative
+          .line
+            width: 4rpx
+            height: 100%
+            background-color: rgba(90, 88, 228, 0.2)
+            position: absolute
+            left: 6rpx
+          .round
+            width: 16rpx;
+            height: 16rpx
+            background: #5A58E4
+            border: 2rpx solid #EFEFF6
+            border-radius: 50%
+            box-sizing: border-box
+          .item-info
+            position relative
+            top: -10rpx
+            padding-left: 32rpx
+            display: flex
+            flex-direction: column
+            width: calc(100vw - 96rpx - 16rpx)
+            .info-text
+              font-size: 24rpx
+              line-height 33rpx
+              color: #232442
+              margin-bottom: 10rpx
+            .img-list
+              margin-top 14rpx
+              .image-wrapper
+                width: 80rpx
+                height: 80rpx
+                overflow hidden
+                display: flex
+                align-items: center
+                justify-content: center
+                image
+                  width: 100%
+                  background-color: #D8D8D8
+  .footer-btns
+    display: flex
+    flex-direction: row
+    .btn
+      width: 50vw
+    .white
+      background-color: white
+      color: #232442

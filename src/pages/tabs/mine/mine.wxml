@@ -1,0 +1,32 @@
+<view class="mine">
+  <view class="header">
+    <image class="avatar" src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1306508493,2006189766&fm=26&gp=0.jpg" />
+    <view class="header-info">
+      <text class="name">GAOJJ</text>
+      <text class="phone">186 8721 1411</text>
+    </view>
+  </view>
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="index">
+      <view wx:if="{{!item.isHide}}" class="list-item" catch:tap="navigatePage" data-path="{{item.path}}">
+        <view class="left">
+          <view class="icon-wrapper">
+            <image class="{{item.iconClass}}" src="{{item.icon}}" />
+          </view>
+          <text class="text">{{item.text}}</text>
+          <view wx:if="{{index === 0}}" class="red-round" />
+        </view>
+        <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/2px%20%E5%B0%96%E5%A4%B4%402x.png" />
+      </view>
+    </block>
+    <button class="list-item" open-type="contact">
+      <view class="left">
+        <view class="icon-wrapper">
+          <image class="contact-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/%E8%B7%AF%E5%BE%84%402x.png" />
+        </view>
+        <text class="text">联系客服</text>
+      </view>
+      <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/2px%20%E5%B0%96%E5%A4%B4%402x.png" />
+    </button>
+  </view>
+</view>

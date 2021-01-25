@@ -1,0 +1,44 @@
+<scroll-view class="customMade" scroll-x="{{false}}" scroll-y="{{true}}">
+  <view class="container">
+    <text class="title">良刻定制</text>
+    <text class="tips">所见即所得的物料定制平台</text>
+    <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/arrow.png" />
+    <scroll-view class="product-list" scroll-x="{{true}}" scroll-y="{{false}}">
+      <view class="product-list-wrapper">
+        <view class="product-list-inline">
+          <view class="product-item">
+            <view class="product-image-wrapper">
+              <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E8%92%99%E7%89%88%402x.png" />
+              <image class="product-edit" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%203%402x.png" />
+            </view>
+            <text class="product-name">纸质手提袋</text>
+            <text class="product-desc">完全定制</text>
+          </view>
+          <view class="product-item">
+            <view class="product-image-wrapper">
+              <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E8%92%99%E7%89%88%402x.png" />
+              <image class="product-edit" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%203%402x.png" />
+            </view>
+            <text class="product-name">纸质手提袋</text>
+            <text class="product-desc">完全定制</text>
+          </view>
+          <view class="product-item">
+            <view class="product-image-wrapper">
+              <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E8%92%99%E7%89%88%402x.png" />
+              <image class="product-edit" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%203%402x.png" />
+            </view>
+            <text class="product-name">纸质手提袋</text>
+            <text class="product-desc">完全定制</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="aboutUs">
+    <image class="lk-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/LIANGKE%402x.png" />
+    <text class="about-lk">关于良刻</text>
+    <text class="about-tips">专注印刷科技领域，无缝衔接设计预览、印前、交付。</text>
+    <text class="about-tips">降低沟通成本，提升企业物料定制体验。</text>
+    <image class="about-footer" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%202%402x.png" />
+  </view>
+</scroll-view>

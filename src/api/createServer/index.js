@@ -1,5 +1,5 @@
-// const host = 'https://test.hzliangke.com';
-const host = 'https://www.hzliangke.com';
+const host = 'http://test.hzliangke.com:8080';
+// const host = 'https://www.hzliangke.com';
 let tempLoginPromise = null;
 export const clearPromise = () => {
 	tempLoginPromise = null;
@@ -89,13 +89,13 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 				success(res) {
 					wx.hideLoading();
 					const { data } = res || {};
-					const { statusCode, errorMsg, result } = data;
+					const { errorCode, errorMsg, data: result } = data;
 					console.log('request success', newUrl, 'requestData:', allData, 'res:', res);
-					if (statusCode === 0) {
+					if (errorCode === 0) {
 						resolve(result);
 					}
 					else {
-						if (statusCode === 30001) {
+						if (errorCode === 30001) {
 							wx.navigateTo({
 								url: '/pages/no-permission/index',
 							});

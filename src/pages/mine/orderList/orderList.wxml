@@ -1,0 +1,32 @@
+<wxs src="/wxs/util.wxs" module="util"></wxs>
+
+<view wx:if="{{!loading}}" class="order-list">
+  <view class="tabs">
+    <block wx:for="{{tabs}}" wx:key="id">
+      <view class="tab-item {{tabActive === item.id ? 'active-tab-item' : ''}}" catch:tap="changeTabsActive" data-id="{{item.id}}">
+        <text class="tab-text">{{item.text}}</text>
+      </view>
+    </block>
+  </view>
+  <scroll-view class="order" scroll-x="{{false}}" scroll-y="{{true}}" bindscrolltolower="bindscrolltolower" refresher-enabled="{{true}}" refresher-triggered="{{refresherStatus}}" bindrefresherrefresh="refresherrefresh">
+    <block wx:for="{{list}}" wx:key="index">
+      <view class="order-item">
+        <view class="product-info">
+          <image class="product-img" src="{{item.previewPic}}" />
+          <view class="product">
+            <view class="top">
+              <text class="name">{{item.orderType === 1 ? '纸质手提袋': '笔记本'}}</text>
+              <view class="status {{util.getStatus(item.status)}}">{{util.getStatusText(item.status)}}</view>
+            </view>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+        </view>
+        <view class="order-info">
+          <text class="price number">¥ {{item.totalAmount}}</text>
+          <view class="order-btn" catch:tap="handleBtnTap" data-status="{{item.status}}" data-id="{{item.orderId}}">{{item.status === 1 ? '继续编辑' : '查看详情'}}</view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="bottom-btn">对接商家</view>
+</view>

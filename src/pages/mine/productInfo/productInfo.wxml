@@ -1,0 +1,87 @@
+<scroll-view class="product-info" scroll-y="{{true}}" scroll-x="{{false}}">
+  <view class="section">
+    <view class="title-header">
+      <view class="line" />
+      <text class="title">货品参数</text>
+    </view>
+    <view class="cell">
+      <text class="title">名称</text>
+      <text class="content">{{data.orderType === 1 ? '纸质手提袋': '笔记本'}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">结构</text>
+      <text class="content">{{data.structureType === 1 ? '翻口' : '平口'}}{{data.orderType === 1 ? '手提袋': '笔记本'}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">材料</text>
+      <text class="content">白牛皮</text>
+    </view>
+    <view class="cell">
+      <text class="title">尺寸</text>
+      <text class="content">{{data.length}}x{{data.width}}x{{data.height}}mm</text>
+    </view>
+    <view class="cell">
+      <text class="title">数量</text>
+      <text class="content">{{data.goodsCount}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">工艺</text>
+      <text class="content">四色印刷/烫金10 mm²/丝网印</text>
+    </view>
+    <view class="cell">
+      <text class="title">绳子</text>
+      <text class="content">丝带/白色/38cm</text>
+    </view>
+    <view class="cell">
+      <text class="title">预计工期</text>
+      <text class="content">2020-11-12</text>
+    </view>
+    <view class="cell">
+      <text class="title">预计货品质量</text>
+      <text class="content">{{data.weight}}kg</text>
+    </view>
+    <view class="cell">
+      <text class="title">双面相同</text>
+      <text class="content">{{data.same === 0 ? '否' : '是'}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">总价</text>
+      <text class="content price number">¥ {{data.totalAmount}}</text>
+    </view>
+  </view>
+  <view class="section">
+    <view class="title-header">
+      <view class="line" />
+      <text class="title">订单信息</text>
+    </view>
+    <view class="cell">
+      <text class="title">订单编号</text>
+      <text class="content">{{data.orderCode}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">下单时间</text>
+      <text class="content">{{data.createTime}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">收货人</text>
+      <text class="content">{{data.contactName}}</text>
+    </view>
+    <view class="cell">
+      <text class="title">收货地址</text>
+      <text class="content maxWidth">{{data.province}}{{data.area}}{{data.city}}{{data.addressDetail}}</text>
+    </view>
+    <view wx:if="{{data.contractFile || data.paymentVoucherFile}}" class="attachment">
+      <text class="title">附</text>
+      <view class="list">
+        <view wx:if="{{data.contractFile}}" class="item">
+          <image src="{{data.contractFile}}" />
+          <text class="desc">合同影印本</text>
+        </view>
+        <view wx:if="{{data.paymentVoucherFile}}" class="item">
+          <image src="{{data.paymentVoucherFile}}" />
+          <text class="desc">支付凭证</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

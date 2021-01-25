@@ -150,23 +150,41 @@ export const createCountDown = () => {
 };
 
 export const getPageUrl = (pageId = 0, needOptions = true) => {
-  if (pageId !== 0 && pageId !== -1) {
-    throw new Error('pageId must be 0 or -1.');
-  }
+	if (pageId !== 0 && pageId !== -1) {
+		throw new Error('pageId must be 0 or -1.');
+	}
 
-  const routeList = getCurrentPages() || [];
-  const curPage = routeList[routeList.length - 1 + pageId];
+	const routeList = getCurrentPages() || [];
+	const curPage = routeList[routeList.length - 1 + pageId];
 
-  if (!curPage) {
-    return '';
-  }
+	if (!curPage) {
+		return '';
+	}
 
-  const { route, options } = curPage;
+	const { route, options } = curPage;
 
-  if (needOptions && options) {
-    const queryStr = Object.keys(options).map(key => `${key}=${options[key]}`).join('&');
-    return queryStr ? `${route}?${queryStr}` : route;
-  }
-  return route;
+	if (needOptions && options) {
+		const queryStr = Object.keys(options).map(key => `${key}=${options[key]}`).join('&');
+		return queryStr ? `${route}?${queryStr}` : route;
+	}
+	return route;
 };
 
+//计算两个时间之间的时间差 多少天时分秒
+export const intervalTime = (startTime, endTime) => {
+	var date1 = startTime; //开始时间
+	var date2 = endTime; //结束时间
+	var date3 = date2 - date1; //时间差的毫秒数
+	//计算出相差天数
+	var days = Math.floor(date3 / (24 * 3600 * 1000));
+	//计算出小时数
+	var leave1 = date3 % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+	var hours = Math.floor(leave1 / (3600 * 1000));
+	//计算相差分钟数
+	var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
+	var minutes = Math.floor(leave2 / (60 * 1000));
+	//计算相差秒数
+	var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
+	var seconds = Math.round(leave3 / 1000);
+	return { day: days, hour: hours, minute: minutes, second: seconds };
+}

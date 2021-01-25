@@ -1,0 +1,95 @@
+.order-list
+  box-sizing: border-box
+  .tabs
+    padding: 0 8rpx
+    display flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+    .tab-item
+      padding 21rpx 38rpx 24rpx
+      .tab-text
+        font-size: 24rpx
+        line-height 33rpx
+        color #9B9B9B
+        font-weight 600
+        border-bottom: 4rpx solid transparent
+        padding-bottom: 24rpx
+    .active-tab-item
+      .tab-text
+        color #1B2125
+        border-bottom-color: #F89D4A
+  .order
+    height: calc(100vh - 88rpx - 148rpx)
+    .order-item:first-child
+      padding-top: 48rpx
+    .order-item
+      display flex
+      flex-direction: row
+      justify-content: space-between
+      margin-bottom: 64rpx
+      padding: 0 48rpx
+      .product-info
+        display flex
+        flex-direction: row
+        .product-img
+          width: 160rpx
+          height: 152rpx
+        .product
+          margin-left: 23rpx
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          .top
+            display: flex
+            flex-direction: column
+            .name
+              font-size: 30rpx
+              line-height 39rpx
+              color: #232442
+              font-weight: 600
+            .status
+              width: 81rpx
+              height: 33rpx
+              background-color: #9FA3A7
+              font-size: 18rpx
+              line-height 25rpx
+              color: #ffffff
+              font-weight 600
+              display: flex
+              align-items: center
+              justify-content: center
+              margin-top 8rpx
+            .red
+              background-color: #F74C31
+            .orange
+              background-color: #F89D4A
+            .green
+              background-color: #63C8A4
+            .black
+              background-color: #4C4D74
+          .time
+            font-size: 21rpx
+            line-height 33rpx
+            color: #232442
+      .order-info
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: flex-end
+        .price
+          font-size: 34rpx
+          line-height 40rpx
+          color #232442
+          font-weight bold
+        .order-btn
+          width: 160rpx
+          height: 56rpx
+          border: 2rpx solid #D1D2DC
+          font-size: 23rpx
+          line-height 33rpx
+          color: #232442
+          font-weight 600
+          display: flex
+          align-items: center
+          justify-content: center

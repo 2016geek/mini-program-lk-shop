@@ -1,5 +1,10 @@
 {
   "pages": [
+    "pages/tabs/customMade/customMade",
+    "pages/tabs/mine/mine",
+    "pages/mine/orderList/orderList",
+    "pages/mine/orderDetail/orderDetail",
+    "pages/mine/productInfo/productInfo",
     "pages/guide/welcome/welcome"
   ],
   "window": {
@@ -7,5 +12,25 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Wechat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7E80A3",
+    "selectedColor": "#3432C1",
+    "borderStyle": "white",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/tabs/customMade/customMade",
+        "text": "定制",
+        "iconPath": "images/tabs/home-active-icon.png",
+        "selectedIconPath": "images/tabs/home-active-icon.png"
+      },
+      {
+        "pagePath": "pages/tabs/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tabs/mine-icon.png",
+        "selectedIconPath": "images/tabs/mine-icon.png"
+      }
+    ]
   }
 }
