@@ -1,0 +1,33 @@
+<view class="order-confirm">
+  <view class="address-group" bind:tap="onAddressTap">
+    <view class="left-part">
+      <view wx:if="{{address.id}}" class="has-content">
+        <view class="name">{{address.contactName}} {{address.contactPhone}}</view>
+        <view class="detail">{{address.province+address.city+address.area+address.addressDetail}}</view>
+      </view>
+      <view wx:else class="default-text">请填写地址</view>
+    </view>
+    <view class="right-part">
+    </view>
+  </view>
+  <view class="border-style"></view>
+  <view class="pic-wrapper">
+    <view class="preview-pic">
+      <image src="{{previewPic}}"  />
+    </view>
+  </view>
+  <view class="order-info">
+    <view class="title">纸质手提袋</view>
+    <view class="row-wrapper">
+      <view wx:for="{{form}}" wx:key="index" class="row">
+        <view class="label">{{item.name}}</view>
+        <view class="value">{{item.value}}</view>
+      </view>
+    </view>
+    <view class="copyright">Powered by 良刻定制物料预览系统</view>
+  </view>
+  <view class="bottom-btn-group">
+    <view class="btn gray" bindtap="export">导出报表</view>
+    <view bindtap="submit" class="btn">提交订单</view>
+  </view>
+</view>

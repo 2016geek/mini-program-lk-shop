@@ -1,0 +1,79 @@
+.order-confirm
+  padding-bottom 148rpx
+  .address-group
+    padding: 32rpx 48rpx
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .left-part
+      .has-content
+        .name
+          color: #4C4D74
+          font-size 36rpx
+          font-weight bolder
+          line-height 50rpx
+        .detail
+          font-size 28rpx
+          color: #4C4D74
+          margin-top 10rpx
+          font-weight bolder
+      .default-text
+        color: 28rpx
+        color: #4C4D74
+        font-weight bolder
+        line-height: 40rpx
+    .right-part
+      width: 30rpx
+      height 30rpx
+      background: right center / 11rpx 20rpx no-repeat url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/web/others/arrow-right%402x.png')
+  .border-style
+    height 10rpx
+    width: 100%
+    background: center / 750rpx 10rpx url('https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/progress/borderStyle%402x.png')
+  .pic-wrapper
+    padding: 48rpx
+    image
+      width: 654rpx
+      height 320rpx
+  .order-info
+    padding: 64rpx 32rpx 28rpx 32rpx
+    background-color: #30384C
+    .title
+      color: #fff
+      font-size 36rpx
+      font-weight bolder
+      margin-bottom 64rpx
+    .row-wrapper
+      .row
+        font-size 28rpx
+        color: #fff
+        font-weight bolder
+        line-height 44rpx
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom 48rpx
+        .label
+          font-size 28rpx
+          color: #fff
+          font-weight bolder
+        .value
+          font-size 28rpx
+          color: #fff
+          font-weight normal
+          &.number
+            color: #F89D4A
+            font-weight bolder
+            font-size 40rpx
+    .copyright
+      color: #4C4D74
+      font-size 24rpx
+      text-align: center
+  .bottom-btn-group
+    display flex
+    position fixed
+    bottom 0
+    left 0
+    width 100%
+    padding-bottom constant(safe-area-inset-bottom) /* 兼容 iOS < 11.2 */
+    padding-bottom env(safe-area-inset-bottom) /* 兼容 iOS >= 11.2 */

@@ -1,0 +1,9 @@
+<view class="complete">
+  <view class="main-content">
+    <view class="title">恭喜你完成定制</view>
+    <view class="desc">我们已经接到您的订单，请联系我们确认订单细节。</view>
+    <view class="picture"></view>
+  </view>
+  <button class="bottom-btn" open-type="contact">对接商家</button>
+</view>
+	

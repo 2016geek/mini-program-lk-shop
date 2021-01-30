@@ -1,61 +1,44 @@
 <view class="welcome">
   <view class="top-part">
     <view class="title-wrapper">
-      <text class="title">欢迎使用良刻管家</text>
-      <text class="slogan">专为印刷行业定制的记账工具</text>
+      <text class="title">欢迎使用良刻定制</text>
+      <text class="slogan">所见即所得的物料定制平台</text>
     </view>
   </view>
   <view class="icon-list">
     <view class="item">
       <image
         class="image1"
-        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/welcome/%E7%AE%A1%E7%90%86%E5%91%98%E8%AE%A4%E8%AF%81%402x.png"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/welcome/1%402x.png"
         mode="aspectFill"
       ></image>
       <text class="desc" selectable="false" space="false" decode="false">
-        安全快捷
+        工厂直供
       </text>
     </view>
     <view class="item">
       <image
         class="image2"
-        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/welcome/%E6%96%87%E4%BB%B6%E5%A4%B9%402x.png"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/welcome/2%402x.png"
         mode="aspectFill"
       ></image>
       <text class="desc" selectable="false" space="false" decode="false">
-        一键记销
+        实时价格
       </text>
     </view>
     <view class="item">
       <image
         class="image3"
-        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/welcome/%E5%AF%BC%E5%87%BA%402x.png"
+        src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/welcome/3%402x.png"
         mode="aspectFill"
       ></image>
       <text class="desc" selectable="false" space="false" decode="false">
-        支持分享
+        快速预览
       </text>
     </view>
   </view>
-  <view class="protrol">
-    <image
-      wx:if="{{checked}}"
-      bindtap="unChecked"
-      class="image"
-      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/%E5%8B%BE%E9%80%89%E4%B8%AD%402x.png"
-      mode="aspectFill"
-    ></image>
-    <image
-      wx:else
-      bindtap="checked"
-      class="image"
-      src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/miniapp/local/rule/%E5%8B%BE%402x.png"
-      mode="aspectFill"
-    ></image>
-    <text class="normal">同意</text>
-    <text class="highlight">《良刻管家用户协议》</text>
-  </view>
-  <view class="bottom-btn" bindtap="next" hover-class="bottom-btn-hover">
-    下一步
-  </view>
+  <view class="desc-others">需要申请获得相关权限</view>
+  <button class="bottom-btn" open-type="getUserInfo" bindgetuserinfo="login" hover-class="bottom-btn-hover">
+    授权登录
+  </button>
 </view>

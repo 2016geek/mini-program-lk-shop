@@ -188,3 +188,12 @@ export const intervalTime = (startTime, endTime) => {
 	var seconds = Math.round(leave3 / 1000);
 	return { day: days, hour: hours, minute: minutes, second: seconds };
 }
+
+
+export const areaComputed = position => {
+	if (!position.length) return 0
+	const [leftTop, rightTop, leftBottom] = position;
+	const width = rightTop[0] - leftTop[0];
+	const height = leftTop[1] - leftBottom[1];
+	return width * height;
+};

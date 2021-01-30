@@ -5,7 +5,11 @@
     "pages/mine/orderList/orderList",
     "pages/mine/orderDetail/orderDetail",
     "pages/mine/productInfo/productInfo",
-    "pages/guide/welcome/welcome"
+    "pages/guide/welcome/welcome",
+    "pages/login/login",
+    "pages/progress/complete/complete",
+    "pages/progress/webview/webview",
+    "pages/progress/orderConfirm/orderConfirm"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,8 +22,7 @@
     "selectedColor": "#3432C1",
     "borderStyle": "white",
     "backgroundColor": "#FFFFFF",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/tabs/customMade/customMade",
         "text": "定制",
         "iconPath": "images/tabs/home-active-icon.png",

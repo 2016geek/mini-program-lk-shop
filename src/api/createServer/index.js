@@ -13,7 +13,7 @@ const login = () => {
 					try {
 						app.globalData.code = res.code;
 						wx.request({
-							url: host + '/accountbook/rest/user/v1/login',
+							url: host + '/printing/user/v1/login',
 							method: 'POST',
 							data: {
 								code: res.code,
