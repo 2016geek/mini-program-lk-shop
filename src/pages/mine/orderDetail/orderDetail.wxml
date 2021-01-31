@@ -24,7 +24,7 @@
       </view>
       <view class="cell price">
         <text class="title">{{data.orderType === 1 ? '纸质手提袋': '笔记本'}}</text>
-        <text class="content number">¥ {{data.totalAmount}}</text>
+        <text class="content number">¥ {{data.totalAmount || '0.00'}}</text>
       </view>
       <view class="cell" catch:tap="navigateToInfo">
         <text class="cell-tips">订单编号 {{data.orderCode}}</text>

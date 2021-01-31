@@ -14,7 +14,7 @@
     </view>
     <view class="cell">
       <text class="title">材料</text>
-      <text class="content">白牛皮</text>
+      <text class="content">{{data.paperType}}</text>
     </view>
     <view class="cell">
       <text class="title">尺寸</text>
@@ -26,15 +26,15 @@
     </view>
     <view class="cell">
       <text class="title">工艺</text>
-      <text class="content">四色印刷/烫金10 mm²/丝网印</text>
+      <text class="content">{{data.extraCraft}}</text>
     </view>
     <view class="cell">
       <text class="title">绳子</text>
-      <text class="content">丝带/白色/38cm</text>
+      <text class="content">{{data.rope}}</text>
     </view>
     <view class="cell">
       <text class="title">预计工期</text>
-      <text class="content">2020-11-12</text>
+      <text class="content">{{data.deliveryDate}}</text>
     </view>
     <view class="cell">
       <text class="title">预计货品质量</text>
@@ -46,7 +46,7 @@
     </view>
     <view class="cell">
       <text class="title">总价</text>
-      <text class="content price number">¥ {{data.totalAmount}}</text>
+      <text class="content price number">¥ {{data.totalAmount || '0.00'}}</text>
     </view>
   </view>
   <view class="section">
