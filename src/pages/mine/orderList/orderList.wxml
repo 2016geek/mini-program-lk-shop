@@ -22,7 +22,7 @@
           </view>
         </view>
         <view class="order-info">
-          <text class="price number">¥ {{item.totalAmount}}</text>
+          <text class="price number">¥ {{item.totalAmount || "0.00"}}</text>
           <view class="order-btn" catch:tap="handleBtnTap" data-status="{{item.status}}" data-id="{{item.orderId}}">{{item.status === 1 ? '继续编辑' : '查看详情'}}</view>
         </view>
       </view>

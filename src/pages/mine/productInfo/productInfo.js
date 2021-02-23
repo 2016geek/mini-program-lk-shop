@@ -1,5 +1,6 @@
 import api from 'api';
 import dayjs from 'vendor/dayjs';
+import { computedCraft, computedRope } from '../../../utils/order';
 
 Page({
 	data: {
@@ -31,6 +32,8 @@ Page({
 		const res = await api.user.getOrderDetail(id)();
 		res.createTime = dayjs(res.createTime).format("YYYY-MM-DD");
 		res.weight = res.weight / 1000;
+		res.extraCraft = res.extraCraft ? computedCraft(JSON.parse(res.extraCraft)) : "--";
+		res.rope = res.rope ? computedRope(JSON.parse(res.rope)) : '--';
 		this.setData({
 			loading: false,
 			data: res
