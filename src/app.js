@@ -9,12 +9,12 @@ App({
 	},
 	globalData: {
 		isFinishedPaid: false,
-		token: 'eyJhbGciOiJIUzI1NiJ9.eyJVU0VSX0lEIjo2NSwiaWF0IjoxNjExODAwMjAxLCJleHAiOjE2MTI0MDUwMDF9.R2qYmruL2pao6_sKR1ZnStzCn72M63cNrRUU0OEOBX4',
+		token: '',
 		userInfo: {},
 		code: '',
 		requestHeaders: {},
 		isCooperate: false, // 是否协作模式
-		pageSize: 10
+		pageSize: 10,
 	},
 	isLogin() {
 

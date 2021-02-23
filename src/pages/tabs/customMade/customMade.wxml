@@ -6,7 +6,7 @@
     <scroll-view class="product-list" scroll-x="{{true}}" scroll-y="{{false}}">
       <view class="product-list-wrapper">
         <view class="product-list-inline">
-          <view class="product-item">
+          <view class="product-item" bind:tap="onClickDetail">
             <view class="product-image-wrapper">
               <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E8%92%99%E7%89%88%402x.png" />
               <image class="product-edit" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%203%402x.png" />

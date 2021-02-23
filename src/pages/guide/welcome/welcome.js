@@ -1,5 +1,7 @@
 // src/pages/guide/welcome/welcome.js
-import api from '../../../api'
+import api from '../../../api';
+import { clearPromise } from '../../../api/createServer';
+
 Page({
 	/**
 	 * 页面的初始数据
@@ -31,13 +33,13 @@ Page({
 	onHide: function () { },
 
 	checked() {
-		this.setData({ checked: true })
+		this.setData({ checked: true });
 	},
 	unChecked() {
-		this.setData({ checked: false })
+		this.setData({ checked: false });
 	},
 	async login(data) {
-		console.log(data)
+		console.log(data);
 		let _this = this;
 		if (!data.detail.iv || !data.detail.encryptedData) {
 			wx.showToast({
@@ -57,8 +59,9 @@ Page({
 						const { token, ...useInfo } = await api.user.login({
 							encryptedData,
 							iv,
-							code: res.code
+							code: res.code,
 						});
+						const app = getApp();
 						app.globalData.token = token;
 						app.globalData.userInfo = useInfo;
 						console.log('userInfo', useInfo);
@@ -76,5 +79,5 @@ Page({
 				}
 			},
 		});
-	}
-})
+	},
+});

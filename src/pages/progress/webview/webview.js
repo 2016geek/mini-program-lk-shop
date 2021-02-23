@@ -1,11 +1,13 @@
 import { host } from '../../../config/constant'
+  ;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    url: ''
+    url: '',
   },
 
   /**
@@ -15,7 +17,7 @@ Page({
     const token = getApp().globalData.token;
     const { id } = options;
     id ? this.setData({
-      url: `${host}/printing/index.html#/progress?id=${id}&`,
+      url: `${host}/printing/index.html#/progress?id=${id}&token=${token}`,
     }) : this.setData({
       url: `${host}/printing/index.html#/progress?token=${token}`,
     });
@@ -69,5 +71,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
 })
+  ;

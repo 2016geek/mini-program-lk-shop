@@ -9,5 +9,6 @@ export default {
 	getAddressList: createServer('get', '/printing/user/address/list', false),
 	addAddress: createServer('post', '/printing/user/address/add', false),
 	exportForm: createServer('get', '/printing/user/order/detail/export/{id}', false),
-	submitForm: createServer('post', '/printing/user/order/last', false)
+	submitForm: createServer('post', '/printing/user/order/last', false),
+	getUserInfo: createServer('get', '/printing/user/info', true),
 };

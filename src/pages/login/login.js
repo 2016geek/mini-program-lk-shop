@@ -1,4 +1,7 @@
 // src/pages/login/login.js
+import api from '../../api';
+import { clearPromise } from '../../api/createServer';
+
 Page({
 
   /**
@@ -48,8 +51,9 @@ Page({
             const { token, ...useInfo } = await api.user.login({
               encryptedData,
               iv,
-              code: res.code
+              code: res.code,
             });
+            const app = getApp();
             app.globalData.token = token;
             app.globalData.userInfo = useInfo;
             console.log('userInfo', useInfo);
@@ -69,3 +73,4 @@ Page({
     });
   },
 })
+  ;

@@ -20,9 +20,10 @@ const login = () => {
 							},
 							success(res) {
 								const {
-									data: { result },
+									data: { data: result },
 								} = res;
 								const { token } = result || {};
+								console.log(res);
 								if (!token) {
 									wx.navigateTo({
 										url: '/pages/guide/welcome/welcome',
