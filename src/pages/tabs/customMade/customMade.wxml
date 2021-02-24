@@ -1,5 +1,6 @@
 <scroll-view class="customMade" scroll-x="{{false}}" scroll-y="{{true}}">
   <view class="container">
+    <image class="header-img" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E4%BD%8D%E5%9B%BE.png" />
     <text class="title">良刻定制</text>
     <text class="tips">所见即所得的物料定制平台</text>
     <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/arrow.png" />

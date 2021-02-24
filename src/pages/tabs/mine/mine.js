@@ -1,3 +1,5 @@
+import api from '../../../api'
+
 Page({
 	data: {
 		list: [{
@@ -25,8 +27,15 @@ Page({
 			path: '',
 			isHide: false
 		}],
+		userInfo: {},
 	},
-	onLoad: function (options) {},
+	/**
+	 * 生命周期函数--监听页面加载
+	 */
+	onLoad: async function (options) {
+		const res = await api.user.getUserInfo();
+		this.setData({ userInfo: res });
+	},
 	navigatePage(e) {
 		const { path } = e.currentTarget.dataset;
 		wx.navigateTo({

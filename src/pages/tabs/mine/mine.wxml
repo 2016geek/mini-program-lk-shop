@@ -1,9 +1,9 @@
 <view class="mine">
   <view class="header">
-    <image class="avatar" src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1306508493,2006189766&fm=26&gp=0.jpg" />
+    <image class="avatar" src="{{userInfo.portrait || 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/Bitmap.png'}}" />
     <view class="header-info">
-      <text class="name">GAOJJ</text>
-      <text class="phone">186 8721 1411</text>
+      <text class="name">{{userInfo.nickname || '未登录用户'}}</text>
+      <text class="phone">{{userInfo.nickname ? (userInfo.phone || '') : '点击登录'}}</text>
     </view>
   </view>
   <view class="list">
