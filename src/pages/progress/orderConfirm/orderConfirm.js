@@ -1,8 +1,9 @@
 // src/pages/progress/orderConfirm/orderConfirm.js
-import api from '../../../api'
-import enumData from '../../../config/enum'
-import { areaComputed } from '../../../utils/util'
-import { computedCraft, computedRope, getEnumLabel } from '../../../utils/order'
+import api from '../../../api';
+import enumData from '../../../config/enum';
+import { areaComputed } from '../../../utils/util';
+import { computedCraft, computedRope, getEnumLabel } from '../../../utils/order';
+
 Page({
 
   /**
@@ -20,50 +21,48 @@ Page({
       province: '',
       city: '',
       area: '',
-      id: ''
+      id: '',
     },
     previewPic: '',
-    orderId: ''
+    orderId: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    const { orderId } = options
-    this.setData({ orderId })
-    const [orderDetail, addressList] = await Promise.all([api.user.getOrderDetail(orderId)(), api.user.getAddressList()])
-    this.setData({ form: this.formatForm(orderDetail), previewPic: orderDetail.previewPic, address: this.addressChose(addressList) })
-    console.log(orderDetail, addressList)
+    const { orderId } = options;
+    this.setData({ orderId });
+    const [orderDetail, addressList] = await Promise.all([api.user.getOrderDetail(orderId)(), api.user.getAddressList()]);
+    this.setData({ form: this.formatForm(orderDetail), previewPic: orderDetail.previewPic, address: this.addressChose(addressList) });
   },
   onAddressTap() {
-    const _this = this
+    const _this = this;
     wx.chooseAddress({
       async success(res) {
-        _this.handlerChoseAddress(res)
+        _this.handlerChoseAddress(res);
       },
       fail(res) {
-        console.log(res, 'fail')
+        console.log(res, 'fail');
       },
-      complete(res) {
-        _this.handlerChoseAddress(res)
-      }
-    })
+    });
   },
   async handlerChoseAddress(res) {
-    const { cityName, countyName, detailInfo, provinceName, telNumber, userName } = res
-    const { contactName, contactPhone, addressDetail, province, city, area } = this.data.address
+    const { cityName, countyName, detailInfo, provinceName, telNumber, userName } = res;
+    const { contactName, contactPhone, addressDetail, province, city, area } = this.data.address;
     if (cityName === city && provinceName === province && countyName === area && addressDetail === detailInfo) {
-      return
-    } else {
+    }
+    else {
+      console.log(cityName, city);
+
       const res = await api.user.addAddress({
         province: provinceName,
         city: cityName,
         area: countyName,
         addressDetail: detailInfo,
         contactName: userName,
-        contactPhone: telNumber
-      })
+        contactPhone: telNumber,
+      });
       this.setData({
         address: {
           id: res.id,
@@ -72,20 +71,21 @@ Page({
           area: countyName,
           addressDetail: detailInfo,
           contactName: userName,
-          contactPhone: telNumber
-        }
-      })
+          contactPhone: telNumber,
+        },
+      });
     }
   },
   addressChose(list) {
     if (!list.length) {
-      return undefined;
+      return {};
     }
     let choseItem = {};
     const chose = list.find((v) => v.defaultAddress);
     if (!chose) {
       choseItem = list[0];
-    } else {
+    }
+    else {
       choseItem = chose;
     }
     return choseItem;
@@ -93,7 +93,6 @@ Page({
   formatForm(config) {
     const {
       structureType,
-      paperType,
       length,
       width,
       height,
@@ -101,29 +100,38 @@ Page({
       extraCraft,
       rope,
       deliveryDate,
-      weight
+      weight,
+      paperName,
     } = config;
     return [
       {
-        name: "结构",
+        name: '结构',
         value: getEnumLabel(enumData.STRUCTURE, structureType),
       },
       {
-        name: "材料",
-        value: getEnumLabel(enumData.PAPER_TYPE, paperType),
+        name: '材料',
+        value: paperName,
       },
-      { name: "尺寸", value: `${length} X ${height} X ${width}MM` },
-      { name: "数量", value: goodsCount },
-      { name: "工艺", value: computedCraft(JSON.parse(extraCraft)) },
-      { name: "绳子", value: computedRope(JSON.parse(rope)) },
-      { name: "数量", value: goodsCount },
-      { name: "预计工期", value: deliveryDate },
-      { name: "预计货品质量", value: weight / 1000 + "KG" },
+      { name: '尺寸', value: `${length} X ${height} X ${width}MM` },
+      { name: '数量', value: goodsCount },
+      { name: '工艺', value: computedCraft(JSON.parse(extraCraft)) },
+      { name: '绳子', value: computedRope(JSON.parse(rope)) },
+      { name: '数量', value: goodsCount },
+      { name: '预计工期', value: deliveryDate },
+      { name: '预计货品质量', value: weight / 1000 + 'KG' },
     ];
   },
-  copyTable() {
+  async copyTable() {
+    const { orderExcelFile } = await api.user.getOrderDetail(this.data.orderId)();
+    if (!orderExcelFile) {
+      wx.showToast({
+        title: '表格正在导出，请稍后再试',
+        icon: 'none',
+      });
+      return;
+    }
     wx.downloadFile({
-      url: this.data.fileUrl,
+      url: orderExcelFile,
       success: function (res) {
         const filePath = res.tempFilePath;
         wx.openDocument({
@@ -143,18 +151,18 @@ Page({
     });
   },
   async submit() {
-    const { address: { id }, orderId } = this.data
+    const { address: { id }, orderId } = this.data;
     await api.user.submitForm({
       addressId: id,
-      orderId
-    })
+      orderId,
+    });
     wx.showToast({
       title: '提交成功',
       icon: 'success',
-    })
+    });
     wx.navigateTo({
-      url: '/pages/progress/complete/complete?id=' + orderId
-    })
+      url: '/pages/progress/complete/complete?id=' + orderId,
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -202,5 +210,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
 })
+  ;

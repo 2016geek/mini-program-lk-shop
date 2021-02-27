@@ -27,7 +27,7 @@
     <view class="copyright">Powered by 良刻定制物料预览系统</view>
   </view>
   <view class="bottom-btn-group">
-    <view class="btn gray" bindtap="export">导出报表</view>
+    <view class="btn gray" bindtap="copyTable">导出报表</view>
     <view bindtap="submit" class="btn">提交订单</view>
   </view>
 </view>

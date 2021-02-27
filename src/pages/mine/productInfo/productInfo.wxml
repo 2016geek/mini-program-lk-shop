@@ -14,7 +14,7 @@
     </view>
     <view class="cell">
       <text class="title">材料</text>
-      <text class="content">{{data.paperType}}</text>
+      <text class="content">{{data.paperName}}</text>
     </view>
     <view class="cell">
       <text class="title">尺寸</text>

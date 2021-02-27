@@ -164,36 +164,36 @@ export const getPageUrl = (pageId = 0, needOptions = true) => {
 	const { route, options } = curPage;
 
 	if (needOptions && options) {
-		const queryStr = Object.keys(options).map(key => `${key}=${options[key]}`).join('&');
+		const queryStr = Object.keys(options).map((key) => `${key}=${options[key]}`).join('&');
 		return queryStr ? `${route}?${queryStr}` : route;
 	}
 	return route;
 };
 
-//计算两个时间之间的时间差 多少天时分秒
+// 计算两个时间之间的时间差 多少天时分秒
 export const intervalTime = (startTime, endTime) => {
-	var date1 = startTime; //开始时间
-	var date2 = endTime; //结束时间
-	var date3 = date2 - date1; //时间差的毫秒数
-	//计算出相差天数
+	var date1 = startTime; // 开始时间
+	var date2 = endTime; // 结束时间
+	var date3 = date2 - date1; // 时间差的毫秒数
+	// 计算出相差天数
 	var days = Math.floor(date3 / (24 * 3600 * 1000));
-	//计算出小时数
-	var leave1 = date3 % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+	// 计算出小时数
+	var leave1 = date3 % (24 * 3600 * 1000); // 计算天数后剩余的毫秒数
 	var hours = Math.floor(leave1 / (3600 * 1000));
-	//计算相差分钟数
-	var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
+	// 计算相差分钟数
+	var leave2 = leave1 % (3600 * 1000); // 计算小时数后剩余的毫秒数
 	var minutes = Math.floor(leave2 / (60 * 1000));
-	//计算相差秒数
-	var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
+	// 计算相差秒数
+	var leave3 = leave2 % (60 * 1000); // 计算分钟数后剩余的毫秒数
 	var seconds = Math.round(leave3 / 1000);
 	return { day: days, hour: hours, minute: minutes, second: seconds };
-}
+};
 
 
-export const areaComputed = position => {
-	if (!position.length) return 0
+export const areaComputed = (position) => {
+	if (!position.length) return 0;
 	const [leftTop, rightTop, leftBottom] = position;
-	const width = rightTop[0] - leftTop[0];
-	const height = leftTop[1] - leftBottom[1];
+	const width = rightTop.x - leftTop.x;
+	const height = leftTop.y - leftBottom.y;
 	return width * height;
 };

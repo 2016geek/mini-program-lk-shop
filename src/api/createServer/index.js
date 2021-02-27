@@ -90,7 +90,7 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 				success(res) {
 					wx.hideLoading();
 					const { data } = res || {};
-					const { errorCode, errorMsg, data: result } = data;
+					const { errorCode, errorMessage = '', data: result } = data;
 					console.log('request success', newUrl, 'requestData:', allData, 'res:', res);
 					if (errorCode === 0) {
 						resolve(result);
@@ -104,7 +104,7 @@ const createServer = (method, url, isNeedLogin = true, showToast = true) => {
 							return;
 						}
 						wx.showToast({
-							title: errorMsg,
+							title: errorMessage,
 							icon: 'none',
 						});
 						reject(data);

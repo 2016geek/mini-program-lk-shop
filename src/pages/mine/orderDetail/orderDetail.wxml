@@ -74,7 +74,7 @@
     </view>
   </scroll-view>
   <view class="footer-btns">
-    <view class="btn white">印前电话</view>
-    <view class="btn">微信对接</view>
+    <view bind:tap="makePhone" class="btn white">{{data.status<=3?'印前':'售后'}}电话</view>
+    <button open-type="contact" class="btn">微信对接</button>
   </view>
 </view>

@@ -12,7 +12,7 @@
     <block wx:for="{{list}}" wx:key="index">
       <view class="order-item">
         <view class="product-info">
-          <image class="product-img" src="{{item.previewPic}}" />
+          <image class="product-img" src="{{item.previewPic||'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/default-bag.png'}}" />
           <view class="product">
             <view class="top">
               <text class="name">{{item.orderType === 1 ? '纸质手提袋': '笔记本'}}</text>

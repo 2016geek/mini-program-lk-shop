@@ -1,5 +1,6 @@
 import api from 'api';
 import { intervalTime } from 'utils/util';
+
 let time = null;
 
 Page({
@@ -15,13 +16,14 @@ Page({
 		],
 		minute: 0,
 		second: 0,
-		traceList: []
+		traceList: [],
 	},
 	onLoad: function (options = {}) {
 		const { id } = options;
 		if (id) {
 			this.getOrderDetail(id);
-		} else {
+		}
+		else {
 			wx.showModal({
 				title: '提示',
 				content: '订单ID错误',
@@ -31,10 +33,10 @@ Page({
 				success: (result) => {
 					if (result.confirm) {
 						wx.navigateBack({
-							delta: 1
+							delta: 1,
 						});
 					}
-				}
+				},
 			});
 		}
 	},
@@ -45,16 +47,21 @@ Page({
 		const res = await api.user.getOrderDetail(id)();
 		this.setData({
 			loading: false,
-			data: res
-		})
+			data: res,
+		});
 		res.status === 2 && this.getCountDown(res.createTime);
 		res.status >= 4 && this.getTraceList(id);
+	},
+	makePhone() {
+		wx.makePhoneCall({
+			phoneNumber: '15869017168',
+		});
 	},
 	async getTraceList(id) {
 		const res = await api.user.getTraceList(id)();
 		this.setData({
-			traceList: res
-		})
+			traceList: res,
+		});
 	},
 	intervalCountDown() {
 		time = setInterval(() => {
@@ -63,14 +70,14 @@ Page({
 				clearInterval(time);
 				this.setData({
 					minute: 0,
-					second: 0
-				})
+					second: 0,
+				});
 				return;
 			}
 			this.setData({
 				minute: second - 1 < 0 ? minute - 1 : minute,
-				second: second - 1 < 0 ? 59 : second - 1
-			})
+				second: second - 1 < 0 ? 59 : second - 1,
+			});
 		}, 1000);
 	},
 	getCountDown(time) {
@@ -79,12 +86,12 @@ Page({
 		if (nowTim >= deadlineTime) return;
 		const { minute, second } = intervalTime(nowTim, deadlineTime);
 		this.setData({
-			minute, second
-		}, () => this.intervalCountDown())
+			minute, second,
+		}, () => this.intervalCountDown());
 	},
 	navigateToInfo() {
 		wx.navigateTo({
 			url: `/pages/mine/productInfo/productInfo?id=${this.data.data.orderId}`,
 		});
-	}
-})
+	},
+});
