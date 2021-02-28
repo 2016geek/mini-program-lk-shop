@@ -37,37 +37,17 @@
         <text class="title">实时信息</text>
       </view>
       <view class="vertical-timeline">
-        <view class="item">
+        <view class="item" wx:key="index" wx:for="{{traceList}}">
           <view class="line" />
           <view class="round" />
           <view class="item-info">
-            <text class="info-text">2020-11-28 21:40:30</text>
-            <text class="info-text">货品上传信息或物流信息印刷工序货品完成验收</text>
-            <view class="img-list">
+            <text class="info-text">{{item.createTime}}</text>
+            <text class="info-text">{{item.traceContent}}</text>
+            <view wx:if="{{item.traceImg}}"  class="img-list" wx:for-index="idx" wx:for-item="img" wx:for="{{item.traceImg}}">
               <view class="image-wrapper">
-                <image mode="widthFix" />
+                <image bind:tap="previewImg" data-img="{{img}}" src="{{img}}" mode="widthFix" />
               </view>
             </view>
-          </view>
-        </view>
-        <view class="item">
-          <view class="line" />
-          <view class="round" />
-          <view class="item-info">
-            <text class="info-text">2020-11-28 21:40:30</text>
-            <text class="info-text">货品上传信息或物流信息印刷工序货品完成验收超出换行啦啦啦</text>
-            <view class="img-list">
-              <view class="image-wrapper">
-                <image mode="widthFix" />
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="item">
-          <view class="round" />
-          <view class="item-info">
-            <text class="info-text">2020-11-28 21:40:30</text>
-            <text class="info-text">移交物流【中通】单号【04129030120304123】</text>
           </view>
         </view>
       </view>

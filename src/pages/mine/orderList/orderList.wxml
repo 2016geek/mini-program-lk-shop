@@ -28,5 +28,5 @@
       </view>
     </block>
   </scroll-view>
-  <view class="bottom-btn">对接商家</view>
+  <button open-type="contact" class="bottom-btn">对接商家</button>
 </view>

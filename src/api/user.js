@@ -1,14 +1,13 @@
 import createServer from './createServer';
 
 export default {
-	login: createServer('POST', '/printing/user/v1/login', false),
-	bindPhone: createServer('POST', '/accountbook/rest/user/v1/bind/phone'),
-	getOrderList: createServer('get', '/printing/user/order/list', true),
-	getOrderDetail: (id) => createServer('get', `/printing/user/order/detail/${id}`, true),
-	getTraceList: (id) => createServer('get', `/printing/user/order/trace/${id}`, true),
-	getAddressList: createServer('get', '/printing/user/address/list', true),
-	addAddress: createServer('post', '/printing/user/address/add', true),
-	exportForm: createServer('get', '/printing/user/order/detail/export/{id}', true),
-	submitForm: createServer('post', '/printing/user/order/last', true),
-	getUserInfo: createServer('get', '/printing/user/info', true),
+	login: createServer('POST', '/user/v1/login', false),
+	getOrderList: createServer('get', '/user/order/list', true),
+	getOrderDetail: (id) => createServer('get', `/user/order/detail/${id}`, true),
+	getTraceList: (id) => createServer('get', `/user/order/trace/${id}`, true),
+	getAddressList: createServer('get', '/user/address/list', true),
+	addAddress: createServer('post', '/user/address/add', true),
+	exportForm: createServer('get', '/user/order/detail/export/{id}', true),
+	submitForm: createServer('post', '/user/order/last', true),
+	getUserInfo: createServer('get', '/user/info', true),
 };

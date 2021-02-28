@@ -17,9 +17,9 @@ Page({
     const token = getApp().globalData.token;
     const { id } = options;
     id ? this.setData({
-      url: `${host}/printing/index.html#/progress?id=${id}&token=${token}`,
+      url: `${host}/index.html#/progress?id=${id}&token=${token}`,
     }) : this.setData({
-      url: `${host}/printing/index.html#/progress?token=${token}`,
+      url: `${host}/index.html#/progress?token=${token}`,
     });
 
   },

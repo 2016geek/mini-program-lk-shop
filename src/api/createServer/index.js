@@ -1,4 +1,4 @@
-const host = 'http://test.hzliangke.com:8080';
+const host = 'https://printing.hzliangke.com/printing';
 // const host = 'https://www.hzliangke.com';
 let tempLoginPromise = null;
 export const clearPromise = () => {
@@ -13,7 +13,7 @@ const login = () => {
 					try {
 						app.globalData.code = res.code;
 						wx.request({
-							url: host + '/printing/user/v1/login',
+							url: host + '/user/v1/login',
 							method: 'POST',
 							data: {
 								code: res.code,

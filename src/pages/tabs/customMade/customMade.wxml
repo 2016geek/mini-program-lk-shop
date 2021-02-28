@@ -17,19 +17,10 @@
           </view>
           <view class="product-item">
             <view class="product-image-wrapper">
-              <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E8%92%99%E7%89%88%402x.png" />
-              <image class="product-edit" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%203%402x.png" />
+              <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%206%402x.png" />
             </view>
-            <text class="product-name">纸质手提袋</text>
-            <text class="product-desc">完全定制</text>
-          </view>
-          <view class="product-item">
-            <view class="product-image-wrapper">
-              <image class="product-image" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E8%92%99%E7%89%88%402x.png" />
-              <image class="product-edit" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/customMade/%E7%BC%96%E7%BB%84%203%402x.png" />
-            </view>
-            <text class="product-name">纸质手提袋</text>
-            <text class="product-desc">完全定制</text>
+            <text class="product-name">皮面笔记本</text>
+            <text class="product-desc">标准定制</text>
           </view>
         </view>
       </view>

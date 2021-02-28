@@ -8,14 +8,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userCode: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (options.scene) {
+      this.userCode = decodeURIComponent(options.scene);
+    }
   },
 
   /**
@@ -52,6 +54,7 @@ Page({
               encryptedData,
               iv,
               code: res.code,
+              userCode: _this.userCode,
             });
             const app = getApp();
             app.globalData.token = token;

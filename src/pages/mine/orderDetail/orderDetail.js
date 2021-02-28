@@ -1,5 +1,7 @@
 import api from 'api';
 import { intervalTime } from 'utils/util';
+import dayjs from 'dayjs'
+	;
 
 let time = null;
 
@@ -59,9 +61,20 @@ Page({
 	},
 	async getTraceList(id) {
 		const res = await api.user.getTraceList(id)();
+		console.log(res);
 		this.setData({
-			traceList: res,
+			traceList: res.map((value, index) => {
+				return {
+					...value,
+					createTime: dayjs(value.createTime).format('YYYY-MM-DD HH:mm:ss'),
+					traceImg: value.traceImg && value.traceImg.split(','),
+				};
+			}),
 		});
+	},
+	previewImg(res) {
+		const { currentTarget: { dataset: { img } } } = res;
+		wx.previewImage({ urls: [img] });
 	},
 	intervalCountDown() {
 		time = setInterval(() => {
