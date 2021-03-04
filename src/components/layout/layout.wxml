@@ -1,0 +1,4 @@
+<view class="tabbar-container">
+  <slot />
+  <tab-bar selectIndex="{{selectIndex}}" />
+</view>

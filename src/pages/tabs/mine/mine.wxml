@@ -1,32 +1,34 @@
-<view class="mine">
-  <view class="header">
-    <image class="avatar" src="{{userInfo.portrait || 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/Bitmap.png'}}" />
-    <view class="header-info">
-      <text class="name">{{userInfo.nickname || '未登录用户'}}</text>
-      <text class="phone">{{userInfo.nickname ? (userInfo.phone || '') : '点击登录'}}</text>
+<layout selectIndex="1">
+  <view class="mine">
+    <view class="header">
+      <image class="avatar" src="{{userInfo.portrait || 'https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/Bitmap.png'}}" />
+      <view class="header-info">
+        <text class="name">{{userInfo.nickname || '未登录用户'}}</text>
+        <text class="phone">{{userInfo.nickname ? (userInfo.phone || '') : '点击登录'}}</text>
+      </view>
     </view>
-  </view>
-  <view class="list">
-    <block wx:for="{{list}}" wx:key="index">
-      <view wx:if="{{!item.isHide}}" class="list-item" catch:tap="navigatePage" data-path="{{item.path}}">
+    <view class="list">
+      <block wx:for="{{list}}" wx:key="index">
+        <view wx:if="{{!item.isHide}}" class="list-item" catch:tap="navigatePage" data-path="{{item.path}}">
+          <view class="left">
+            <view class="icon-wrapper">
+              <image class="{{item.iconClass}}" src="{{item.icon}}" />
+            </view>
+            <text class="text">{{item.text}}</text>
+            <view wx:if="{{index === 0}}" class="red-round" />
+          </view>
+          <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/2px%20%E5%B0%96%E5%A4%B4%402x.png" />
+        </view>
+      </block>
+      <button class="list-item" open-type="contact">
         <view class="left">
           <view class="icon-wrapper">
-            <image class="{{item.iconClass}}" src="{{item.icon}}" />
+            <image class="contact-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/%E8%B7%AF%E5%BE%84%402x.png" />
           </view>
-          <text class="text">{{item.text}}</text>
-          <view wx:if="{{index === 0}}" class="red-round" />
+          <text class="text">联系客服</text>
         </view>
         <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/2px%20%E5%B0%96%E5%A4%B4%402x.png" />
-      </view>
-    </block>
-    <button class="list-item" open-type="contact">
-      <view class="left">
-        <view class="icon-wrapper">
-          <image class="contact-icon" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/%E8%B7%AF%E5%BE%84%402x.png" />
-        </view>
-        <text class="text">联系客服</text>
-      </view>
-      <image class="arrow" src="https://hzliangke.oss-cn-hangzhou.aliyuncs.com/lk-shop-miniprogram/mine/2px%20%E5%B0%96%E5%A4%B4%402x.png" />
-    </button>
+      </button>
+    </view>
   </view>
-</view>
+</layout>

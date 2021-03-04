@@ -1,0 +1,8 @@
+<view class="tabbar">
+  <block wx:for="{{data.list}}" wx:key="index">
+    <view class="tab-item" bind:tap="changeTabbarSelect" data-index="{{index}}">
+      <image class="icon" src="{{selectIndex === index ? item.selectedIconPath : item.iconPath}}" />
+      <text class="text" style="color: {{selectIndex === index ? data.selectedColor : data.color}}">{{item.text}}</text>
+    </view>
+  </block>
+</view>
